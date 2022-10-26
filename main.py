@@ -39,8 +39,8 @@ class EasyWareApp(MDApp):
     
     def temprint(self,text):
         for x in self.sample:
-            if x['name'] == text:
-                print(x)
+            if x["'name'"].replace("'", "") == text:
+                print(f"Pressed: {text}")
                 
     def build(self):
         return self.screen  
