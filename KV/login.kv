@@ -1,0 +1,98 @@
+#:import C kivy.utils.get_color_from_hex
+
+<LoginScreen@Screen>:
+    name: 'login'
+    FitImage:
+        source: 'RES/easywarebg.png'
+
+    FloatLayout:
+
+        MDLabel:
+            text: 'Login'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: 0.07 * self.height
+            halign: 'center'
+            pos_hint: {'center_x': .5,'center_y': 0.775}
+
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: 'ec8c6f'
+            font_size: 0.025 * self.height
+            halign: 'center'
+            pos_hint: {'center_x': .5,'center_y': 0.735}
+            
+        Button:
+            text: 'LOGIN'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: '18'
+            size_hint: .25, .065
+            pos_hint: {'center_x': .5,'center_y': 0.375}
+            background_color: (0,0,0,0)
+            on_release: app.root.current = 'user'
+            on_press: app.login()
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [3]
+
+        CustomCard:
+            pos_hint: {'center_x': .5,'center_y': 0.62}
+            TextInput:
+                id: username
+                pos_hint: {'center_x': .5,'center_y': 0.5}
+                hint_text: "USERNAME"
+                font_name: 'Nunito'
+                font_size: .045 * root.height
+                halign: "center"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+        CustomCard:
+            pos_hint: {'center_x': .5,'center_y': 0.5}
+            TextInput:
+                id: password
+                pos_hint: {'center_x': .5,'center_y': 0.5}
+                hint_text: "PASSWORD"
+                font_name: 'Nunito'
+                font_size: .045 * root.height
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                halign: "center"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+        
+        MDLabel:
+            text: 'Sophia28 Trading and Hardware ©'
+            halign: 'center'
+            font_size: .0225 * root.height
+            font_name: 'Nunito'
+            pos_hint: {'center_x': 0.5,'center_y': 0.02}
+            color: "3b4949"
+        
+<CustomCard@MDCard>:
+    md_bg_color: 0,0,0,0
+    canvas.before:
+        Color:
+            rgba: rgba(112,236,228,255)
+        Line:
+            width: 1.5
+            rounded_rectangle: self.x,self.y,self.width,self.height,3,3,3,3,100
+    
+                
+            
