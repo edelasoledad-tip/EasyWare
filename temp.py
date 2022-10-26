@@ -1,5 +1,5 @@
 from csv import DictReader
-with open("RES/hardware-products.csv", 'r') as f:
+with open("RES/item_details.csv", 'r') as f:
             dict_reader = DictReader(f)
             sample = list(dict_reader)
 

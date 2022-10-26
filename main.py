@@ -19,7 +19,7 @@ class EasyWareApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.screen = Builder.load_file('KV/main.kv')
-        with open("RES/hardware-products.csv", 'r') as f:
+        with open("RES/item_details.csv", 'r') as f:
             dict_reader = DictReader(f)
             self.sample = list(dict_reader)
         
@@ -41,6 +41,8 @@ class EasyWareApp(MDApp):
         for x in self.sample:
             if x["'name'"].replace("'", "") == text:
                 print(f"Pressed: {text}")
+                print("INFO: ",x["'info'"].replace("'", ""))
+                print("BRAND: ",x["'brand'"].replace("'", ""))
                 
     def build(self):
         return self.screen  
