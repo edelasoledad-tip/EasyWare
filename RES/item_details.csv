@@ -1,4 +1,4 @@
-'name','price','image','info','atocks','brand'
+'name','price','image','info','stocks','brand'
 'Allen Key',320.5,'RES/RES/allenKey.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',42,'BondHus'
 'Band Clamp',793.1,'RES/RES/bandClamp.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',44,'Generic'
 'Bricks',10.5,'RES/RES/bricks.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',6,'ABC'
