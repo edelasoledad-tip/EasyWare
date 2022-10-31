@@ -16,6 +16,7 @@ ScreenManager:
         id: cart
         Burgir:
     SearchScreen:
+        id: search
         Burgir:
     LoginScreen:
         id: login
@@ -100,3 +101,67 @@ ScreenManager:
             pos_hint: {'center_x': 0.5,'center_y': 0.5}
             md_bg_color: 0,0,0,0
             on_release: app.temprint(homename.text)
+
+<ScrollCardCart>:
+    size_hint_x: 1
+    size_hint_y: None
+    height: root.width / 4
+    FloatLayout:
+        MDCard:
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            md_bg_color: '70ece4'
+            orientation: 'horizontal'
+            padding: root.width*.025
+            spacing: root.width*.05
+            radius: root.width*.03
+            MDCard:
+                size_hint: root.width * .25, 1
+                padding: (0)
+                radius: root.width*.03
+                orientation: 'vertical'
+                Image:
+                    id: cartimage
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    size_hint: 1, 1
+                    source: "RES/nails.jpg"
+                    allow_stretch: True
+            FloatLayout:  
+                size_hint: root.width * .5, 1
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                MDLabel:
+                    id: cartname
+                    pos_hint: {'center_x': 0.45,'center_y': 0.75}
+                    halign: 'left'
+                    text: 'HAMMER'
+                    color: "3b4949"
+                    font_name: 'Nunito'
+                    font_size: root.width*.075
+                MDLabel:
+                    id: cartprice
+                    pos_hint: {'center_x': 0.45,'center_y': 0.35}
+                    halign: 'left'
+                    text: 'P 100.90'
+                    color: "ec8c6f"
+                    font_name: 'Nunito'
+                    font_size: root.width*.06
+
+            MDCard:
+                size_hint: root.width * .25, 1
+                md_bg_color: 0,0,0,0
+                FloatLayout:
+                    MDIconButton:
+                        pos_hint: {'center_x': 0.75,'center_y': 0.35}
+                        icon: 'minus-circle-outline'
+                        icon_size: root.width*.075
+                        size_hint: 1, 1
+                    MDIconButton:
+                        pos_hint: {'center_x': 0.35,'center_y': 0.35}
+                        icon: 'plus-circle-outline'
+                        icon_size: root.width*.075
+                        size_hint: 1, 1
+        MDCard:
+            id: btn
+            size_hint_x: .75
+            pos_hint: {'x': 0,'center_y': 0.5}
+            md_bg_color: 0,0,0,0
+            on_release: app.temprint(cartname.text)
