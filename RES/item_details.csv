@@ -1,51 +1,51 @@
-'name','price','image','info','stocks','brand'
-'Allen Key',320.5,'RES/RES/allenKey.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',42,'BondHus'
-'Band Clamp',793.1,'RES/RES/bandClamp.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',44,'Generic'
-'Bricks',10.5,'RES/RES/bricks.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',6,'ABC'
-'Cable Cutter',119.5,'RES/RES/cableCutter.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',35,'Stanley'
-'Cement',227.8,'RES/RES/cement.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',19,'Generic'
-'Corrugated Metal Sheets',120.3,'RES/RES/corrugatedMetalSheets.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',10,'Generic'
-'Door Handles',1399,'RES/RES/doorHandles.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',15,'Generic'
-'Double Open End Wrench',433.5,'RES/RES/doubleOpenEndWrench.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',38,'Stanley'
-'Drill Bit',299.3,'RES/RES/drillBit.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',20,'Generic'
-'Flat Bar',360.5,'RES/RES/flatBar.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',12,'ABC'
-'GI Pipe',899,'RES/RES/giPipe.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',0,'Generic'
-'Hammer',390.3,'RES/RES/hammer.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',7,'Stanley'
-'Hand Drill',689.7,'RES/RES/handDrill.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',27,'Stanley'
-'Hand Saw',190.1,'RES/RES/handSaw.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',2,'Ingco'
-'Hard Boards',141.2,'RES/RES/hardboards.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',15,'ABC'
-'Hinges',279,'RES/RES/hinges.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',17,'Generic'
-'Hucks Fastener',219.1,'RES/RES/hucksFastener.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',14,'Generic'
-'Joint',89.5,'RES/RES/joint.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',25,'Generic'
-'JuteRope',185.6,'RES/RES/juteRope.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',0,'Generic'
-'Linoleum',120.9,'RES/RES/linoleum.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',44,'ABC'
-'Padlock',64.34,'RES/RES/lock.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',46,'Master'
-'Manila Rope',652.1,'RES/RES/manilaRope.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',4,'Generic'
-'Mid Steel Nails',150.56,'RES/RES/mildSteelNails.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',16,'Generic'
-'Nylon Rope',1750,RES/RES/nylonRope.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',44,'Generic'
-'Pipe Wrench',260.45,'RES/RES/pipeWrench.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',24,'Stanley'
-'Plaster',660.1,'RES/RES/plaster.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',24,'Plaster of Paris'
-'Plastic Boards',789.65,'RES/RES/plasticBoards.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',13,'ABC'
-'Pliers',240.34,'RES/RES/pliers.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',5,'Kamasa'
-'Primer',289.25,'RES/RES/primer.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',30,'Coat Saver'
-'PVC Pipe',147.78,'RES/RES/pvcPipe.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',48,'Generic'
-'RCC Pipe',758.45,'RES/RES/rccPipe.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',28,'Generic'
-'Rolled Roofing',305.19,'RES/RES/rolledRoofing.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',15,'ABC'
-'Screwdriver',155.6,'RES/RES/screwDriver.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',20,'Ingco'
-'Screws',35.1,'RES/RES/screws.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',14,'Generic'
-'Adjustable Wrench',178.25,'RES/RES/sliWrench.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',34,'Ingco'
-'Soldering Iron',173.89,'RES/RES/solderingIron.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',32,'Stanley'
-'Tape Measure',90.55,'RES/RES/tapeMeasure.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',25,'Stanley'
-'Thinners',270.15,'RES/RES/thinners.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',9,'Barrettine'
-'Tile Grout',75.3,'RES/RES/tileGrout.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',38,'ABC'
-'Tiles',246.58,'RES/RES/tiles.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',37,'Generic'
-'Wood Varnish',450.32,'RES/RES/varnish.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',47,'Color Tone'
-'Veneer Panels',307.15,'RES/RES/veneerPanels.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',44,'ABC'
-'Washers',49.1,'RES/RES/washers.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',7,'Generic'
-'Welding Glass',79.6,'RES/RES/weldingGlass.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',0,'ABC'
-'Welding Rod',135.26,'RES/RES/weldingRod.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',37,'Generic'
-'Wire Net',34.11,'RES/RES/wireNet.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',21,'Generic'
-'Wire Rope',131.22,'RES/RES/wireRope.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',39,'Generic'
-'Wooden Board',130.78,'RES/RES/woodenBoard.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',48,'Generic'
-'Wood Preservative',849.15,'RES/RES/woodPreservative.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',13,'Solignum'
-'Z-Bar',248.35,RES/RES/zBar.jpg','Lorem ipsum dolor sit amet. Consectetur adipiscing elit.\n� Lorem ipsum\n� Dolor sit amet\n� Sed ut perspiciatis',18,'Generic'
+name,price,image,info,stocks,brand
+Allen Key,320.5,RES/RES/allenKey.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,42,BondHus
+Band Clamp,793.1,RES/RES/bandClamp.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,44,Generic
+Bricks,10.5,RES/RES/bricks.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,6,ABC
+Cable Cutter,119.5,RES/RES/cableCutter.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,35,Stanley
+Cement,227.8,RES/RES/cement.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,19,Generic
+Corrugated Metal Sheets,120.3,RES/RES/corrugatedMetalSheets.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,10,Generic
+Door Handles,1399,RES/RES/doorHandles.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,15,Generic
+Double Open End Wrench,433.5,RES/RES/doubleOpenEndWrench.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,38,Stanley
+Drill Bit,299.3,RES/RES/drillBit.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,20,Generic
+Flat Bar,360.5,RES/RES/flatBar.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,12,ABC
+GI Pipe,899,RES/RES/giPipe.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,0,Generic
+Hammer,390.3,RES/RES/hammer.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,7,Stanley
+Hand Drill,689.7,RES/RES/handDrill.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,27,Stanley
+Hand Saw,190.1,RES/RES/handSaw.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,2,Ingco
+Hard Boards,141.2,RES/RES/hardboards.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,15,ABC
+Hinges,279,RES/RES/hinges.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,17,Generic
+Hucks Fastener,219.1,RES/RES/hucksFastener.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,14,Generic
+Joint,89.5,RES/RES/joint.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,25,Generic
+JuteRope,185.6,RES/RES/juteRope.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,0,Generic
+Linoleum,120.9,RES/RES/linoleum.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,44,ABC
+Padlock,64.34,RES/RES/lock.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,46,Master
+Manila Rope,652.1,RES/RES/manilaRope.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,4,Generic
+Mid Steel Nails,150.56,RES/RES/mildSteelNails.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,16,Generic
+Nylon Rope,1750,RES/RES/nylonRope.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,44,Generic
+Pipe Wrench,260.45,RES/RES/pipeWrench.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,24,Stanley
+Plaster,660.1,RES/RES/plaster.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,24,Plaster of Paris
+Plastic Boards,789.65,RES/RES/plasticBoards.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,13,ABC
+Pliers,240.34,RES/RES/pliers.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,5,Kamasa
+Primer,289.25,RES/RES/primer.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,30,Coat Saver
+PVC Pipe,147.78,RES/RES/pvcPipe.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,48,Generic
+RCC Pipe,758.45,RES/RES/rccPipe.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,28,Generic
+Rolled Roofing,305.19,RES/RES/rolledRoofing.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,15,ABC
+Screwdriver,155.6,RES/RES/screwDriver.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,20,Ingco
+Screws,35.1,RES/RES/screws.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,14,Generic
+Adjustable Wrench,178.25,RES/RES/sliWrench.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,34,Ingco
+Soldering Iron,173.89,RES/RES/solderingIron.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,32,Stanley
+Tape Measure,90.55,RES/RES/tapeMeasure.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,25,Stanley
+Thinners,270.15,RES/RES/thinners.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,9,Barrettine
+Tile Grout,75.3,RES/RES/tileGrout.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,38,ABC
+Tiles,246.58,RES/RES/tiles.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,37,Generic
+Wood Varnish,450.32,RES/RES/varnish.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,47,Color Tone
+Veneer Panels,307.15,RES/RES/veneerPanels.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,44,ABC
+Washers,49.1,RES/RES/washers.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,7,Generic
+Welding Glass,79.6,RES/RES/weldingGlass.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,0,ABC
+Welding Rod,135.26,RES/RES/weldingRod.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,37,Generic
+Wire Net,34.11,RES/RES/wireNet.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,21,Generic
+Wire Rope,131.22,RES/RES/wireRope.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,39,Generic
+Wooden Board,130.78,RES/RES/woodenBoard.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,48,Generic
+Wood Preservative,849.15,RES/RES/woodPreservative.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,13,Solignum
+Z-Bar,248.35,RES/RES/zBar.jpg,Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis,18,Generic
