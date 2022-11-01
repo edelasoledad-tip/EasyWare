@@ -14,6 +14,7 @@ class SudoApp():
         #check update to the firebase
         #if new update is available, update the content of SQLITE db
         #else do nothing
+        
         pass
     
     def get_item(self,item_id): # item_id/INT
@@ -25,32 +26,28 @@ class SudoApp():
         #                 'info':'Lorem ipsum',
         #                 'stocks':'42',
         #                 'brand':'BondHus'}
-        
-        pass
-    
-    def update_item(self,item_id,item_json,user): # item_id/INT, item_json/JSON ,user/BOOL
+        self.sqlitedb.execute("SELECT count(*) FROM items WHERE itemID = ?", (item_id,))
+        db_result=self.sqlitedb.fetchone()[0]
+        if db_result==0:
+            print('There is no item number %i'%item_id)
+        else:
+            self.sqlitedb.execute("SELECT * FROM items WHERE itemID=?;", (str(item_id)))
+            sample = self.sqlitedb.fetchone()
+            item = {
+            'name':sample[0],
+            'price':sample[1],
+            'image':sample[2],
+            'info':sample[3],
+            'stocks':sample[4],
+            'brand':sample[5]
+            }
+            return item
+
+            
+    def update_item(self,item_id,item_json,user,username): # item_id/INT, item_json/JSON ,user/BOOL
         
         # updates an item both on the SQLite db if user is admin level
         # logs "item_id updated by user at time" on the user102222log.txt file
-        # returns boolean
-        
-        pass
-    
-    def delete_item(self,item_id,user): # item_id/INT, user/BOOL
-        
-        # deletes an item both on the SQLite db if user is admin level
-        
-        # logs "item_id deleted by user at time" on the user102222log.txt file
-        self.log("Erickson","LOG MESSAGE2")
-        
-        # returns boolean
-        
-        pass
-    
-    def insert_item(self,item_id,item_json,user): 
-        # item_id/INT, item_json/JSON ,user/BOOL
-        # insert new item both on the SQLite db if user is admin level
-        # logs "item_id inserted by user at time" on the user102222log.txt file
         # returns boolean
         name=item_json['name']
         price=item_json['price']
@@ -58,9 +55,50 @@ class SudoApp():
         image=item_json['image']
         info=item_json['info']
         brand=item_json['brand']
-        self.sqlitedb.execute('''INSERT INTO items VALUES(?,?,?,?,?,?,?)''',(item_id,name,price,stocks,image,info,brand))
-        self.conn.commit()
-        self.log(user,f"Added item {item_id}: {name}")
+        if user:
+            self.sqlitedb.execute("SELECT count(*) FROM items WHERE itemID = ?", (item_id,))
+            db_result=self.sqlitedb.fetchone()[0]
+            if db_result==0:
+                print('There is no item number %i'%item_id)
+            else:
+                self.sqlitedb.execute("UPDATE items SET name = ?, price = ?, image = ?, info = ?, stocks = ?, brand = ? WHERE itemID = ?",(name,price,stocks,image,info,brand,item_id))
+                self.log(username,f"Updated item number {item_id} to: {item_json}")
+        
+    
+    def delete_item(self,item_id,user,username): # item_id/INT, user/BOOL
+        
+        # deletes an item both on the SQLite db if user is admin level
+        
+        # logs "item_id deleted by user at time" on the user102222log.txt file
+        if user:
+            self.sqlitedb.execute("DELETE FROM items WHERE itemID=?",(item_id,))
+            self.conn.commit()
+            self.log(username,f"Deleted item {item_id}")
+        # returns boolean
+        else:
+            pass
+    
+    def insert_item(self,item_id,item_json,user,username): 
+        # item_id/INT, item_json/JSON ,user/BOOL
+        # insert new item both on the SQLite db if user is admin level
+        # logs "item_id inserted by user at time" on the user102222log.txt file
+        # returns boolean
+        if user:
+            name=item_json['name']
+            price=item_json['price']
+            stocks=item_json['stocks']
+            image=item_json['image']
+            info=item_json['info']
+            brand=item_json['brand']
+            try:
+                self.sqlitedb.execute('''INSERT INTO items VALUES(?,?,?,?,?,?,?)''',(item_id,name,price,stocks,image,info,brand))
+                self.conn.commit()
+                self.log(username,f"Added item {item_id}: {name}")
+            except sqlite3.IntegrityError as e:
+                print('Item already exist.', e.args[0]) 
+        else:
+            pass
+        
         
     
     def log(self,user,message):
@@ -76,5 +114,10 @@ class SudoApp():
 
 app = SudoApp()
 sampleItem={"name":"Allen Key","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
-app.delete_item(5,True)
-app.insert_item(1,sampleItem,"Zandlex")
+editedItem={"name":"qweqweqwe","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
+# app.delete_item(5,True,"Erickson")
+app.insert_item(1,sampleItem,True, "Erickson")
+print(app.get_item(1))
+# app.delete_item(1,True, "Erickson")
+app.update_item(1,editedItem,1,"Erickson")
+print(app.get_item(1))

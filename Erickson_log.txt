@@ -1,2 +1,42 @@
 LOG MESSAGE2
 LOG MESSAGE2
+LOG MESSAGE2
+Added item 1: Allen Key
+LOG MESSAGE2
+Added item 1: Allen Key
+LOG MESSAGE2
+Added item 1: Allen Key
+LOG MESSAGE2
+Added item 1: Allen Key
+Deleted item 5
+Deleted item 1
+Deleted item 5
+Deleted item 1
+Deleted item 5
+Added item 1: Allen Key
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Deleted item 5
+Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
