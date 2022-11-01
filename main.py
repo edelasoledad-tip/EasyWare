@@ -21,31 +21,36 @@ class EasyWareApp(MDApp):
         super().__init__(**kwargs)
         self.screen = Builder.load_file('KV/main.kv')
         
-        self.cart = [{'name':'Allen Key',
+        self.cart = [{'pos': '1',
+                      'name':'Allen Key',
                       'price':'320.5',
                       'image':'RES/RES/allenKey.jpg',
                       'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
                       'stocks':'42',
                       'brand':'BondHus'},
-                     {'name':'Band Clamp',
+                     {'pos': '2',
+                     'name':'Band Clamp',
                       'price':'793.1',
                       'image':'RES/RES/bandClamp.jpg',
                       'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
                       'stocks':'44',
                       'brand':'Generic'},
-                     {'name':'Cable Cutter',
+                     {'pos': '3',
+                     'name':'Cable Cutter',
                       'price':'119.5',
                       'image':'RES/RES/cableCutter.jpg',
                       'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
                       'stocks':'35',
                       'brand':'Stanley'},
-                     {'name':'Bricks',
+                     {'pos': '4',
+                     'name':'Bricks',
                       'price':'10.5',
                       'image':'RES/RES/bricks.jpg',
                       'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
                       'stocks':'6',
                       'brand':'ABC'},
-                     {'name':'Cement',
+                     {'pos': '5',
+                     'name':'Cement',
                       'price':'227.8',
                       'image':'RES/RES/cement.jpg',
                       'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
@@ -78,9 +83,13 @@ class EasyWareApp(MDApp):
             self.searchcard.ids.homeimage.source = z['image']
             self.screen.ids.search.ids.searchscrollgrid.add_widget(self.searchcard)
         
-    def login(self):
-        print(self.screen.ids.login.ids.username.text)
-    
+    def login(self,username,password):
+        if username.lower() == "admin" and password == "admin":
+            self.screen.current = 'user'
+            print("Admin Level")
+        else:
+            self.screen.current = 'user'
+            print("User Level")
     def opennav(self):
         self.screen.ids.nav_id.ids.nav_drawer.set_state("open")
     
@@ -90,6 +99,12 @@ class EasyWareApp(MDApp):
                 print(f"Pressed: {text}")
                 print("INFO: ",x['info'])
                 print("BRAND: ",x['brand'])
+    
+    def itemcounter(self,card):
+        self.screen.ids.cart.ids.cartscrollgrid.remove_widget(card)
+                
+    def temprint2(self,text):
+        print(text)
                 
     def build(self):
         return self.screen  

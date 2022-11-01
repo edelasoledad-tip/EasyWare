@@ -37,8 +37,39 @@
                     padding: root.width * .1,0,root.width * .1,0
                     spacing: root.width * .02
                     adaptive_height:True
+        
+        Button:
+            text: 'Clear all'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .0325
+            size_hint: .25, .045
+            pos_hint: {'center_x': .375 ,'y': 0.11}
+            background_color: (0,0,0,0)
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.width * .02]
 
-            
+        Button:
+            text: 'Checkout'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .0325
+            size_hint: .25, .045
+            pos_hint: {'center_x': .655 ,'y': 0.11}
+            background_color: (0,0,0,0)
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.width * .02]
+
         MDCard:
             pos_hint: {'center_x': .5,'y': 0.0}
             size_hint: 1,.085

@@ -12,14 +12,15 @@
 
 ScreenManager:
     transition: NoTransition()
+    LoginScreen:
+        id: login
     CartScreen:
         id: cart
         Burgir:
     SearchScreen:
         id: search
         Burgir:
-    LoginScreen:
-        id: login
+    
     UserScreen:
         Burgir:
     HomeScreen:
@@ -122,7 +123,7 @@ ScreenManager:
                 Image:
                     id: cartimage
                     pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                    size_hint: 1, 1
+                    size_hint: .85, .85
                     source: "RES/nails.jpg"
                     allow_stretch: True
             FloatLayout:  
@@ -149,16 +150,39 @@ ScreenManager:
                 size_hint: root.width * .25, 1
                 md_bg_color: 0,0,0,0
                 FloatLayout:
-                    MDIconButton:
-                        pos_hint: {'center_x': 0.75,'center_y': 0.35}
-                        icon: 'minus-circle-outline'
-                        icon_size: root.width*.075
-                        size_hint: 1, 1
-                    MDIconButton:
-                        pos_hint: {'center_x': 0.35,'center_y': 0.35}
-                        icon: 'plus-circle-outline'
-                        icon_size: root.width*.075
-                        size_hint: 1, 1
+                    MDLabel:
+                        id: counter
+                        pos_hint: {'center_x': 0.5,'center_y': 0.75}
+                        halign: 'center'
+                        text: '1'
+                        color: "ec8c6f"
+                        font_name: 'Nunito'
+                        font_size: root.width*.1
+                    MDCard:
+                        pos_hint: {'center_x': 0.75,'center_y': 0.3}
+                        md_bg_color: 0,0,0,0
+                        size_hint: .4, .4
+                        FloatLayout:
+                            FitImage:
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                                source: 'RES/minus-circle-outline.png'
+                            MDCard:
+                                md_bg_color: 0,0,0,0
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                                on_release: app.itemcounter(root)
+                    MDCard:
+                        pos_hint: {'center_x': 0.35,'center_y': 0.3}
+                        md_bg_color: 0,0,0,0
+                        size_hint: .4, .4
+                        FloatLayout:
+                            FitImage:
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                                source: 'RES/plus-circle-outline.png'
+                            MDCard:
+                                md_bg_color: 0,0,0,0
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                                on_release: counter.text = str(int(counter.text) + 1)
+             
         MDCard:
             id: btn
             size_hint_x: .75
