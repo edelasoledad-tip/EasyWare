@@ -40,3 +40,14 @@ Deleted item 5
 Deleted item 5
 Deleted item 5
 Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
+Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
+Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
+Deleted item 2
+Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
+Deleted item 2
+Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
+Deleted item 2
+Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
+Deleted item 2
+Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
+Deleted item 2

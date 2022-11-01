@@ -15,7 +15,11 @@ class SudoApp():
         #if new update is available, update the content of SQLITE db
         #else do nothing
         
-        pass
+    def GetAllItems(self):
+        self.sqlitedb.execute("""SELECT * FROM items""")
+        items = self.sqlitedb.fetchall()
+        for item in items:
+            print(item)
     
     def get_item(self,item_id): # item_id/INT
         
@@ -99,8 +103,6 @@ class SudoApp():
         else:
             pass
         
-        
-    
     def log(self,user,message):
         f = open(f"{user}_log.txt", "a")
         f.write(f"{message}\n")
@@ -121,3 +123,5 @@ print(app.get_item(1))
 # app.delete_item(1,True, "Erickson")
 app.update_item(1,editedItem,1,"Erickson")
 print(app.get_item(1))
+app.delete_item(2,1,"Erickson")
+app.GetAllItems()
