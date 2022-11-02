@@ -137,6 +137,6 @@ editedItem={"name":"qweqweqwe","price":320.5,"stocks":42,"image":"RES/RES/allenK
 # app.update_item(1,editedItem,1,"Erickson")
 # print(app.get_item(1))
 # app.delete_item(2,1,"Erickson")
-populateDatabase()
-#app.GetAllItems()
+# populateDatabase()
+app.GetAllItems()
 #

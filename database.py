@@ -80,5 +80,5 @@ if __name__ == '__main__':
     # for items in item.each():
     #         if item.val() is not None:
     #             print(item.key())
-    populateDatabase()    
+    # populateDatabase()    
     print(db.readAllItems())
