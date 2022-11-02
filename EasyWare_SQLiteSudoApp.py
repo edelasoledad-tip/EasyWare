@@ -1,6 +1,19 @@
 import sqlite3
 import pandas as pd
+from csv import DictReader
 
+
+def populateDatabase():
+    with open('RES/item_details.csv','r') as dataFile:
+        i = 1
+        temp = DictReader(dataFile)
+        sample = list(temp)
+        newDict = {}
+        for data in sample:
+            for entry in data:
+                newDict[entry.replace("'","")] = data[entry].replace("'","")
+            print(app.insert_item(i,newDict,1,"Erickson"))
+            i+=1
 class SudoApp():
     conn = sqlite3.connect('EasyWare_Local')
     sqlitedb = conn.cursor()
@@ -118,10 +131,11 @@ app = SudoApp()
 sampleItem={"name":"Allen Key","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
 editedItem={"name":"qweqweqwe","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
 # app.delete_item(5,True,"Erickson")
-app.insert_item(1,sampleItem,True, "Erickson")
-print(app.get_item(1))
-# app.delete_item(1,True, "Erickson")
-app.update_item(1,editedItem,1,"Erickson")
-print(app.get_item(1))
-app.delete_item(2,1,"Erickson")
+# app.insert_item(1,sampleItem,True, "Erickson")
+# print(app.get_item(1))
+# # app.delete_item(1,True, "Erickson")
+# app.update_item(1,editedItem,1,"Erickson")
+# print(app.get_item(1))
+# app.delete_item(2,1,"Erickson")
+#populateDatabase()
 app.GetAllItems()
