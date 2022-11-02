@@ -39,6 +39,7 @@
                     adaptive_height:True
         
         Button:
+            id: clearall
             text: 'Clear all'
             text_color: '#ec8c6f'
             font_name: 'Nunito'
@@ -46,6 +47,7 @@
             size_hint: .25, .045
             pos_hint: {'center_x': .375 ,'y': 0.11}
             background_color: (0,0,0,0)
+            on_release: app.clear()
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)

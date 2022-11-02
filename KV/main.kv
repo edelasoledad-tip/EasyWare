@@ -169,7 +169,9 @@ ScreenManager:
                             MDCard:
                                 md_bg_color: 0,0,0,0
                                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                on_release: app.itemcounter(root)
+                                on_release: 
+                                    counter.text = str(int(counter.text) - 1)
+                                    app.itemcounter(counter.text)
                     MDCard:
                         pos_hint: {'center_x': 0.35,'center_y': 0.3}
                         md_bg_color: 0,0,0,0
@@ -181,7 +183,9 @@ ScreenManager:
                             MDCard:
                                 md_bg_color: 0,0,0,0
                                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                on_release: counter.text = str(int(counter.text) + 1)
+                                on_release: 
+                                    counter.text = str(int(counter.text) + 1)
+                                    app.itemcounter(counter.text)
              
         MDCard:
             id: btn

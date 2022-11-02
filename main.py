@@ -99,9 +99,16 @@ class EasyWareApp(MDApp):
                 print(f"Pressed: {text}")
                 print("INFO: ",x['info'])
                 print("BRAND: ",x['brand'])
+            
+    def clear(self):
+        rows = [i for i in self.screen.ids.cart.ids.cartscrollgrid.children]
+        for row in rows:
+            self.screen.ids.cart.ids.cartscrollgrid.remove_widget(row)
+        self.cart = []
     
-    def itemcounter(self,card):
-        self.screen.ids.cart.ids.cartscrollgrid.remove_widget(card)
+    def itemcounter(self,str):
+        print(str)
+            
                 
     def temprint2(self,text):
         print(text)
