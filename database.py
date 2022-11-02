@@ -17,12 +17,15 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 fdb = firebase.database()
 def populateDatabase():
-    with open('item_details.csv','r') as dataFile:
+    with open('RES/item_details.csv','r') as dataFile:
         i = 1
         temp = DictReader(dataFile)
         sample = list(temp)
+        newDict = {}
         for data in sample:
-            print(db.createItem(i,data))
+            for entry in data:
+                newDict[entry.replace("'","")] = data[entry].replace("'","")
+            print(db.createItem(i,newDict))
             i+=1
 
 
@@ -69,13 +72,13 @@ if __name__ == '__main__':
     # print(db.readAllItems())
     # print(db.updateItem(2,editedItem),'\n')
     # print(db.readItem(2),'\n')
-    print(db.deleteItem(1),'\n')
+    #print(db.deleteItem(1),'\n')
     # print(db.readAllItems())
     # print(db.createItem(sampleITEM4),'\n')
-    
     # print(db.readItem(2))
     # item = fdb.child("items").get()
     # for items in item.each():
     #         if item.val() is not None:
     #             print(item.key())
-    # populateDatabase()    
+    populateDatabase()    
+    print(db.readAllItems())

@@ -12,7 +12,7 @@ def populateDatabase():
         for data in sample:
             for entry in data:
                 newDict[entry.replace("'","")] = data[entry].replace("'","")
-            print(app.insert_item(i,newDict,1,"Erickson"))
+            app.insert_item(i,newDict,1,"Erickson")
             i+=1
 class SudoApp():
     conn = sqlite3.connect('EasyWare_Local')
@@ -112,7 +112,7 @@ class SudoApp():
                 self.conn.commit()
                 self.log(username,f"Added item {item_id}: {name}")
             except sqlite3.IntegrityError as e:
-                print('Item already exist.', e.args[0]) 
+                print(f'Item {item_id} already exist.', e.args[0]) 
         else:
             pass
         
@@ -137,5 +137,6 @@ editedItem={"name":"qweqweqwe","price":320.5,"stocks":42,"image":"RES/RES/allenK
 # app.update_item(1,editedItem,1,"Erickson")
 # print(app.get_item(1))
 # app.delete_item(2,1,"Erickson")
-#populateDatabase()
-app.GetAllItems()
+populateDatabase()
+#app.GetAllItems()
+#

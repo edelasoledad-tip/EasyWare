@@ -15,5 +15,4 @@ def cleanCSV():
                 print(f"{key}: {newDict[key]} ")
             i+=1    
                
-
 cleanCSV()
