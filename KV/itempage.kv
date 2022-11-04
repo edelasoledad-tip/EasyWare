@@ -1,1 +1,123 @@
 #:import C kivy.utils.get_color_from_hex
+
+<ItemScreen@Screen>:
+    name: 'item'
+    FitImage:
+        source: 'RES/bg2.png'
+
+    FloatLayout:   
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .065
+            pos_hint: {'right': .9 ,'top': .95}
+        MDLabel:
+            text: 'ITEM'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .035
+            pos_hint: {'right': .9 ,'top': .89}
+            
+        FloatLayout:
+            MDCard:
+                md_bg_color: 'white'
+                pos_hint: {'center_x': 0.5,'center_y': 0.65}
+                size_hint: .7, .3
+                radius: [root.width * .075]
+                FitImage:
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    id: itemimage
+                    source: 'RES/nails.jpg'
+                    size_hint: .75, .75
+
+            MDLabel:
+                id: itemname
+                text: 'Zig Saw'
+                font_name: 'Nunito'
+                color: "3b4949"
+                font_size: .045 * root.height
+                halign: 'center'
+                padding: 
+                size_hint: .5, .035
+                pos_hint: {'center_x': 0.5,'center_y': 0.475}
+
+            MDLabel:
+                id: itemprice
+                text: 'P 100.99'
+                font_name: 'Nunito'
+                color: "ec8c6f"
+                font_size: .025 * root.height
+                halign: 'center'
+                padding: 
+                size_hint: .5, .035
+                pos_hint: {'center_x': 0.5,'center_y': 0.445}
+
+            BoxLayout:
+                size_hint: .7, .275
+                pos_hint: {'center_x': 0.5,'top': .425}
+                ScrollView:
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    MDLabel:
+                        id: iteminfo
+                        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+                        font_name: 'Nunito'
+                        color: "3b4949"
+                        font_size: .0225 * root.height
+                        halign: "left"
+                        pos_hint: {'center_x': 0.5,'center_y': 0.425}
+                        adaptive_height: True
+        Button:
+            text: 'Add to cart'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.width * .05
+            size_hint: .2, .04
+            pos_hint: {'center_x': .5 ,'y': 0.1}
+            background_color: (0,0,0,0)
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.width * .02]
+
+        MDCard:
+            pos_hint: {'center_x': .5,'y': 0.0}
+            size_hint: 1,.085
+            md_bg_color: '#bdf4f1'
+            radius:[0] 
+            FloatLayout:
+                pos_hint: {'center_x': .5,'center_y': 0.5}
+                MDIconButton:
+                    ripple_scale: 0
+                    pos_hint: {'center_x': 0.2,'center_y': 0.5}
+                    icon: "RES/userBLK.png"
+                    icon_size: 27
+                    on_press: app.root.current = 'user'
+                MDIconButton:
+                    ripple_scale: 0
+                    pos_hint: {'center_x': 0.4,'center_y': 0.5}
+                    icon: "RES/homeBLK.png"
+                    icon_size: 27
+                    on_press: app.root.current = 'home'
+                MDIconButton:
+                    ripple_scale: 0
+                    pos_hint: {'center_x': 0.6,'center_y': 0.5}
+                    icon: "RES/searchBLK.png"
+                    icon_size: 27
+                    on_press: app.root.current = 'search'
+                MDIconButton:
+                    ripple_scale: 0
+                    pos_hint: {'center_x': 0.8,'center_y': 0.5}
+                    icon: "RES/shopping-cartBLK.png"
+                    icon_size: 27
+                    on_press: app.root.current = 'cart'
