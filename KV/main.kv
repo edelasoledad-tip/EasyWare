@@ -12,6 +12,9 @@
 
 ScreenManager:
     transition: NoTransition()
+    ItemScreen:
+        id: item
+        Burgir:
     LoginScreen:
         id: login
     CartScreen:
@@ -20,7 +23,6 @@ ScreenManager:
     SearchScreen:
         id: search
         Burgir:
-    
     UserScreen:
         Burgir:
     HomeScreen:
@@ -31,6 +33,7 @@ ScreenManager:
     ManagementScreen:
         Burgir:
     
+         
 
 <Nav@MDNavigationLayout>:
     MDNavigationDrawer:
@@ -101,7 +104,9 @@ ScreenManager:
             id: btn
             pos_hint: {'center_x': 0.5,'center_y': 0.5}
             md_bg_color: 0,0,0,0
-            on_release: app.temprint(homename.text)
+            on_release: 
+                app.temprint(homename.text)
+                app.openitem(homename.text, root)
 
 <ScrollCardCart>:
     size_hint_x: 1

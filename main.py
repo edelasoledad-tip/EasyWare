@@ -108,6 +108,15 @@ class EasyWareApp(MDApp):
     
     def itemcounter(self,str):
         print(str)
+    
+    def openitem(self,name,child):
+        for x in self.home:
+            if x['name'] == name:
+                self.screen.ids.item.ids.itemimage.source = child.ids.homeimage.source
+                self.screen.ids.item.ids.itemname.text = child.ids.homename.text
+                self.screen.ids.item.ids.itemprice.text = child.ids.homeprice.text
+                self.screen.ids.item.ids.iteminfo.text = x['info']
+                self.screen.current = 'item'
             
                 
     def temprint2(self,text):
