@@ -31,8 +31,10 @@ class SudoApp():
     def GetAllItems(self):
         self.sqlitedb.execute("""SELECT * FROM items""")
         items = self.sqlitedb.fetchall()
+        x = []
         for item in items:
-            print(item)
+            x.append({'itemID' : item[0], 'name': item[1],'price':item[2],'image':item[3],'info':item[3],'stocks':item[4],'brand':item[5]})
+        return x
     
     def get_item(self,item_id): # item_id/INT
         
@@ -138,5 +140,5 @@ editedItem={"name":"qweqweqwe","price":320.5,"stocks":42,"image":"RES/RES/allenK
 # print(app.get_item(1))
 # app.delete_item(2,1,"Erickson")
 # populateDatabase()
-app.GetAllItems()
+print(app.GetAllItems())
 #
