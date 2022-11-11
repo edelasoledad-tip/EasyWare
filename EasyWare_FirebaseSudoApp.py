@@ -63,6 +63,8 @@ class database():
         return F"ID: {ID} Deleted!"
 
 if __name__ == '__main__':
+    sampleItem={"name":"Allen Key","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
+    editedItem={"name":"qweqweqwe","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
     db = database()
     # print('_'*20+"TEST CASES" +'_'*20, '\n')
     # print(db.createItem(sampleITEM),'\n')
@@ -80,5 +82,7 @@ if __name__ == '__main__':
     # for items in item.each():
     #         if item.val() is not None:
     #             print(item.key())
-    # populateDatabase()    
+    populateDatabase()    
+    #print(db.createItem(1,sampleItem))
+    #db.deleteItem(1))
     print(db.readAllItems())

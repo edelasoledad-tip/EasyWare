@@ -118,7 +118,6 @@ class EasyWareApp(MDApp):
                 self.screen.ids.item.ids.iteminfo.text = x['info']
                 self.screen.current = 'item'
             
-                
     def temprint2(self,text):
         print(text)
                 
