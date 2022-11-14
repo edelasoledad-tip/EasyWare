@@ -1,1 +1,92 @@
 #:import C kivy.utils.get_color_from_hex
+
+<DeveloperScreen@Screen>:
+    name: 'dev'
+    FitImage:
+        source: 'RES/bg2.png'
+    FloatLayout:
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'right'
+            size_hint: .5, .065
+            pos_hint: {'right': .9 ,'top': .95}
+        MDLabel:
+            text: 'DEVELOPER'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'right'
+            size_hint: .5, .035
+            pos_hint: {'right': .9 ,'top': .89}
+        Button:
+            text: 'SORT BY'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .2, .045
+            pos_hint: {'x': .1,'center_y': 0.825}
+            background_color: (0,0,0,0)
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.width * .02]
+        MDLabel:
+            pos_hint: {'x': .275,'center_y': 0.825}
+            size_hint: .2, .045
+            #theme_text_color: "Custom"
+            #md_bg_color: '3b4949'
+            halign: 'center'
+            text: 'NAME'
+            color: "3b4949"
+            font_name: 'Nunito'
+            font_size: root.height * .03
+
+        CustomCard:
+            pos_hint: {'center_x': .5,'center_y': 0.745}
+            size_hint: .79, .075
+            TextInput:
+                id: search
+                pos_hint: {'center_x': .5,'center_y': 0.5}
+                hint_text: "EX. HAMMER"
+                font_name: 'Nunito'
+                font_size: .045 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+        
+        MDLabel:
+            pos_hint: {'x': .1,'center_y': 0.675}
+            size_hint: .2, .05
+            #theme_text_color: "Custom"
+            #md_bg_color: '3b4949'
+            halign: 'left'
+            text: 'RECENT'
+            color: "ec8c6f"
+            font_name: 'Nunito'
+            font_size: root.height * .03
+        
+        MDBoxLayout:
+            pos_hint: {'center_x': 0.5,'y': 0.1}
+            size_hint: 1, .55
+            ScrollView:
+                size_hint: 1, 1
+                showsIndicator: False
+                MDGridLayout:
+                    id: itemsGrid
+                    cols:3
+                    padding: root.width * .1,0,root.width * .1,0
+                    spacing: root.width * .02
+                    adaptive_height:True
+    

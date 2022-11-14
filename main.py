@@ -19,7 +19,11 @@ class ScrollCard(MDCard):
     price = StringProperty()
     image = StringProperty()
     id = 0
-
+class ScrollCard2(MDCard):
+    name = StringProperty()
+    price = StringProperty()
+    image = StringProperty()
+    id = 0
 class ItemScreen(Screen):
     name = StringProperty()
     price = StringProperty()
@@ -38,6 +42,7 @@ class EasyWareApp(MDApp):
         self.database = local.SudoApp()
         self.home = self.database.GetAllItems() #sqlite items
         self.search = self.database.GetAllItems() #sqlite items
+        self.inventory = self.database.GetAllItems()
         Window.bind(on_keyboard=self.Android_back_click)
         
         with open("RES/cart.csv", 'r') as d: #local file that holds the cart items
@@ -66,6 +71,14 @@ class EasyWareApp(MDApp):
             self.searchcard.ids.homeimage.source = z['image']
             self.searchcard.id = z['itemID']
             self.screen.ids.search.ids.searchscrollgrid.add_widget(self.searchcard)
+            
+        for j in self.inventory:
+            self.invcard = ScrollCard2()
+            self.invcard.ids.invname.text =j['name']
+            self.invcard.ids.invprice.text = str(j['price'])
+            self.invcard.ids.invimage.source = j['image']
+            self.invcard.id = j['itemID']
+            self.screen.ids.inventory.ids.inventoryitems.add_widget(self.invcard)
     
     def Android_back_click(self,window,key,*largs):
         if key == 27:

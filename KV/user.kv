@@ -24,6 +24,12 @@
             padding: 
             size_hint: .5, .035
             pos_hint: {'right': .9 ,'top': .89}
+
+        MDFlatButton:
+            text: 'GO TO adminview inventory'
+            md_bg_color: '#FFFF00'
+            pos_hint: {'center_x': .5,'center_y': 0.4}
+            on_release: app.root.current = 'inventory'
             
         MDCard:
             pos_hint: {'center_x': .5,'y': 0.0}

@@ -1,9 +1,10 @@
 #:include KV/search.kv
 #:include KV/admin/management.kv
+#:include KV/admin/developer.kv
+#:include KV/admin/inventory.kv
 #:include KV/login.kv
 #:include KV/cart.kv
 #:include KV/home.kv
-#:include KV/admin/developer.kv
 #:include KV/splash.kv
 #:include KV/user.kv
 #:include KV/itempage.kv
@@ -12,8 +13,18 @@
 
 ScreenManager:
     transition: NoTransition()
+
     HomeScreen:
         id: home
+        Burgir:
+    ManagementScreen:
+        id: management
+        Burgir:
+    DeveloperScreen:
+        id: dev
+        Burgir:
+    InventoryScreen:
+        id: inventory
         Burgir:
     LoginScreen:
         id: login
@@ -30,8 +41,7 @@ ScreenManager:
         Burgir:
     SplashScreen:
         Burgir:
-    ManagementScreen:
-        Burgir:
+    
     
          
 
@@ -101,8 +111,6 @@ ScreenManager:
                 color: "3b4949"
                 font_name: 'Nunito'
                 font_size: root.width*.2
-            
-
         MDCard:
             id: btn
             pos_hint: {'center_x': 0.5,'center_y': 0.5}
@@ -110,6 +118,61 @@ ScreenManager:
             on_release: 
                 app.temprint(root.id)
                 app.openitem(root.id)
+                
+<ScrollCard2>:
+    size_hint_x: 1
+    size_hint_y: None
+    height: root.width * .25 + root.width
+    FloatLayout:
+        MDCard:
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            md_bg_color: '70ece4'
+            orientation: 'vertical'
+            padding: root.width*.05
+            spacing: root.width*.05
+            radius: root.width*.1,root.width*.1,root.width*.1,0
+            
+            MDCard:
+                size_hint: 1, .8
+                padding: (0)
+                radius: root.width*.05
+                orientation: 'vertical'
+                FitImage:
+                    id: invimage
+                    size_hint: .8, .8
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    source: root.image
+                    allow_stretch: True
+
+                MDLabel:
+                    id: invname
+                    pos_hint: {'center_x': 0.5,'center_y': .1}
+                    size_hint: 1, .2
+                    halign: 'center'
+                    text: root.name
+                    color: "ec8c6f"
+                    font_name: 'Nunito'
+                    font_size: root.width*.1
+                
+            MDLabel:
+                id: invprice
+                pos_hint: {'center_x': 0.5,'center_y': .1}
+                size_hint: 1, .2
+                #theme_text_color: "Custom"
+                #md_bg_color: '3b4949'
+                halign: 'center'
+                text: f'P {str(root.price)}'
+                color: "3b4949"
+                font_name: 'Nunito'
+                font_size: root.width*.2
+            
+
+        MDCard:
+            id: btn
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            md_bg_color: 0,0,0,0
+            on_release: 
+                app.temprint("edit Item" + str(root.id))
 
 <ScrollCardCart>:
     size_hint_x: 1

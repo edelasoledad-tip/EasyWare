@@ -9,7 +9,25 @@
             pos_hint: {'center_x': .5,'center_y': 0.5}
         
         MDFlatButton:
-            text: 'BACK'
+            text: 'GO TO user home'
             md_bg_color: '#FFFF00'
             pos_hint: {'center_x': .5,'center_y': 0.4}
             on_release: app.root.current = 'home'
+    MDCard:
+        pos_hint: {'center_x': .5,'y': 0.0}
+        size_hint: 1,.085
+        md_bg_color: 'bdf4f1'
+        radius:[0] 
+        FloatLayout:
+            pos_hint: {'center_x': .5,'center_y': 0.5}
+            MDIconButton:
+                ripple_scale: 0
+                pos_hint: {'center_x': 0.4,'center_y': 0.5}
+                icon: "RES/userPRSD.png"
+                icon_size: 27
+            MDIconButton:
+                ripple_scale: 0
+                pos_hint: {'center_x': 0.6,'center_y': 0.5}
+                icon: "RES/homeBLK.png"
+                icon_size: 27
+                on_press: app.root.current = 'inventory'
