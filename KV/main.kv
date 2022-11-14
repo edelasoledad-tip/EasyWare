@@ -1,9 +1,9 @@
 #:include KV/search.kv
-#:include KV/management.kv
+#:include KV/admin/management.kv
 #:include KV/login.kv
 #:include KV/cart.kv
 #:include KV/home.kv
-#:include KV/developer.kv
+#:include KV/admin/developer.kv
 #:include KV/splash.kv
 #:include KV/user.kv
 #:include KV/itempage.kv
@@ -12,8 +12,8 @@
 
 ScreenManager:
     transition: NoTransition()
-    ItemScreen:
-        id: item
+    HomeScreen:
+        id: home
         Burgir:
     LoginScreen:
         id: login
@@ -25,8 +25,8 @@ ScreenManager:
         Burgir:
     UserScreen:
         Burgir:
-    HomeScreen:
-        id: home
+    ItemScreen:
+        id: item
         Burgir:
     SplashScreen:
         Burgir:
@@ -71,10 +71,11 @@ ScreenManager:
                 padding: (0)
                 radius: root.width*.05
                 orientation: 'vertical'
-                Image:
+                FitImage:
                     id: homeimage
-                    size_hint: 1, .8
-                    source: "RES/nails.jpg"
+                    size_hint: .8, .8
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    source: root.image
                     allow_stretch: True
 
                 MDLabel:
@@ -84,7 +85,7 @@ ScreenManager:
                     #theme_text_color: "Custom"
                     #md_bg_color: '3b4949'
                     halign: 'center'
-                    text: 'HAMMER'
+                    text: root.name
                     color: "ec8c6f"
                     font_name: 'Nunito'
                     font_size: root.width*.1
@@ -96,17 +97,19 @@ ScreenManager:
                 #theme_text_color: "Custom"
                 #md_bg_color: '3b4949'
                 halign: 'center'
-                text: 'P 350.75'
+                text: f'P {str(root.price)}'
                 color: "3b4949"
                 font_name: 'Nunito'
                 font_size: root.width*.2
+            
+
         MDCard:
             id: btn
             pos_hint: {'center_x': 0.5,'center_y': 0.5}
             md_bg_color: 0,0,0,0
             on_release: 
-                app.temprint(homename.text)
-                app.openitem(homename.text, root)
+                app.temprint(root.id)
+                app.openitem(root.id)
 
 <ScrollCardCart>:
     size_hint_x: 1
@@ -174,9 +177,8 @@ ScreenManager:
                             MDCard:
                                 md_bg_color: 0,0,0,0
                                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                on_release: 
-                                    counter.text = str(int(counter.text) - 1)
-                                    app.itemcounter(counter.text)
+                                on_press: 
+                                    app.itemcounter(root,-1)
                     MDCard:
                         pos_hint: {'center_x': 0.35,'center_y': 0.3}
                         md_bg_color: 0,0,0,0
@@ -189,8 +191,7 @@ ScreenManager:
                                 md_bg_color: 0,0,0,0
                                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
                                 on_release: 
-                                    counter.text = str(int(counter.text) + 1)
-                                    app.itemcounter(counter.text)
+                                    app.itemcounter(root,1)
              
         MDCard:
             id: btn

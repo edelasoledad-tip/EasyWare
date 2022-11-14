@@ -11,7 +11,7 @@ def populateDatabase():
         newDict = {}
         for data in sample:
             for entry in data:
-                newDict[entry.replace("'","")] = data[entry].replace("'","")
+                newDict[entry] = data[entry]
             app.insert_item(i,newDict,1,"Erickson")
             i+=1
 class SudoApp():
@@ -33,7 +33,7 @@ class SudoApp():
         items = self.sqlitedb.fetchall()
         x = []
         for item in items:
-            x.append({'itemID' : item[0], 'name': item[1],'price':item[2],'image':item[3],'info':item[3],'stocks':item[4],'brand':item[5]})
+            x.append({'itemID' : item[0], 'name': item[1],'price':item[2],'image':item[4],'info':item[5],'stocks':item[3],'brand':item[6]})
         return x
     
     def get_item(self,item_id): # item_id/INT
@@ -53,12 +53,13 @@ class SudoApp():
             self.sqlitedb.execute("SELECT * FROM items WHERE itemID=?;", (str(item_id)))
             sample = self.sqlitedb.fetchone()
             item = {
-            'name':sample[0],
-            'price':sample[1],
-            'image':sample[2],
-            'info':sample[3],
-            'stocks':sample[4],
-            'brand':sample[5]
+            'itemID': sample[0],
+            'name':sample[1],
+            'price':sample[2],
+            'stocks':sample[3],
+            'image':sample[4],
+            'info':sample[5],
+            'brand':sample[6]
             }
             return item
 
@@ -97,7 +98,7 @@ class SudoApp():
         else:
             pass
     
-    def insert_item(self,item_id,item_json,user,username): 
+    def insert_item(self,item_json,user,username): 
         # item_id/INT, item_json/JSON ,user/BOOL
         # insert new item both on the SQLite db if user is admin level
         # logs "item_id inserted by user at time" on the user102222log.txt file
@@ -110,11 +111,11 @@ class SudoApp():
             info=item_json['info']
             brand=item_json['brand']
             try:
-                self.sqlitedb.execute('''INSERT INTO items VALUES(?,?,?,?,?,?,?)''',(item_id,name,price,stocks,image,info,brand))
+                self.log(username,f"Added item {self.getNextId()}: {name}")
+                self.sqlitedb.execute('''INSERT INTO items (itemID,name,price,stocks,image,info,brand) VALUES(?,?,?,?,?,?,?)''',(self.getNextId(),name,price,stocks,image,info,brand))
                 self.conn.commit()
-                self.log(username,f"Added item {item_id}: {name}")
             except sqlite3.IntegrityError as e:
-                print(f'Item {item_id} already exist.', e.args[0]) 
+                print(f'Item {self.getNextId()} already exist.', e.args[0]) 
         else:
             pass
         
@@ -123,22 +124,29 @@ class SudoApp():
         f.write(f"{message}\n")
         f.close()
         
-    def update():
+    def update(self):
         #updates the firebase
         pass
     
+    def getNextId(self): #grabs the next id based on the last item on the db
+        self.sqlitedb.execute("SELECT * FROM items ORDER BY itemID DESC LIMIT 1")
+        print(self.sqlitedb.fetchone()[0]+1)
+    
     
 
-app = SudoApp()
-sampleItem={"name":"Allen Key","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
-editedItem={"name":"qweqweqwe","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
-# app.delete_item(5,True,"Erickson")
-# app.insert_item(1,sampleItem,True, "Erickson")
-# print(app.get_item(1))
-# # app.delete_item(1,True, "Erickson")
-# app.update_item(1,editedItem,1,"Erickson")
-# print(app.get_item(1))
-# app.delete_item(2,1,"Erickson")
-# populateDatabase()
-print(app.GetAllItems())
-#
+if __name__ == '__main__':
+    app = SudoApp()
+    sampleItem={"name":"Allen Key","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
+    editedItem={"name":"qweqweqwe","price":320.5,"stocks":42,"image":"RES/RES/allenKey.jpg","info":"lorem ips","brand":"BondHus"}
+    # app.delete_item(5,True,"Erickson")
+    app.insert_item(sampleItem,True, "Erickson")
+    # print(app.get_item(1))
+    # # app.delete_item(1,True, "Erickson")
+    # app.update_item(1,editedItem,1,"Erickson")
+    #print(app.get_item(2))
+    #app.getNextId()
+    # app.delete_item(2,1,"Erickson")
+    #populateDatabase()
+    for x in app.GetAllItems():
+        print(x)
+    #
