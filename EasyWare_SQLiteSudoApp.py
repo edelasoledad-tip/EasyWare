@@ -26,11 +26,63 @@ class SudoApp():
                 ([itemID] INTEGER PRIMARY KEY, [name] TEXT, [price] REAL, [stocks] INTEGER, [image] TEXT, [info] TEXT, [brand] TEXT)
                 ''')
         self.conn.commit()
+        # INITIALIZATION FOR USER TABLE
+        self.sqlitedb.execute('''
+                CREATE TABLE IF NOT EXISTS users
+                ([username] TEXT PRIMARY KEY, [password] TEXT, [accountType] INTEGER, [fullName] TEXT, [cart] TEXT NULL)
+                ''')
+
+        self.conn.commit()
+
         # check update to the firebase
         # if new update is available, update the content of SQLITE db
         # else do nothing
 
         # What if we create a child based on "datetoday" of timeanddate module
+    def CreateUser(self, username, password, accountType, fullName):
+        try:
+            self.sqlitedb.execute('''INSERT INTO users VALUES(?,?,?,?,"")''',
+                                  (username, password, accountType, fullName))
+            self.conn.commit()
+            self.logUser(
+                username, f'User({"Admin" if accountType==1 else "Employee"}): {username} with a password of {password} added')
+
+            return True
+        except sqlite3.IntegrityError as e:
+            print(f'User: {username} already exist.', e.args[0])
+            return False
+
+    def editCart(self, username, cart):
+        self.sqlitedb.execute('''UPDATE users SET cart = ? WHERE username = ? ''',
+                              (cart, username))
+        self.conn.commit()
+        return True
+
+    def clearCart(self, username):
+        self.sqlitedb.execute('''UPDATE users SET cart = ? WHERE username = ? ''',
+                              ("", username))
+        self.conn.commit()
+
+    def getCart(self, username):
+        self.sqlitedb.execute(
+            """SELECT cart FROM users WHERE username = ?""", ([username]))
+        cartItems = self.sqlitedb.fetchone()
+        CartData = []
+        i = 1
+        try:
+            for x in cartItems:
+                y = x.split("|")
+                for items in y:
+                    items = items.split(",")
+                    CartData.append(
+                        {"Entry": i, "ItemID": items[0], "Quantity": items[1]}
+                    )
+                    i += 1
+            print(CartData)
+            return CartData
+        except:
+            print(f"There are no items in {username}'s cart.")
+            return False
 
     def GetAllItems(self):
         # Get all of the items sorted by ID
@@ -125,6 +177,12 @@ class SudoApp():
         f.write(f"{message}\n {time}\n")
         f.close()
 
+    def logUser(self, user, message):
+        f = open(f"Users_log.txt", "a")
+        time = date.today()
+        f.write(f"{message}\n {time}\n")
+        f.close()
+
     def update():
         # updates the firebase
         pass
@@ -138,10 +196,21 @@ editedItem = {"name": "qweqweqwe", "price": 320.5, "stocks": 42,
 # app.delete_item(5,True,"Erickson")
 #app.insert_item(1,sampleItem,True, "Erickson")
 # print(app.get_item(1))
-app.delete_item(1, True, "Erickson")
+# app.delete_item(1, True, "Erickson")
 # app.update_item(1,editedItem,1,"Erickson")
 # print(app.get_item(1))
 # app.delete_item(2,1,"Erickson")
+# print(app.GetAllItems())
 populateDatabase()
-print(app.GetAllItems())
-#
+print(app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad"))
+# user Erickson orders 5 tiles and 2 tile grout
+# print(app.AddToCart("Erickson", 40, 5))
+# print(app.AddToCart("Erickson", 39, 2))
+print(app.CreateUser("User2", "123123", 0, "Dummy User 2"))
+print(app.CreateUser("User3", "12221", 0, "user 4"))
+print(app.CreateUser("Lorem", "3333", 0, "ABC User"))
+print(app.CreateUser("Dolor", "333123", 1, "BLABLABOOM"))
+app.editCart("Erickson", "40,5|39,2")
+app.getCart("Erickson")
+app.clearCart("Erickson")
+app.getCart("Erickson")

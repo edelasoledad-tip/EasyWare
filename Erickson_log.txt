@@ -1,312 +1,700 @@
-LOG MESSAGE2
-LOG MESSAGE2
-LOG MESSAGE2
 Added item 1: Allen Key
-LOG MESSAGE2
-Added item 1: Allen Key
-LOG MESSAGE2
-Added item 1: Allen Key
-LOG MESSAGE2
-Added item 1: Allen Key
-Deleted item 5
-Deleted item 1
-Deleted item 5
-Deleted item 1
-Deleted item 5
-Added item 1: Allen Key
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Deleted item 5
-Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
-Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
-Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
-Deleted item 2
-Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
-Deleted item 2
-Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
-Deleted item 2
-Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
-Deleted item 2
-Updated item number 1 to: {'name': 'qweqweqwe', 'price': 320.5, 'stocks': 42, 'image': 'RES/RES/allenKey.jpg', 'info': 'lorem ips', 'brand': 'BondHus'}
-Deleted item 2
-Added item 1: Allen Key
+ 2022-11-15
 Added item 2: Band Clamp
+ 2022-11-15
 Added item 3: Bricks
+ 2022-11-15
 Added item 4: Cable Cutter
+ 2022-11-15
 Added item 5: Cement
+ 2022-11-15
 Added item 6: Corrugated Metal Sheets
+ 2022-11-15
 Added item 7: Door Handles
+ 2022-11-15
 Added item 8: Double Open End Wrench
+ 2022-11-15
 Added item 9: Drill Bit
+ 2022-11-15
 Added item 10: Flat Bar
+ 2022-11-15
 Added item 11: GI Pipe
+ 2022-11-15
 Added item 12: Hammer
+ 2022-11-15
 Added item 13: Hand Drill
+ 2022-11-15
 Added item 14: Hand Saw
+ 2022-11-15
 Added item 15: Hard Boards
+ 2022-11-15
 Added item 16: Hinges
+ 2022-11-15
 Added item 17: Hucks Fastener
+ 2022-11-15
 Added item 18: Joint
+ 2022-11-15
 Added item 19: JuteRope
+ 2022-11-15
 Added item 20: Linoleum
+ 2022-11-15
 Added item 21: Padlock
+ 2022-11-15
 Added item 22: Manila Rope
+ 2022-11-15
 Added item 23: Mid Steel Nails
+ 2022-11-15
 Added item 24: Nylon Rope
+ 2022-11-15
 Added item 25: Pipe Wrench
+ 2022-11-15
 Added item 26: Plaster
+ 2022-11-15
 Added item 27: Plastic Boards
+ 2022-11-15
 Added item 28: Pliers
+ 2022-11-15
 Added item 29: Primer
+ 2022-11-15
 Added item 30: PVC Pipe
+ 2022-11-15
 Added item 31: RCC Pipe
+ 2022-11-15
 Added item 32: Rolled Roofing
+ 2022-11-15
 Added item 33: Screwdriver
+ 2022-11-15
 Added item 34: Screws
+ 2022-11-15
 Added item 35: Adjustable Wrench
+ 2022-11-15
 Added item 36: Soldering Iron
+ 2022-11-15
 Added item 37: Tape Measure
+ 2022-11-15
 Added item 38: Thinners
+ 2022-11-15
 Added item 39: Tile Grout
+ 2022-11-15
 Added item 40: Tiles
+ 2022-11-15
 Added item 41: Wood Varnish
+ 2022-11-15
 Added item 42: Veneer Panels
+ 2022-11-15
 Added item 43: Washers
+ 2022-11-15
 Added item 44: Welding Glass
+ 2022-11-15
 Added item 45: Welding Rod
+ 2022-11-15
 Added item 46: Wire Net
+ 2022-11-15
 Added item 47: Wire Rope
+ 2022-11-15
 Added item 48: Wooden Board
+ 2022-11-15
 Added item 49: Wood Preservative
+ 2022-11-15
 Added item 50: Z-Bar
+ 2022-11-15
 Added item 1: Allen Key
+ 2022-11-15
 Added item 2: Band Clamp
+ 2022-11-15
 Added item 3: Bricks
+ 2022-11-15
 Added item 4: Cable Cutter
+ 2022-11-15
 Added item 5: Cement
+ 2022-11-15
 Added item 6: Corrugated Metal Sheets
+ 2022-11-15
 Added item 7: Door Handles
+ 2022-11-15
 Added item 8: Double Open End Wrench
+ 2022-11-15
 Added item 9: Drill Bit
+ 2022-11-15
 Added item 10: Flat Bar
+ 2022-11-15
 Added item 11: GI Pipe
+ 2022-11-15
 Added item 12: Hammer
+ 2022-11-15
 Added item 13: Hand Drill
+ 2022-11-15
 Added item 14: Hand Saw
+ 2022-11-15
 Added item 15: Hard Boards
+ 2022-11-15
 Added item 16: Hinges
+ 2022-11-15
 Added item 17: Hucks Fastener
+ 2022-11-15
 Added item 18: Joint
+ 2022-11-15
 Added item 19: JuteRope
+ 2022-11-15
 Added item 20: Linoleum
+ 2022-11-15
 Added item 21: Padlock
+ 2022-11-15
 Added item 22: Manila Rope
+ 2022-11-15
 Added item 23: Mid Steel Nails
+ 2022-11-15
 Added item 24: Nylon Rope
+ 2022-11-15
 Added item 25: Pipe Wrench
+ 2022-11-15
 Added item 26: Plaster
+ 2022-11-15
 Added item 27: Plastic Boards
+ 2022-11-15
 Added item 28: Pliers
+ 2022-11-15
 Added item 29: Primer
+ 2022-11-15
 Added item 30: PVC Pipe
+ 2022-11-15
 Added item 31: RCC Pipe
+ 2022-11-15
 Added item 32: Rolled Roofing
+ 2022-11-15
 Added item 33: Screwdriver
+ 2022-11-15
 Added item 34: Screws
+ 2022-11-15
 Added item 35: Adjustable Wrench
+ 2022-11-15
 Added item 36: Soldering Iron
+ 2022-11-15
 Added item 37: Tape Measure
+ 2022-11-15
 Added item 38: Thinners
+ 2022-11-15
 Added item 39: Tile Grout
+ 2022-11-15
 Added item 40: Tiles
+ 2022-11-15
 Added item 41: Wood Varnish
+ 2022-11-15
 Added item 42: Veneer Panels
+ 2022-11-15
 Added item 43: Washers
+ 2022-11-15
 Added item 44: Welding Glass
+ 2022-11-15
 Added item 45: Welding Rod
+ 2022-11-15
 Added item 46: Wire Net
+ 2022-11-15
 Added item 47: Wire Rope
+ 2022-11-15
 Added item 48: Wooden Board
+ 2022-11-15
 Added item 49: Wood Preservative
+ 2022-11-15
 Added item 50: Z-Bar
+ 2022-11-15
 Added item 1: Allen Key
-Deleted item 1
-Deleted item 1
-Added item 1: Allen Key
+ 2022-11-15
 Added item 2: Band Clamp
+ 2022-11-15
 Added item 3: Bricks
+ 2022-11-15
 Added item 4: Cable Cutter
+ 2022-11-15
 Added item 5: Cement
+ 2022-11-15
 Added item 6: Corrugated Metal Sheets
+ 2022-11-15
 Added item 7: Door Handles
+ 2022-11-15
 Added item 8: Double Open End Wrench
+ 2022-11-15
 Added item 9: Drill Bit
+ 2022-11-15
 Added item 10: Flat Bar
+ 2022-11-15
 Added item 11: GI Pipe
+ 2022-11-15
 Added item 12: Hammer
+ 2022-11-15
 Added item 13: Hand Drill
+ 2022-11-15
 Added item 14: Hand Saw
+ 2022-11-15
 Added item 15: Hard Boards
+ 2022-11-15
 Added item 16: Hinges
+ 2022-11-15
 Added item 17: Hucks Fastener
+ 2022-11-15
 Added item 18: Joint
+ 2022-11-15
 Added item 19: JuteRope
+ 2022-11-15
 Added item 20: Linoleum
+ 2022-11-15
 Added item 21: Padlock
+ 2022-11-15
 Added item 22: Manila Rope
+ 2022-11-15
 Added item 23: Mid Steel Nails
+ 2022-11-15
 Added item 24: Nylon Rope
+ 2022-11-15
 Added item 25: Pipe Wrench
+ 2022-11-15
 Added item 26: Plaster
+ 2022-11-15
 Added item 27: Plastic Boards
+ 2022-11-15
 Added item 28: Pliers
+ 2022-11-15
 Added item 29: Primer
+ 2022-11-15
 Added item 30: PVC Pipe
+ 2022-11-15
 Added item 31: RCC Pipe
+ 2022-11-15
 Added item 32: Rolled Roofing
+ 2022-11-15
 Added item 33: Screwdriver
+ 2022-11-15
 Added item 34: Screws
+ 2022-11-15
 Added item 35: Adjustable Wrench
+ 2022-11-15
 Added item 36: Soldering Iron
+ 2022-11-15
 Added item 37: Tape Measure
+ 2022-11-15
 Added item 38: Thinners
+ 2022-11-15
 Added item 39: Tile Grout
+ 2022-11-15
 Added item 40: Tiles
+ 2022-11-15
 Added item 41: Wood Varnish
+ 2022-11-15
 Added item 42: Veneer Panels
+ 2022-11-15
 Added item 43: Washers
+ 2022-11-15
 Added item 44: Welding Glass
+ 2022-11-15
 Added item 45: Welding Rod
+ 2022-11-15
 Added item 46: Wire Net
+ 2022-11-15
 Added item 47: Wire Rope
+ 2022-11-15
 Added item 48: Wooden Board
+ 2022-11-15
 Added item 49: Wood Preservative
+ 2022-11-15
 Added item 50: Z-Bar
-Deleted item 1
+ 2022-11-15
 Added item 1: Allen Key
-Deleted item 1
-Added item 1: Allen Key
-Deleted item 1
- 2022-11-12
-Added item 1: Allen Key
- 2022-11-12
+ 2022-11-15
 Added item 2: Band Clamp
- 2022-11-12
+ 2022-11-15
 Added item 3: Bricks
- 2022-11-12
+ 2022-11-15
 Added item 4: Cable Cutter
- 2022-11-12
+ 2022-11-15
 Added item 5: Cement
- 2022-11-12
+ 2022-11-15
 Added item 6: Corrugated Metal Sheets
- 2022-11-12
+ 2022-11-15
 Added item 7: Door Handles
- 2022-11-12
+ 2022-11-15
 Added item 8: Double Open End Wrench
- 2022-11-12
+ 2022-11-15
 Added item 9: Drill Bit
- 2022-11-12
+ 2022-11-15
 Added item 10: Flat Bar
- 2022-11-12
+ 2022-11-15
 Added item 11: GI Pipe
- 2022-11-12
+ 2022-11-15
 Added item 12: Hammer
- 2022-11-12
+ 2022-11-15
 Added item 13: Hand Drill
- 2022-11-12
+ 2022-11-15
 Added item 14: Hand Saw
- 2022-11-12
+ 2022-11-15
 Added item 15: Hard Boards
- 2022-11-12
+ 2022-11-15
 Added item 16: Hinges
- 2022-11-12
+ 2022-11-15
 Added item 17: Hucks Fastener
- 2022-11-12
+ 2022-11-15
 Added item 18: Joint
- 2022-11-12
+ 2022-11-15
 Added item 19: JuteRope
- 2022-11-12
+ 2022-11-15
 Added item 20: Linoleum
- 2022-11-12
+ 2022-11-15
 Added item 21: Padlock
- 2022-11-12
+ 2022-11-15
 Added item 22: Manila Rope
- 2022-11-12
+ 2022-11-15
 Added item 23: Mid Steel Nails
- 2022-11-12
+ 2022-11-15
 Added item 24: Nylon Rope
- 2022-11-12
+ 2022-11-15
 Added item 25: Pipe Wrench
- 2022-11-12
+ 2022-11-15
 Added item 26: Plaster
- 2022-11-12
+ 2022-11-15
 Added item 27: Plastic Boards
- 2022-11-12
+ 2022-11-15
 Added item 28: Pliers
- 2022-11-12
+ 2022-11-15
 Added item 29: Primer
- 2022-11-12
+ 2022-11-15
 Added item 30: PVC Pipe
- 2022-11-12
+ 2022-11-15
 Added item 31: RCC Pipe
- 2022-11-12
+ 2022-11-15
 Added item 32: Rolled Roofing
- 2022-11-12
+ 2022-11-15
 Added item 33: Screwdriver
- 2022-11-12
+ 2022-11-15
 Added item 34: Screws
- 2022-11-12
+ 2022-11-15
 Added item 35: Adjustable Wrench
- 2022-11-12
+ 2022-11-15
 Added item 36: Soldering Iron
- 2022-11-12
+ 2022-11-15
 Added item 37: Tape Measure
- 2022-11-12
+ 2022-11-15
 Added item 38: Thinners
- 2022-11-12
+ 2022-11-15
 Added item 39: Tile Grout
- 2022-11-12
+ 2022-11-15
 Added item 40: Tiles
- 2022-11-12
+ 2022-11-15
 Added item 41: Wood Varnish
- 2022-11-12
+ 2022-11-15
 Added item 42: Veneer Panels
- 2022-11-12
+ 2022-11-15
 Added item 43: Washers
- 2022-11-12
+ 2022-11-15
 Added item 44: Welding Glass
- 2022-11-12
+ 2022-11-15
 Added item 45: Welding Rod
- 2022-11-12
+ 2022-11-15
 Added item 46: Wire Net
- 2022-11-12
+ 2022-11-15
 Added item 47: Wire Rope
- 2022-11-12
+ 2022-11-15
 Added item 48: Wooden Board
- 2022-11-12
+ 2022-11-15
 Added item 49: Wood Preservative
- 2022-11-12
+ 2022-11-15
 Added item 50: Z-Bar
- 2022-11-12
+ 2022-11-15
+Added item 1: Allen Key
+ 2022-11-15
+Added item 2: Band Clamp
+ 2022-11-15
+Added item 3: Bricks
+ 2022-11-15
+Added item 4: Cable Cutter
+ 2022-11-15
+Added item 5: Cement
+ 2022-11-15
+Added item 6: Corrugated Metal Sheets
+ 2022-11-15
+Added item 7: Door Handles
+ 2022-11-15
+Added item 8: Double Open End Wrench
+ 2022-11-15
+Added item 9: Drill Bit
+ 2022-11-15
+Added item 10: Flat Bar
+ 2022-11-15
+Added item 11: GI Pipe
+ 2022-11-15
+Added item 12: Hammer
+ 2022-11-15
+Added item 13: Hand Drill
+ 2022-11-15
+Added item 14: Hand Saw
+ 2022-11-15
+Added item 15: Hard Boards
+ 2022-11-15
+Added item 16: Hinges
+ 2022-11-15
+Added item 17: Hucks Fastener
+ 2022-11-15
+Added item 18: Joint
+ 2022-11-15
+Added item 19: JuteRope
+ 2022-11-15
+Added item 20: Linoleum
+ 2022-11-15
+Added item 21: Padlock
+ 2022-11-15
+Added item 22: Manila Rope
+ 2022-11-15
+Added item 23: Mid Steel Nails
+ 2022-11-15
+Added item 24: Nylon Rope
+ 2022-11-15
+Added item 25: Pipe Wrench
+ 2022-11-15
+Added item 26: Plaster
+ 2022-11-15
+Added item 27: Plastic Boards
+ 2022-11-15
+Added item 28: Pliers
+ 2022-11-15
+Added item 29: Primer
+ 2022-11-15
+Added item 30: PVC Pipe
+ 2022-11-15
+Added item 31: RCC Pipe
+ 2022-11-15
+Added item 32: Rolled Roofing
+ 2022-11-15
+Added item 33: Screwdriver
+ 2022-11-15
+Added item 34: Screws
+ 2022-11-15
+Added item 35: Adjustable Wrench
+ 2022-11-15
+Added item 36: Soldering Iron
+ 2022-11-15
+Added item 37: Tape Measure
+ 2022-11-15
+Added item 38: Thinners
+ 2022-11-15
+Added item 39: Tile Grout
+ 2022-11-15
+Added item 40: Tiles
+ 2022-11-15
+Added item 41: Wood Varnish
+ 2022-11-15
+Added item 42: Veneer Panels
+ 2022-11-15
+Added item 43: Washers
+ 2022-11-15
+Added item 44: Welding Glass
+ 2022-11-15
+Added item 45: Welding Rod
+ 2022-11-15
+Added item 46: Wire Net
+ 2022-11-15
+Added item 47: Wire Rope
+ 2022-11-15
+Added item 48: Wooden Board
+ 2022-11-15
+Added item 49: Wood Preservative
+ 2022-11-15
+Added item 50: Z-Bar
+ 2022-11-15
+Added item 1: Allen Key
+ 2022-11-15
+Added item 2: Band Clamp
+ 2022-11-15
+Added item 3: Bricks
+ 2022-11-15
+Added item 4: Cable Cutter
+ 2022-11-15
+Added item 5: Cement
+ 2022-11-15
+Added item 6: Corrugated Metal Sheets
+ 2022-11-15
+Added item 7: Door Handles
+ 2022-11-15
+Added item 8: Double Open End Wrench
+ 2022-11-15
+Added item 9: Drill Bit
+ 2022-11-15
+Added item 10: Flat Bar
+ 2022-11-15
+Added item 11: GI Pipe
+ 2022-11-15
+Added item 12: Hammer
+ 2022-11-15
+Added item 13: Hand Drill
+ 2022-11-15
+Added item 14: Hand Saw
+ 2022-11-15
+Added item 15: Hard Boards
+ 2022-11-15
+Added item 16: Hinges
+ 2022-11-15
+Added item 17: Hucks Fastener
+ 2022-11-15
+Added item 18: Joint
+ 2022-11-15
+Added item 19: JuteRope
+ 2022-11-15
+Added item 20: Linoleum
+ 2022-11-15
+Added item 21: Padlock
+ 2022-11-15
+Added item 22: Manila Rope
+ 2022-11-15
+Added item 23: Mid Steel Nails
+ 2022-11-15
+Added item 24: Nylon Rope
+ 2022-11-15
+Added item 25: Pipe Wrench
+ 2022-11-15
+Added item 26: Plaster
+ 2022-11-15
+Added item 27: Plastic Boards
+ 2022-11-15
+Added item 28: Pliers
+ 2022-11-15
+Added item 29: Primer
+ 2022-11-15
+Added item 30: PVC Pipe
+ 2022-11-15
+Added item 31: RCC Pipe
+ 2022-11-15
+Added item 32: Rolled Roofing
+ 2022-11-15
+Added item 33: Screwdriver
+ 2022-11-15
+Added item 34: Screws
+ 2022-11-15
+Added item 35: Adjustable Wrench
+ 2022-11-15
+Added item 36: Soldering Iron
+ 2022-11-15
+Added item 37: Tape Measure
+ 2022-11-15
+Added item 38: Thinners
+ 2022-11-15
+Added item 39: Tile Grout
+ 2022-11-15
+Added item 40: Tiles
+ 2022-11-15
+Added item 41: Wood Varnish
+ 2022-11-15
+Added item 42: Veneer Panels
+ 2022-11-15
+Added item 43: Washers
+ 2022-11-15
+Added item 44: Welding Glass
+ 2022-11-15
+Added item 45: Welding Rod
+ 2022-11-15
+Added item 46: Wire Net
+ 2022-11-15
+Added item 47: Wire Rope
+ 2022-11-15
+Added item 48: Wooden Board
+ 2022-11-15
+Added item 49: Wood Preservative
+ 2022-11-15
+Added item 50: Z-Bar
+ 2022-11-15
+Added item 1: Allen Key
+ 2022-11-15
+Added item 2: Band Clamp
+ 2022-11-15
+Added item 3: Bricks
+ 2022-11-15
+Added item 4: Cable Cutter
+ 2022-11-15
+Added item 5: Cement
+ 2022-11-15
+Added item 6: Corrugated Metal Sheets
+ 2022-11-15
+Added item 7: Door Handles
+ 2022-11-15
+Added item 8: Double Open End Wrench
+ 2022-11-15
+Added item 9: Drill Bit
+ 2022-11-15
+Added item 10: Flat Bar
+ 2022-11-15
+Added item 11: GI Pipe
+ 2022-11-15
+Added item 12: Hammer
+ 2022-11-15
+Added item 13: Hand Drill
+ 2022-11-15
+Added item 14: Hand Saw
+ 2022-11-15
+Added item 15: Hard Boards
+ 2022-11-15
+Added item 16: Hinges
+ 2022-11-15
+Added item 17: Hucks Fastener
+ 2022-11-15
+Added item 18: Joint
+ 2022-11-15
+Added item 19: JuteRope
+ 2022-11-15
+Added item 20: Linoleum
+ 2022-11-15
+Added item 21: Padlock
+ 2022-11-15
+Added item 22: Manila Rope
+ 2022-11-15
+Added item 23: Mid Steel Nails
+ 2022-11-15
+Added item 24: Nylon Rope
+ 2022-11-15
+Added item 25: Pipe Wrench
+ 2022-11-15
+Added item 26: Plaster
+ 2022-11-15
+Added item 27: Plastic Boards
+ 2022-11-15
+Added item 28: Pliers
+ 2022-11-15
+Added item 29: Primer
+ 2022-11-15
+Added item 30: PVC Pipe
+ 2022-11-15
+Added item 31: RCC Pipe
+ 2022-11-15
+Added item 32: Rolled Roofing
+ 2022-11-15
+Added item 33: Screwdriver
+ 2022-11-15
+Added item 34: Screws
+ 2022-11-15
+Added item 35: Adjustable Wrench
+ 2022-11-15
+Added item 36: Soldering Iron
+ 2022-11-15
+Added item 37: Tape Measure
+ 2022-11-15
+Added item 38: Thinners
+ 2022-11-15
+Added item 39: Tile Grout
+ 2022-11-15
+Added item 40: Tiles
+ 2022-11-15
+Added item 41: Wood Varnish
+ 2022-11-15
+Added item 42: Veneer Panels
+ 2022-11-15
+Added item 43: Washers
+ 2022-11-15
+Added item 44: Welding Glass
+ 2022-11-15
+Added item 45: Welding Rod
+ 2022-11-15
+Added item 46: Wire Net
+ 2022-11-15
+Added item 47: Wire Rope
+ 2022-11-15
+Added item 48: Wooden Board
+ 2022-11-15
+Added item 49: Wood Preservative
+ 2022-11-15
+Added item 50: Z-Bar
+ 2022-11-15
