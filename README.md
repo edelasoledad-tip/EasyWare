@@ -9,3 +9,7 @@ pip install --upgrade gcloud
 pip install pyrebase
 pip install firebase_admin
 pip install kivy,kivymd
+
+
+
+Yet to be built in android
