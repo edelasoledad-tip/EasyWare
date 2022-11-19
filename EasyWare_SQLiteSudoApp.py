@@ -23,7 +23,7 @@ class SudoApp():
     def __init__(self):
         self.sqlitedb.execute('''
                 CREATE TABLE IF NOT EXISTS items
-                ([itemID] INTEGER PRIMARY KEY, [name] TEXT, [price] REAL, [stocks] INTEGER, [image] TEXT, [info] TEXT, [brand] TEXT)
+                ([itemID] INTEGER, [name] TEXT, [price] INTEGER, [image] TEXT, [info] TEXT, [type] TEXT, [stocks] INTEGER, [brand] TEXT, [color] TEXT)
                 ''')
         self.conn.commit()
         # INITIALIZATION FOR USER TABLE
@@ -84,9 +84,23 @@ class SudoApp():
             print(f"There are no items in {username}'s cart.")
             return False
 
-    def GetAllItems(self):
-        # Get all of the items sorted by ID
-        self.sqlitedb.execute("""SELECT * FROM items""")
+    def GetAllItems(self, sortBy="id", desc=True, limit=0):
+        # Get all of the items sorted by input
+        if limit > 0:
+            if desc:
+                self.sqlitedb.execute(
+                    f"""SELECT * FROM items ORDER BY {sortBy.replace("'", "")} DESC LIMIT {limit}""")
+            else:
+                self.sqlitedb.execute(
+                    f"""SELECT * FROM items ORDER BY {sortBy.replace("'", "")} ASC LIMIT {limit}""")
+        else:
+            if desc:
+                self.sqlitedb.execute(
+                    f"""SELECT * FROM items ORDER BY {sortBy.replace("'", "")} DESC""")
+            else:
+                self.sqlitedb.execute(
+                    f"""SELECT * FROM items ORDER BY {sortBy.replace("'", "")} ASC""")
+
         items = self.sqlitedb.fetchall()
         x = []
         for item in items:
@@ -159,9 +173,11 @@ class SudoApp():
             image = item_json['image']
             info = item_json['info']
             brand = item_json['brand']
+            color = item_json['color']
+            itemType = item_json['type']
             try:
-                self.sqlitedb.execute('''INSERT INTO items VALUES(?,?,?,?,?,?,?)''',
-                                      (item_id, name, price, stocks, image, info, brand))
+                self.sqlitedb.execute('''INSERT INTO items VALUES(?,?,?,?,?,?,?,?,?)''',
+                                      (item_id, name, price, image, info, itemType, stocks, brand, color))
                 self.conn.commit()
                 self.log(username, f"Added item {item_id}: {name}")
                 return True
@@ -194,23 +210,38 @@ sampleItem = {"name": "Allen Key", "price": 320.5, "stocks": 42,
 editedItem = {"name": "qweqweqwe", "price": 320.5, "stocks": 42,
               "image": "RES/RES/allenKey.jpg", "info": "lorem ips", "brand": "BondHus"}
 # app.delete_item(5,True,"Erickson")
-#app.insert_item(1,sampleItem,True, "Erickson")
+# app.insert_item(1,sampleItem,True, "Erickson")
 # print(app.get_item(1))
 # app.delete_item(1, True, "Erickson")
 # app.update_item(1,editedItem,1,"Erickson")
 # print(app.get_item(1))
 # app.delete_item(2,1,"Erickson")
 # print(app.GetAllItems())
-populateDatabase()
-print(app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad"))
+# populateDatabase()
+# print(app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad"))
 # user Erickson orders 5 tiles and 2 tile grout
 # print(app.AddToCart("Erickson", 40, 5))
 # print(app.AddToCart("Erickson", 39, 2))
-print(app.CreateUser("User2", "123123", 0, "Dummy User 2"))
-print(app.CreateUser("User3", "12221", 0, "user 4"))
-print(app.CreateUser("Lorem", "3333", 0, "ABC User"))
-print(app.CreateUser("Dolor", "333123", 1, "BLABLABOOM"))
-app.editCart("Erickson", "40,5|39,2")
-app.getCart("Erickson")
-app.clearCart("Erickson")
-app.getCart("Erickson")
+# print(app.CreateUser("User2", "123123", 0, "Dummy User 2"))
+# print(app.CreateUser("User3", "12221", 0, "user 4"))
+# print(app.CreateUser("Lorem", "3333", 0, "ABC User"))
+# print(app.CreateUser("Dolor", "333123", 1, "BLABLABOOM"))
+# app.editCart("Erickson", "40,5|39,2")
+# app.getCart("Erickson")
+# app.clearCart("Erickson")
+# app.getCart("Erickson")
+# populateDatabase()
+# data = app.GetAllItems("price", 1, 100) !! ADDING THE THIRD PARAMETER SETS A LIMIT FOR ITEMS !!
+data = app.GetAllItems("price", 1)  # 0 = ascending
+#                                     1 = descending (BOOLEAN)
+x = 0
+print("--------------\n")
+for index in data:
+    if x != 200:
+        print(index['name'], index['price'])
+    else:
+        break
+
+    # for key, value in index.items():
+    #     print(f'{key}: {value}')
+print("--------------\n")
