@@ -1,6 +1,7 @@
 import sqlite3
 from datetime import date
 from csv import DictReader
+from ast import literal_eval
 
 
 def populateDatabase():
@@ -65,8 +66,18 @@ class SudoApp():
         self.sqlitedb.execute(
             """SELECT cart FROM users WHERE username = ?""", ([username]))
         cartItems = self.sqlitedb.fetchone()
-        newCart = str(cartItems[0]) + f"|{itemID},{quantity}"
-        app.editCart(username, newCart)
+        newCart = ""
+        if cartItems[0] == "":
+            newCart = (str("{'itemID':") + str(itemID) + "," +
+                       "'quantity':" + str(quantity) + "}" + ",")
+        else:
+            oldCart = cartItems[0]
+            newCart = oldCart + (str("{'itemID':") + str(itemID) + "," +
+                                 "'quantity':" + str(quantity) + "}" + ",")
+
+        self.sqlitedb.execute('''UPDATE users SET cart = ? WHERE username = ? ''',
+                              (str(newCart), username))
+        self.conn.commit()
 
     def editCart(self, username, cart):
         self.sqlitedb.execute('''UPDATE users SET cart = ? WHERE username = ? ''',
@@ -82,25 +93,23 @@ class SudoApp():
     def getCart(self, username):
         self.sqlitedb.execute(
             """SELECT cart FROM users WHERE username = ?""", ([username]))
-        cartItems = self.sqlitedb.fetchone()
+        cartItems = literal_eval(self.sqlitedb.fetchone()[0])
         CartData = []
         i = 1
-        item = app.get_item(100)
-        try:
-            for x in cartItems:
-                y = x.split("|")
-                for items in y:
-                    items = items.split(",")
-                    dataItem = app.get_item(items[0])
-                    CartData.append(
-                        {"Entry": i, "image": dataItem['image'], "name": dataItem['name'],
-                            "price": dataItem['price'], "Quantity": items[1], "ItemID": items[0]}
-                    )
-                    i += 1
-            return CartData
-        except:
-            print(f"There are no items in {username}'s cart.")
-            return False
+        # try:
+        for item in cartItems:
+            currentItem = app.get_item(item['itemID'])
+            CartData.append({
+                'CartEntry': i,
+                "image": currentItem["image"],
+                "name": currentItem['name'],
+                "price": currentItem['price'],
+                "quantity": item['quantity'],
+                "itemID": item['itemID']})
+        return CartData
+        # except:
+        # print(f"There are no items in {username}'s cart.")
+        # return False
 
     def GetAllItems(self, sortBy="id", desc=True, limit=0):
         # Get all of the items sorted by input
@@ -132,7 +141,7 @@ class SudoApp():
             "SELECT count(*) FROM items WHERE itemID = ?", (item_id,))
         db_result = self.sqlitedb.fetchone()[0]
         if db_result == 0:
-            print('There is no item number %i' % item_id)
+            print('Item Does not Exist')
             return False
         else:
             self.sqlitedb.execute(
@@ -242,15 +251,24 @@ app = SudoApp()
 # print(app.CreateUser("Cruzandlex", "123123", 0, "Zandlex Keano M. Cruz"))
 # print(app.CreateUser("RonelG", "12221", 1, "Ronel German"))
 
-# app.editCart("Erickson", "40,5|39,2|100,2|99,3")
+# app.editCart("Erickson", "")
 # x = app.getCart("Erickson")
-# print(x)
-# app.addToCart("Erickson", 10, 5)
-# y = app.getCart("Erickson")
-# print(y)
-print(app.authLogin("Erickson", "123123"))
-print(app.authLogin("11", "123123"))
-print(app.authLogin("Erickson", "2"))
+
+app.clearCart("Erickson")
+app.addToCart("Erickson", 5, 2)
+app.addToCart("Erickson", 10, 1)
+print(app.getCart("Erickson"))
+print(app.getCart("Erickson")[0])
+print(app.getCart("Erickson")[1])
+
+# app.get_item("Erickson")
+
+# app.addToCart("Erickson", 104, 2)
+
+
+# print(app.authLogin("Erickson", "123123"))
+# print(app.authLogin("11", "123123"))
+# print(app.authLogin("Erickson", "2"))
 
 
 # app.clearCart("Erickson")
