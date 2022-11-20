@@ -46,3 +46,5 @@ User(Employee): Lorem with a password of 3333 added
  2022-11-15
 User(Admin): Dolor with a password of 333123 added
  2022-11-15
+User(Admin): Erickson with a password of 123123 added
+ 2022-11-20

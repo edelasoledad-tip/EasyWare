@@ -69,13 +69,18 @@ class SudoApp():
         cartItems = self.sqlitedb.fetchone()
         CartData = []
         i = 1
+        item = app.get_item(100)
+        for keys in item:
+            print(keys, item[keys])
         try:
             for x in cartItems:
                 y = x.split("|")
                 for items in y:
                     items = items.split(",")
+                    dataItem = app.get_item(items[0])
                     CartData.append(
-                        {"Entry": i, "ItemID": items[0], "Quantity": items[1]}
+                        {"Entry": i, "image": dataItem['image'], "name": dataItem['name'],
+                            "price": dataItem['price'], "Quantity": items[1], "ItemID": items[0]}
                     )
                     i += 1
             print(CartData)
@@ -118,15 +123,19 @@ class SudoApp():
             return False
         else:
             self.sqlitedb.execute(
-                "SELECT * FROM items WHERE itemID=?;", (str(item_id)))
+                "SELECT * FROM items WHERE itemID=?;", (str(item_id),))
             sample = self.sqlitedb.fetchone()
+            print(sample)
+            print("^")
             item = {
-                'name': sample[0],
-                'price': sample[1],
-                'image': sample[2],
-                'info': sample[3],
-                'stocks': sample[4],
-                'brand': sample[5]
+                'itemID': sample[0],
+                'name': sample[1],
+                'price': sample[2],
+                'image': sample[3],
+                'info': sample[4],
+                'type': sample[5],
+                'stocks': sample[6],
+                'color': sample[7],
             }
             return item
 
@@ -205,10 +214,7 @@ class SudoApp():
 
 
 app = SudoApp()
-sampleItem = {"name": "Allen Key", "price": 320.5, "stocks": 42,
-              "image": "RES/RES/allenKey.jpg", "info": "lorem ips", "brand": "BondHus"}
-editedItem = {"name": "qweqweqwe", "price": 320.5, "stocks": 42,
-              "image": "RES/RES/allenKey.jpg", "info": "lorem ips", "brand": "BondHus"}
+
 # app.delete_item(5,True,"Erickson")
 # app.insert_item(1,sampleItem,True, "Erickson")
 # print(app.get_item(1))
@@ -218,7 +224,7 @@ editedItem = {"name": "qweqweqwe", "price": 320.5, "stocks": 42,
 # app.delete_item(2,1,"Erickson")
 # print(app.GetAllItems())
 # populateDatabase()
-# print(app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad"))
+print(app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad"))
 # user Erickson orders 5 tiles and 2 tile grout
 # print(app.AddToCart("Erickson", 40, 5))
 # print(app.AddToCart("Erickson", 39, 2))
@@ -226,22 +232,10 @@ editedItem = {"name": "qweqweqwe", "price": 320.5, "stocks": 42,
 # print(app.CreateUser("User3", "12221", 0, "user 4"))
 # print(app.CreateUser("Lorem", "3333", 0, "ABC User"))
 # print(app.CreateUser("Dolor", "333123", 1, "BLABLABOOM"))
-# app.editCart("Erickson", "40,5|39,2")
-# app.getCart("Erickson")
+app.editCart("Erickson", "40,5|39,2|100,2")
+app.getCart("Erickson")
+
 # app.clearCart("Erickson")
 # app.getCart("Erickson")
 # populateDatabase()
 # data = app.GetAllItems("price", 1, 100) !! ADDING THE THIRD PARAMETER SETS A LIMIT FOR ITEMS !!
-data = app.GetAllItems("price", 1)  # 0 = ascending
-#                                     1 = descending (BOOLEAN)
-x = 0
-print("--------------\n")
-for index in data:
-    if x != 200:
-        print(index['name'], index['price'])
-    else:
-        break
-
-    # for key, value in index.items():
-    #     print(f'{key}: {value}')
-print("--------------\n")
