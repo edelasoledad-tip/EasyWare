@@ -52,6 +52,22 @@ class SudoApp():
             print(f'User: {username} already exist.', e.args[0])
             return False
 
+    def authLogin(self, username, password):
+        self.sqlitedb.execute(
+            "SELECT count(*) FROM users WHERE username = ? AND password = ? ", (username, password))
+        db_result = self.sqlitedb.fetchone()[0]
+        if db_result != 0:
+            return True
+        else:
+            return False
+
+    def addToCart(self, username, itemID, quantity):
+        self.sqlitedb.execute(
+            """SELECT cart FROM users WHERE username = ?""", ([username]))
+        cartItems = self.sqlitedb.fetchone()
+        newCart = str(cartItems[0]) + f"|{itemID},{quantity}"
+        app.editCart(username, newCart)
+
     def editCart(self, username, cart):
         self.sqlitedb.execute('''UPDATE users SET cart = ? WHERE username = ? ''',
                               (cart, username))
@@ -70,8 +86,6 @@ class SudoApp():
         CartData = []
         i = 1
         item = app.get_item(100)
-        for keys in item:
-            print(keys, item[keys])
         try:
             for x in cartItems:
                 y = x.split("|")
@@ -83,7 +97,6 @@ class SudoApp():
                             "price": dataItem['price'], "Quantity": items[1], "ItemID": items[0]}
                     )
                     i += 1
-            print(CartData)
             return CartData
         except:
             print(f"There are no items in {username}'s cart.")
@@ -125,8 +138,6 @@ class SudoApp():
             self.sqlitedb.execute(
                 "SELECT * FROM items WHERE itemID=?;", (str(item_id),))
             sample = self.sqlitedb.fetchone()
-            print(sample)
-            print("^")
             item = {
                 'itemID': sample[0],
                 'name': sample[1],
@@ -224,16 +235,23 @@ app = SudoApp()
 # app.delete_item(2,1,"Erickson")
 # print(app.GetAllItems())
 # populateDatabase()
-print(app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad"))
+# print(app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad"))
 # user Erickson orders 5 tiles and 2 tile grout
 # print(app.AddToCart("Erickson", 40, 5))
 # print(app.AddToCart("Erickson", 39, 2))
-# print(app.CreateUser("User2", "123123", 0, "Dummy User 2"))
-# print(app.CreateUser("User3", "12221", 0, "user 4"))
-# print(app.CreateUser("Lorem", "3333", 0, "ABC User"))
-# print(app.CreateUser("Dolor", "333123", 1, "BLABLABOOM"))
-app.editCart("Erickson", "40,5|39,2|100,2")
-app.getCart("Erickson")
+# print(app.CreateUser("Cruzandlex", "123123", 0, "Zandlex Keano M. Cruz"))
+# print(app.CreateUser("RonelG", "12221", 1, "Ronel German"))
+
+# app.editCart("Erickson", "40,5|39,2|100,2|99,3")
+# x = app.getCart("Erickson")
+# print(x)
+# app.addToCart("Erickson", 10, 5)
+# y = app.getCart("Erickson")
+# print(y)
+print(app.authLogin("Erickson", "123123"))
+print(app.authLogin("11", "123123"))
+print(app.authLogin("Erickson", "2"))
+
 
 # app.clearCart("Erickson")
 # app.getCart("Erickson")

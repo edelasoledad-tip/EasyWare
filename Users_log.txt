@@ -48,3 +48,21 @@ User(Admin): Dolor with a password of 333123 added
  2022-11-15
 User(Admin): Erickson with a password of 123123 added
  2022-11-20
+User(Employee): User2 with a password of 123123 added
+ 2022-11-20
+User(Employee): User3 with a password of 12221 added
+ 2022-11-20
+User(Employee): Lorem with a password of 3333 added
+ 2022-11-20
+User(Admin): Dolor with a password of 333123 added
+ 2022-11-20
+User(Admin): Erickson with a password of 123123 added
+ 2022-11-20
+User(Employee): Cruzandlex with a password of 123123 added
+ 2022-11-20
+User(Admin): RonelG with a password of 12221 added
+ 2022-11-20
+User(Employee): Cyril with a password of 3333 added
+ 2022-11-20
+User(Admin): Dolor with a password of 333123 added
+ 2022-11-20
