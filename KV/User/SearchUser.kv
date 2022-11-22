@@ -1,0 +1,130 @@
+#:import C kivy.utils.get_color_from_hex
+
+<SearchScreen@Screen>:
+    name: 'search'
+    FitImage:
+        source: 'RES/IconsAndBGs/bg2.png'
+
+    FloatLayout:
+        Button:
+            text: 'SORT BY'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .2, .045
+            pos_hint: {'x': .1,'center_y': 0.825}
+            background_color: (0,0,0,0)
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.height * .01]
+        MDLabel:
+            pos_hint: {'x': .275,'center_y': 0.825}
+            size_hint: .2, .045
+            halign: 'center'
+            text: 'NAME'
+            color: "3b4949"
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .065
+            pos_hint: {'right': .9 ,'top': .95}
+        MDLabel:
+            text: 'SEARCH'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .035
+            pos_hint: {'right': .9 ,'top': .89}
+
+        CustomInputBorder:
+            pos_hint: {'center_x': .5,'center_y': 0.745}
+            size_hint: .79, .075
+            TextInput:
+                id: searchbox
+                pos_hint: {'x': 1,'center_y': 0.5}
+                hint_text: "EX. HAMMER"
+                font_name: 'Nunito'
+                font_size: .045 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+                on_text: app.search(searchbox.text)
+            
+        MDBoxLayout:
+            pos_hint: {'center_x': 0.5,'y': 0.1}
+            size_hint: 1, .58
+            RecycleView:
+                viewclass: 'RecycleCard'
+                id: searchrecycleview
+                size_hint: 1,1
+                RecycleGridLayout:
+                    cols:3
+                    padding: root.width * .1,0,root.width * .1,0
+                    spacing: root.width * .02
+                    size_hint_y: None
+                    default_size: None, root.width * .29
+                    default_size_hint: root.width, None
+                    height: self.minimum_height
+
+        MDCard:     #Custom Bottom Nav
+            pos_hint: {'center_x': .5,'y': 0.0}
+            size_hint: 1,.085
+            md_bg_color: '#bdf4f1'
+
+        MDCard:     #User Button
+            on_press: app.root.current = 'user'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.195,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/userBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Home Button
+            on_press: app.root.current = 'home'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.396,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/homeBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Search Button
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.597,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/searchPRSD.png'
+                size: root.height,root.height
+
+        MDCard:     #Cart Button
+            on_press: app.root.current = 'cart'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.798,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/shopping-cartBLK.png'
+                size: root.height,root.height

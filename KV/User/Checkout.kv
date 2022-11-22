@@ -1,0 +1,155 @@
+#:import C kivy.utils.get_color_from_hex
+
+<CheckoutScreen@Screen>:
+    name: 'checkout'
+    FitImage:
+        source: 'RES/IconsAndBGs/loginBG.png'
+
+    FloatLayout:            
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'center'
+            padding: 
+            size_hint: 1, .065
+            pos_hint: {'center_x': .5 ,'top': .95}
+        MDLabel:
+            text: 'INVOICE'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'center'
+            padding: 
+            size_hint: 1, .035
+            pos_hint: {'center_x': .5,'top': .89}
+
+        MDCard:             #Reciept card
+            size_hint: .75,.65
+            pos_hint: {'center_x': 0.5,'center_y': 0.475}
+            elevation: 1
+            canvas.before:
+                Color:
+                    rgba: rgba(112,236,228,255)
+                Line:
+                    width: self.height * .0075
+                    rounded_rectangle: self.x,self.y,self.width,self.height,4,4,4,4,100
+
+        MDLabel:            #Thank you header
+            text: 'Thank you!'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .05 * root.height
+            halign: 'center'
+            padding: 
+            size_hint: 1, .065
+            pos_hint: {'center_x': .5 ,'center_y': .75}
+        
+        BoxLayout:          #item on cart
+            size_hint: .55,.4
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            RecycleView:
+                viewclass: 'CheckoutRecycleCard'
+                id: checkoutrecycleview
+                size_hint: 1,1
+                RecycleGridLayout:
+                    cols:1
+                    size_hint_y: None
+                    default_size: None, 12
+                    default_size_hint: 1, None
+                    height: self.minimum_height
+        
+
+        MDCard:             #line
+            radius: [0]
+            md_bg_color: '3b4949'
+            pos_hint: {'center_x': .5 ,'center_y': .29}
+            size_hint: .55,.0025
+        
+        MDLabel:            #Subtotal
+            text: 'Subtotal:'
+            font_name: 'TypeWriter'
+            color: "3b4949"
+            font_size: .02 * root.height
+            halign: 'left'
+            size_hint: .5, .065
+            pos_hint: {'x': .25 ,'center_y': .275}
+
+        MDLabel:            #Subtotal val
+            id: subtotal
+            text: '0'
+            font_name: 'TypeWriter'
+            color: "3b4949"
+            font_size: .02 * root.height
+            halign: 'right'
+            size_hint: .5, .065
+            pos_hint: {'right': .75 ,'center_y': .275}
+        
+        MDLabel:            #Time and Date
+            text: 'NOVEMBER 21, 2022'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .025 * root.height
+            halign: 'center'
+            size_hint: 1, .065
+            pos_hint: {'center_x': .5 ,'center_y': .225}
+
+        MDLabel:            #TransactionNumber
+            text: 'Transaction ID: 0001230012300123'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .02 * root.height
+            halign: 'center' 
+            size_hint: 1, .065
+            pos_hint: {'center_x': .5 ,'center_y': .175}
+        
+        Button:
+            text: 'RETURN'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .25, .04
+            pos_hint: {'center_x': 0.5,'center_y': 0.075}
+            background_color: (0,0,0,0)
+            on_release: app.root.current = 'home'
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.height * .005]
+        
+
+        MDLabel:            #Footer text
+            text: 'Sophia28 Trading and Hardware ©'
+            halign: 'center'
+            font_size: .0225 * root.height
+            font_name: 'Nunito'
+            pos_hint: {'center_x': 0.5,'center_y': 0.02}
+            color: "3b4949"
+
+<CheckoutRecycleCard>:      #Custom checkout items
+    md_bg_color: 0,0,0,0
+    FloatLayout:
+        MDLabel:
+            text: f"{root.name} x{root.quantity}"
+            color: "3b4949"
+            halign: 'left'
+            font_name: 'TypeWriter'
+            font_size: 10
+            size_hint: .7, 1
+            pos_hint: {'x': 0,'center_y': 0.5}
+
+        MDLabel:
+            text: root.price
+            halign: 'right'
+            color: "3b4949"
+            font_name: 'TypeWriter'
+            font_size: 10
+            size_hint: .3, 1
+            pos_hint: {'x': .7,'center_y': 0.5}
+
+
+        

@@ -1,13 +1,13 @@
 #:import C kivy.utils.get_color_from_hex
 
-<LoginScreen@Screen>:
+<LoginScreen@Screen>:   #Login Screen
     name: 'login'
-    FitImage:
-        source: 'RES/easywarebg.png'
+    FitImage:   #BG
+        source: 'RES/IconsAndBGs/loginBG.png'
 
-    FloatLayout:
+    FloatLayout:    #Screen Main Layout
 
-        MDLabel:
+        MDLabel:    #Label Login
             text: 'Login'
             font_name: 'Nunito'
             color: "3b4949"
@@ -15,7 +15,7 @@
             halign: 'center'
             pos_hint: {'center_x': .5,'center_y': 0.775}
 
-        MDLabel:
+        MDLabel:    #Label EASYWARE
             text: 'EASYWARE'
             font_name: 'Nunito'
             color: 'ec8c6f'
@@ -23,16 +23,16 @@
             halign: 'center'
             pos_hint: {'center_x': .5,'center_y': 0.735}
             
-        Button:
+        Button:     #Login button
             id: loginbutton
             text: 'LOGIN'
             text_color: '#ec8c6f'
             font_name: 'Nunito'
-            font_size: '18'
+            font_size: 0.6 * self.height
             size_hint: .25, .065
             pos_hint: {'center_x': .5,'center_y': 0.375}
             background_color: (0,0,0,0)
-            on_press: app.login(username.text,password.text)
+            on_press: app.auth(username.text,password.text)
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
@@ -41,7 +41,7 @@
                     pos: self.pos
                     radius: [3]
 
-        CustomCard:
+        CustomInputBorder:      #UserName input
             pos_hint: {'center_x': .5,'center_y': 0.62}
             size_hint: .85, .075
             TextInput:
@@ -60,7 +60,7 @@
                 multiline: False
                 padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
 
-        CustomCard:
+        CustomInputBorder:      #Password input
             pos_hint: {'center_x': .5,'center_y': 0.5}
             size_hint: .85, .075
             TextInput:
@@ -80,7 +80,7 @@
                 password: True
                 padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
         
-        MDLabel:
+        MDLabel:    #Footer text
             text: 'Sophia28 Trading and Hardware ©'
             halign: 'center'
             font_size: .0225 * root.height

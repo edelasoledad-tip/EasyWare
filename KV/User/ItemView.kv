@@ -1,0 +1,100 @@
+#:import C kivy.utils.get_color_from_hex
+
+<ItemScreen@Screen>:
+    name: 'item'
+    FitImage:
+        source: 'RES/IconsAndBGs/BG2.png'
+
+    FloatLayout:
+        pos_hint: {'center_x': 0.5,'center_y': 0.55}
+        MDCard:             #Transparent bg
+            size_hint: .75,.75
+            md_bg_color: 0,0,0,.045
+            pos_hint: {'center_x': 0.5,'center_y': .45}
+
+        MDCard:             #Image Frame
+            size_hint: None,None
+            size: root.height/4,root.height/4
+            pos_hint: {'center_x': 0.5,'center_y': 0.5625}
+            canvas.before:
+                Color:
+                    rgba: rgba(112,236,228,150)
+                Line:
+                    width: self.height * .0125
+                    rounded_rectangle: self.x,self.y,self.width,self.height,4,4,4,4,100
+            FitImage:
+                id: itemImage
+                source: "RES/RES/allenKey.jpg"
+                size_hint: .8,.8
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}  
+
+        MDLabel:            #Item Name
+            id: itemName
+            text: 'ALLEN RICHARDS'
+            font_name: 'Nunito'
+            text_size: self.width, None
+            shorten: True
+            color: "3b4949"
+            font_size: .05 * root.height
+            halign: 'center'
+            size_hint: .7, .065
+            pos_hint: {'center_x': .5 ,'top': .8}
+
+        MDLabel:            #Item Price
+            id: itemPrice
+            text: 'P 123.99'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .03 * root.height
+            halign: 'center'
+            size_hint: 1, .035
+            pos_hint: {'center_x': .5,'top': .75}
+
+        FloatLayout:             #Item Info
+            size_hint: .65,None
+            size: 1,root.height/4.25
+            pos_hint: {'center_x': 0.5,'top': .47}
+            radius: root.height * .02
+            ScrollView:
+                pos_hint: {'center_x': 0.5,'top': .75}
+                MDLabel:
+                    id: itemInfo
+                    text: ""
+                    font_name: "Nunito"
+                    halign: "left"
+                    font_size: root.height * .025
+                    adaptive_height:True
+
+        Button:
+            text: 'RETURN'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .25, .04
+            pos_hint: {'center_x': .35,'top': 0.15}
+            background_color: (0,0,0,0)
+            on_release: app.root.current = 'home'
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.height * .005]
+        
+        Button:
+            text: 'CART ITEM'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .25, .04
+            pos_hint: {'center_x': .65,'top': 0.15}
+            background_color: (0,0,0,0)
+            on_release: app.root.current = 'home'
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.height * .005]

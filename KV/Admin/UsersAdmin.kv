@@ -1,0 +1,133 @@
+#:import C kivy.utils.get_color_from_hex
+
+<UsersAdminScreen@Screen>:
+    name: 'usersAdmin'
+    FitImage:
+        source: 'RES/IconsAndBGs/bg2.png'
+
+    FloatLayout:
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .065
+            pos_hint: {'right': .9 ,'top': .95}
+        MDLabel:
+            text: 'EDIT USERS'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .035
+            pos_hint: {'right': .9 ,'top': .89}
+        
+        MDBoxLayout:
+            pos_hint: {'center_x': 0.5,'y': 0.1}
+            size_hint: 1, .68
+            RecycleView:
+                viewclass: 'UsersRecycleCard'
+                id: usersrecycleview
+                size_hint: 1,1
+                RecycleGridLayout:
+                    cols:1
+                    padding: root.width * .1,0,root.width * .1,0
+                    size_hint_y: None
+                    default_size: None, self.width*.2
+                    default_size_hint: 1, None
+                    height: self.minimum_height
+
+        MDCard:     #Custom Bottom Nav
+            pos_hint: {'center_x': .5,'y': 0.0}
+            size_hint: 1,.085
+            md_bg_color: '#bdf4f1'
+
+        MDCard:     #User Button
+            on_press: app.root.current = 'userAdmin'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.195,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/userBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Home Button
+            on_press: app.root.current = 'homeAdmin'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.396,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/homeBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Search Button
+            on_press: app.root.current = 'searchAdmin'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.597,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/searchBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Cart Button
+            size_hint: None, None
+            size: root.height*.065,root.height*.065
+            pos_hint: {'center_x': 0.798,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/editUserPRSD.png'
+                size: root.height,root.height
+
+<UsersRecycleCard>:
+    md_bg_color: 0,0,0,0
+    padding: self.width*.02
+    spacing: self.width*.02
+    FloatLayout:
+        MDCard:
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            md_bg_color: '70ece4'
+            radius: root.width*.035,root.width*.035,root.width*.035,0
+
+        MDCard:
+            size_hint: .25, .75
+            orientation: 'vertical'
+            radius: root.width*.035,root.width*.035,root.width*.035,0
+            pos_hint: {'center_x': .15,'center_y': 0.5}
+            padding:
+            FitImage:
+                size_hint: .775, .775
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                source: root.image
+                allow_stretch: True
+
+        MDLabel:
+            pos_hint: {'x': .3,'center_y': .65}
+            size_hint: .7, .5
+            halign: 'left'
+            text: root.name
+            color: "ec8c6f"
+            shorten: True
+            font_name: 'Nunito'
+            font_size: root.width*.1
+        
+        MDLabel:
+            pos_hint: {'x': .3,'center_y': .25}
+            size_hint: 1, .2
+            halign: 'left'
+            text: root.price
+            color: "3b4949"
+            font_name: 'Nunito'
+            font_size: root.width*.06 
+
+        MDCard:
+            pos_hint: {'x': 0,'center_y': 0.5}
+            size_hint: .75,1
+            md_bg_color: 0,0,0,0
+            on_release: 
+                app.temp(root.name)

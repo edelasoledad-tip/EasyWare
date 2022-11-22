@@ -1,0 +1,111 @@
+#:import C kivy.utils.get_color_from_hex
+
+<HomeAdminScreen@Screen>:
+    name: 'homeAdmin'
+    FitImage:
+        source: 'RES/IconsAndBGs/bg2.png'
+
+    FloatLayout:
+        Button:
+            text: 'SORT BY'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .2, .045
+            pos_hint: {'x': .1,'center_y': 0.825}
+            background_color: (0,0,0,0)
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.height * .01]
+        MDLabel:
+            pos_hint: {'x': .275,'center_y': 0.825}
+            size_hint: .2, .045
+            halign: 'center'
+            text: 'NAME'
+            color: "3b4949"
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .065
+            pos_hint: {'right': .9 ,'top': .95}
+        MDLabel:
+            text: 'ADMIN HOME'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .035
+            pos_hint: {'right': .9 ,'top': .89}
+            
+        MDBoxLayout:
+            pos_hint: {'center_x': 0.5,'y': 0.1}
+            size_hint: 1, .68
+            RecycleView:
+                viewclass: 'RecycleCard'
+                id: homerecycleview
+                size_hint: 1,1
+                RecycleGridLayout:
+                    cols:3
+                    padding: root.width * .1,0,root.width * .1,0
+                    spacing: root.width * .02
+                    size_hint_y: None
+                    default_size: None, root.width * .29
+                    default_size_hint: root.width, None
+                    height: self.minimum_height
+                    
+        
+        MDCard:     #Custom Bottom Nav
+            pos_hint: {'center_x': .5,'y': 0.0}
+            size_hint: 1,.085
+            md_bg_color: '#bdf4f1'
+
+        MDCard:     #User Button
+            on_press: app.root.current = 'userAdmin'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.195,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/userBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Home Button
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.396,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/homePRSD.png'
+                size: root.height,root.height
+
+        MDCard:     #Search Button
+            on_press: app.root.current = 'searchAdmin'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.597,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/searchBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Edit Users Button
+            on_press: app.root.current = 'usersAdmin'
+            size_hint: None, None
+            size: root.height*.065,root.height*.065
+            pos_hint: {'center_x': 0.798,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/editUserBLK.png'
+                size: root.height,root.height

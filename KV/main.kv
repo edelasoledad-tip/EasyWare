@@ -1,62 +1,59 @@
-#:include KV/search.kv
-#:include KV/management.kv
 #:include KV/login.kv
-#:include KV/cart.kv
-#:include KV/home.kv
-#:include KV/developer.kv
-#:include KV/splash.kv
-#:include KV/user.kv
-#:include KV/itempage.kv
+
+#:include KV/User/HomeUser.kv
+#:include KV/User/SearchUser.kv
+#:include KV/User/UserUser.kv
+#:include KV/User/CartUser.kv
+
+#:include KV/User/Checkout.kv
+#:include KV/User/ItemView.kv
+#:include KV/Admin/UserAdmin.kv
+#:include KV/Admin/HomeAdmin.kv
+#:include KV/Admin/SearchAdmin.kv
+#:include KV/Admin/UsersAdmin.kv
+
 #:import C kivy.utils.get_color_from_hex
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 
 ScreenManager:
     transition: NoTransition()
-    LoginScreen:
-        id: login
-    ItemScreen:
-        id: item
-        Burgir:
-    CartScreen:
-        id: cart
-        Burgir:
-    SearchScreen:
-        id: search
-        Burgir:
-    UserScreen:
-        Burgir:
+    HomeAdminScreen:
+        id: homeAdmin
+    SearchAdminScreen:
+        id: searchAdmin
+    UserAdminScreen:
+        id: userAdmin   
+    UsersAdminScreen:
+        id: usersAdmin 
     HomeScreen:
         id: home
-        Burgir:
-    SplashScreen:
-        Burgir:
-    ManagementScreen:
-        Burgir:
+    ItemScreen:
+        id: item
+    LoginScreen:
+        id: login
+    CheckoutScreen:
+        id: checkout
+    CartScreen:
+        id: cart
+    UserScreen:
+        id: user
+    SearchScreen:
+        id: search
     
-         
+     
+#Custom Widgets
 
-<Nav@MDNavigationLayout>:
-    MDNavigationDrawer:
-        id: nav_drawer
-        radius: (0, 5, 5, 0)
-        padding: [0]
-        md_bg_color: 'bdf4f1'
-        MDNavigationDrawerMenu: 
+<CustomInputBorder@MDCard>:
+    md_bg_color: 0,0,0,0
+    canvas.before:
+        Color:
+            rgba: rgba(112,236,228,255)
+        Line:
+            width: self.height * .035
+            rounded_rectangle: self.x,self.y,self.width,self.height,self.height*.5,3,3,3,100
 
-<Burgir@FloatLayout>:
-    MDIconButton:
-        ripple_scale: 0
-        pos_hint: {'x': 0,'top': 1}
-        icon: "menu"
-        icon_size: 27
-        on_press: nav_id.ids.nav_drawer.set_state('open')
-    Nav:
-        id: nav_id
-    
-<ScrollCard>:
-    size_hint_x: 1
-    size_hint_y: None
-    height: root.width * .25 + root.width
+<RecycleCard>:
+    md_bg_color: 0,0,0,0
     FloatLayout:
         MDCard:
             pos_hint: {'center_x': 0.5,'center_y': 0.5}
@@ -65,136 +62,35 @@ ScreenManager:
             padding: root.width*.05
             spacing: root.width*.05
             radius: root.width*.1,root.width*.1,root.width*.1,0
-            
             MDCard:
                 size_hint: 1, .8
                 padding: (0)
                 radius: root.width*.05
                 orientation: 'vertical'
-                Image:
-                    id: homeimage
-                    size_hint: 1, .8
-                    source: "RES/nails.jpg"
+                FitImage:
+                    size_hint: .8, .8
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    source: root.image
                     allow_stretch: True
-
                 MDLabel:
-                    id: homename
                     pos_hint: {'center_x': 0.5,'center_y': .1}
                     size_hint: 1, .2
-                    #theme_text_color: "Custom"
-                    #md_bg_color: '3b4949'
                     halign: 'center'
-                    text: 'HAMMER'
+                    text: root.name
                     color: "ec8c6f"
                     font_name: 'Nunito'
-                    font_size: root.width*.1
-                
+                    font_size: root.width*.1            
             MDLabel:
-                id: homeprice
                 pos_hint: {'center_x': 0.5,'center_y': .1}
                 size_hint: 1, .2
-                #theme_text_color: "Custom"
-                #md_bg_color: '3b4949'
                 halign: 'center'
-                text: 'P 350.75'
+                text: f'P {str(root.price)}'
                 color: "3b4949"
                 font_name: 'Nunito'
                 font_size: root.width*.2
         MDCard:
-            id: btn
             pos_hint: {'center_x': 0.5,'center_y': 0.5}
             md_bg_color: 0,0,0,0
             on_release: 
-                app.temprint(homename.text)
-                app.openitem(homename.text, root)
+                app.gotoItem(root.id)
 
-<ScrollCardCart>:
-    size_hint_x: 1
-    size_hint_y: None
-    height: root.width / 4
-    FloatLayout:
-        MDCard:
-            pos_hint: {'center_x': 0.5,'center_y': 0.5}
-            md_bg_color: '70ece4'
-            orientation: 'horizontal'
-            padding: root.width*.025
-            spacing: root.width*.05
-            radius: root.width*.03
-            MDCard:
-                size_hint: root.width * .25, 1
-                padding: (0)
-                radius: root.width*.03
-                orientation: 'vertical'
-                Image:
-                    id: cartimage
-                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                    size_hint: .85, .85
-                    source: "RES/nails.jpg"
-                    allow_stretch: True
-            FloatLayout:  
-                size_hint: root.width * .5, 1
-                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                MDLabel:
-                    id: cartname
-                    pos_hint: {'center_x': 0.45,'center_y': 0.75}
-                    halign: 'left'
-                    text: 'HAMMER'
-                    color: "3b4949"
-                    font_name: 'Nunito'
-                    font_size: root.width*.075
-                MDLabel:
-                    id: cartprice
-                    pos_hint: {'center_x': 0.45,'center_y': 0.35}
-                    halign: 'left'
-                    text: 'P 100.90'
-                    color: "ec8c6f"
-                    font_name: 'Nunito'
-                    font_size: root.width*.06
-
-            MDCard:
-                size_hint: root.width * .25, 1
-                md_bg_color: 0,0,0,0
-                FloatLayout:
-                    MDLabel:
-                        id: counter
-                        pos_hint: {'center_x': 0.5,'center_y': 0.75}
-                        halign: 'center'
-                        text: '1'
-                        color: "ec8c6f"
-                        font_name: 'Nunito'
-                        font_size: root.width*.1
-                    MDCard:
-                        pos_hint: {'center_x': 0.75,'center_y': 0.3}
-                        md_bg_color: 0,0,0,0
-                        size_hint: .4, .4
-                        FloatLayout:
-                            FitImage:
-                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                source: 'RES/minus-circle-outline.png'
-                            MDCard:
-                                md_bg_color: 0,0,0,0
-                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                on_release: 
-                                    counter.text = str(int(counter.text) - 1)
-                                    app.itemcounter(counter.text)
-                    MDCard:
-                        pos_hint: {'center_x': 0.35,'center_y': 0.3}
-                        md_bg_color: 0,0,0,0
-                        size_hint: .4, .4
-                        FloatLayout:
-                            FitImage:
-                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                source: 'RES/plus-circle-outline.png'
-                            MDCard:
-                                md_bg_color: 0,0,0,0
-                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                on_release: 
-                                    counter.text = str(int(counter.text) + 1)
-                                    app.itemcounter(counter.text)
-             
-        MDCard:
-            id: btn
-            size_hint_x: .75
-            pos_hint: {'x': 0,'center_y': 0.5}
-            md_bg_color: 0,0,0,0
-            on_release: app.temprint(cartname.text)
