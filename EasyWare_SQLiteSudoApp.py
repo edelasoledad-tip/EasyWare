@@ -4,7 +4,7 @@ from csv import DictReader
 
 
 def populateDatabase():
-    with open('RES/item_details.csv', 'r') as dataFile:
+    with open('RES/CSVs/item_details.csv', 'r') as dataFile:
         i = 1
         temp = DictReader(dataFile)
         sample = list(temp)
@@ -12,7 +12,7 @@ def populateDatabase():
         for data in sample:
             for entry in data:
                 newDict[entry.replace("'", "")] = data[entry].replace("'", "")
-            app.insert_item(i, newDict, 1, "Erickson")
+            SudoApp().insert_item(i, newDict, 1, "Erickson")
             i += 1
 
 
@@ -74,15 +74,15 @@ class SudoApp():
                 y = x.split("|")
                 for items in y:
                     items = items.split(",")
+                    dataItem = self.get_item(items[0])
                     CartData.append(
-                        {"Entry": i, "ItemID": items[0], "Quantity": items[1]}
+                        {"Entry": i, "image": dataItem['image'], "name": dataItem['name'],
+                            "price": dataItem['price'], "quantity": items[1], "itemID": items[0]}
                     )
                     i += 1
-            print(CartData)
             return CartData
         except:
-            print(f"There are no items in {username}'s cart.")
-            return False
+            return None
 
     def GetAllItems(self, sortBy="id", desc=True, limit=0):
         # Get all of the items sorted by input
@@ -118,15 +118,18 @@ class SudoApp():
             return False
         else:
             self.sqlitedb.execute(
-                "SELECT * FROM items WHERE itemID=?;", (str(item_id)))
+                "SELECT * FROM items WHERE itemID=?;", (str(item_id),))
             sample = self.sqlitedb.fetchone()
             item = {
-                'name': sample[0],
-                'price': sample[1],
-                'image': sample[2],
-                'info': sample[3],
-                'stocks': sample[4],
-                'brand': sample[5]
+                'itemID': sample[0],
+                'name': sample[1],
+                'price': sample[2],
+                'image': sample[3],
+                'info': sample[4],
+                'type': sample[5],
+                'stocks': sample[6],
+                'brand': sample[7],
+                'color': sample[8],
             }
             return item
 
@@ -188,60 +191,65 @@ class SudoApp():
             return False
 
     def log(self, user, message):
-        f = open(f"{user}_log.txt", "a")
-        time = date.today()
-        f.write(f"{message}\n {time}\n")
-        f.close()
+        #f = open(f"{user}_log.txt", "a")
+        #time = date.today()
+        #f.write(f"{message}\n {time}\n")
+        #f.close()
+        pass
 
     def logUser(self, user, message):
-        f = open(f"Users_log.txt", "a")
-        time = date.today()
-        f.write(f"{message}\n {time}\n")
-        f.close()
+        #f = open(f"Users_log.txt", "a")
+        #time = date.today()
+        #f.write(f"{message}\n {time}\n")
+        #f.close()
+        pass
 
     def update():
         # updates the firebase
         pass
 
+    def authLogin(self, username, password):
+        self.sqlitedb.execute(
+            "SELECT count(*) FROM users WHERE username = ? AND password = ? ", (username, password))
+        db_result = self.sqlitedb.fetchone()[0]
+        if db_result != 0:
+            return True
+        else:
+            return False
+    
+    def addToCart(self, username, itemID, quantity):
+        self.sqlitedb.execute(
+            """SELECT cart FROM users WHERE username = ?""", ([username]))
+        cartItems = self.sqlitedb.fetchone()
+        newCart = str(cartItems[0]) + f"|{itemID},{quantity}"
+        self.editCart(username, newCart)
+        
+if __name__ == '__main__':
+    
+    app = SudoApp()
+    app.get_item(3)
+    # app.delete_item(5,True,"Erickson")
+    # app.insert_item(1,sampleItem,True, "Erickson")
+    # print(app.get_item(1))
+    # app.delete_item(1, True, "Erickson")
+    # app.update_item(1,editedItem,1,"Erickson")
+    # print(app.get_item(1))
+    # app.delete_item(2,1,"Erickson")
+    # print(app.GetAllItems())
+    #populateDatabase()
+    #app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad")
+    # user Erickson orders 5 tiles and 2 tile grout
+    # print(app.AddToCart("Erickson", 40, 5))
+    # print(app.AddToCart("Erickson", 39, 2))
+    #app.CreateUser("Cruzandlex", "123123", 0, "Zandlex Keano M. Cruz")
+    #app.CreateUser("RonelG", "12221", 1, "Ronel German")
 
-app = SudoApp()
-sampleItem = {"name": "Allen Key", "price": 320.5, "stocks": 42,
-              "image": "RES/RES/allenKey.jpg", "info": "lorem ips", "brand": "BondHus"}
-editedItem = {"name": "qweqweqwe", "price": 320.5, "stocks": 42,
-              "image": "RES/RES/allenKey.jpg", "info": "lorem ips", "brand": "BondHus"}
-# app.delete_item(5,True,"Erickson")
-# app.insert_item(1,sampleItem,True, "Erickson")
-# print(app.get_item(1))
-# app.delete_item(1, True, "Erickson")
-# app.update_item(1,editedItem,1,"Erickson")
-# print(app.get_item(1))
-# app.delete_item(2,1,"Erickson")
-# print(app.GetAllItems())
-# populateDatabase()
-# print(app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad"))
-# user Erickson orders 5 tiles and 2 tile grout
-# print(app.AddToCart("Erickson", 40, 5))
-# print(app.AddToCart("Erickson", 39, 2))
-# print(app.CreateUser("User2", "123123", 0, "Dummy User 2"))
-# print(app.CreateUser("User3", "12221", 0, "user 4"))
-# print(app.CreateUser("Lorem", "3333", 0, "ABC User"))
-# print(app.CreateUser("Dolor", "333123", 1, "BLABLABOOM"))
-# app.editCart("Erickson", "40,5|39,2")
-# app.getCart("Erickson")
-# app.clearCart("Erickson")
-# app.getCart("Erickson")
-# populateDatabase()
-# data = app.GetAllItems("price", 1, 100) !! ADDING THE THIRD PARAMETER SETS A LIMIT FOR ITEMS !!
-data = app.GetAllItems("price", 1)  # 0 = ascending
-#                                     1 = descending (BOOLEAN)
-x = 0
-print("--------------\n")
-for index in data:
-    if x != 200:
-        print(index['name'], index['price'])
-    else:
-        break
+    #app.editCart("Erickson", "40,5|39,2|100,2|45,6|13,23|1,2|54,1|40,5|39,2|100,2|45,6|13,23|1,2|54,1|40,5|39,2|100,2|45,6|13,23|1,2|54,1|40,5|39,2|100,2|45,6|13,23|1,2|54,1|40,5|39,2|100,2|45,6|13,23|1,2|54,1|40,5|39,2|100,2|45,6|13,23|1,2|54,1|40,5|39,2|100,2|45,6|13,23|1,2|54,1|40,5|39,2|100,2|45,6|13,23|1,2|54,1|40,5|39,2|100,2|45,6|13,23|1,2|54,1")
+    #app.addToCart("Erickson", 10, 5)
+    #print('\n\n')
+    #app.getCart("Erickson")
 
-    # for key, value in index.items():
-    #     print(f'{key}: {value}')
-print("--------------\n")
+    # app.clearCart("Erickson")
+    # app.getCart("Erickson")
+    # populateDatabase()
+    # data = app.GetAllItems("price", 1, 100) !! ADDING THE THIRD PARAMETER SETS A LIMIT FOR ITEMS !!
