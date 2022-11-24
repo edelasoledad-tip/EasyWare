@@ -1,0 +1,306 @@
+#:import C kivy.utils.get_color_from_hex
+
+<ItemAddScreen@Screen>:
+    name: 'itemAdd'
+    FitImage:
+        source: 'RES/IconsAndBGs/bg2.png'
+
+    FloatLayout:
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .065
+            pos_hint: {'right': .9 ,'top': .95}
+        MDLabel:
+            text: 'ADD ITEM'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .035
+            pos_hint: {'right': .9 ,'top': .89}
+        
+        MDCard:             #custom card
+            size_hint: .75,.75
+            md_bg_color: 1,1,1,.8
+            pos_hint: {'center_x': 0.5,'center_y': .45}
+            canvas.before:
+                Color:
+                    rgba: rgba(112,236,228,255)
+                Line:
+                    width: self.height * .0075
+                    rounded_rectangle: self.x,self.y,self.width,self.height,4,4,4,4,100
+        MDCard:             #custom card
+            size_hint: .75,.75
+            md_bg_color: 1,1,1,.8
+            pos_hint: {'center_x': 0.5,'center_y': .45}
+            canvas.before:
+                Color:
+                    rgba: rgba(112,236,228,255)
+                Line:
+                    width: self.height * .0075
+                    rounded_rectangle: self.x,self.y,self.width,self.height,4,4,4,4,100
+        
+        MDLabel:                    #item stocks
+            text: 'Stocks:'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .025 * root.height
+            halign: 'left'
+            size_hint: .3, .065
+            pos_hint: {'right': .825 ,'center_y': .75}
+
+        CustomMDCard:               #stocks input
+            pos_hint: {'right': .825,'center_y': 0.71}
+            size_hint: .3, .05
+            TextInput:
+                id: itemStocks
+                pos_hint: {'x': 1,'center_y': 0.5}
+                hint_text: "stocks num"
+                font_name: 'Nunito'
+                font_size: .03 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+        MDCard:                     #Change user profile image
+            md_bg_color: 0,0,0,.05  
+            size_hint: None,None
+            size: root.height*.15,root.height*.15
+            pos_hint: {'center_x': 0.32,'center_y': 0.725}
+
+            FloatLayout:
+                size_hint: 1,1
+                Image:          #item Image
+                    id: itemImage
+                    source: 'RES/RES/alkalineBatteriesV1.jpg'
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    allow_stretch: True
+                    size_hint: .9, .9
+                MDCard:
+                    on_release: app.temp("Working")
+                    pos_hint: {'center_x': .9,'center_y': .1}
+                    size_hint: .3, .3
+                    md_bg_color: 0,0,0,0
+                    Image:
+                        source: 'RES/IconsAndBGs/image-edit.png'
+                        allow_stretch: True
+                        size_hint: 1,1
+        MDLabel:                    #item name
+            text: 'ITEM NAME:'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .025 * root.height
+            halign: 'left'
+            size_hint: .5, .065
+            pos_hint: {'x': .175 ,'center_y': .626}
+
+        CustomMDCard:               #item name input
+            pos_hint: {'center_x': .5,'center_y': 0.585}
+            TextInput:
+                id: itemName
+                pos_hint: {'x': 1,'center_y': 0.5}
+                hint_text: "Ex. Juan Dela Cruz"
+                font_name: 'Nunito'
+                font_size: .03 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+        
+        MDLabel:
+            text: 'PRICE:'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .025 * root.height
+            halign: 'left'
+            size_hint: .5, .065
+            pos_hint: {'x': .175 ,'center_y': .5335}
+
+        CustomMDCard:               #price input
+            pos_hint: {'x': .175,'center_y': 0.4925}
+            size_hint: .3, .05
+            TextInput:
+                id: itemPrice
+                pos_hint: {'x': 1,'center_y': 0.5}
+                hint_text: "enter price"
+                font_name: 'Nunito'
+                font_size: .03 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+        MDLabel:
+            text: 'BRAND:'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .025 * root.height
+            halign: 'left'
+            size_hint: .3, .065
+            pos_hint: {'right': .825 ,'center_y': .5335}
+
+        CustomMDCard:               #brand input
+            pos_hint: {'right': .825,'center_y': 0.4925}
+            size_hint: .3, .05
+            TextInput:
+                id: itemBrand
+                pos_hint: {'x': 1,'center_y': 0.5}
+                hint_text: "enter brand"
+                font_name: 'Nunito'
+                font_size: .03 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+        MDLabel:                    #item color
+            text: 'COLOR:'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .025 * root.height
+            halign: 'left'
+            size_hint: .5, .065
+            pos_hint: {'x': .175 ,'center_y': .441}
+
+        CustomMDCard:               #color input
+            pos_hint: {'x': .175,'center_y': 0.4}
+            size_hint: .3, .05
+            TextInput:
+                id: itemColor
+                pos_hint: {'x': 1,'center_y': 0.5}
+                hint_text: "enter color"
+                font_name: 'Nunito'
+                font_size: .03 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+        MDLabel:                    #item type
+            text: 'Type:'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .025 * root.height
+            halign: 'left'
+            size_hint: .3, .065
+            pos_hint: {'right': .825 ,'center_y': .441}
+
+        CustomMDCard:               #type input
+            pos_hint: {'right': .825,'center_y': 0.4}
+            size_hint: .3, .05
+            TextInput:
+                id: itemType
+                pos_hint: {'x': 1,'center_y': 0.5}
+                hint_text: "enter type"
+                font_name: 'Nunito'
+                font_size: .03 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: False
+                padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+        MDLabel:
+            text: 'Item INfo:'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .025 * root.height
+            halign: 'left'
+            size_hint: .5, .065
+            pos_hint: {'x': .175 ,'center_y': .341}
+
+        CustomInfo:                 #input item info
+            TextInput:
+                id: itemInfo
+                pos_hint: {'center_x': .5,'center_y': 0.5}
+                hint_text: "Item description"
+                size_hint: None,None
+                size: root.width*.65 , root.height*.15
+                font_name: 'Nunito'
+                font_size: .03 * root.height
+                halign: "left"
+                hint_text_color: "3b4949"
+                cursor_color: "3b4949"
+                foreground_color: "3b4949"
+                background_normal: ""
+                background_active: ""
+                background_color: (0,0,0,0)
+                multiline: True
+        
+        Button:                     #Add Item
+            text: 'ADD'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .25, .04
+            pos_hint: {'center_x': .365,'top': 0.15}
+            background_color: (0,0,0,0)
+            on_press: app.root.current = 'homeAdmin'
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.height * .005]
+        
+        Button:
+            text: 'BACK'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .25, .04
+            pos_hint: {'center_x': 0.635,'top': 0.15}
+            background_color: (0,0,0,0)
+            on_release: app.root.current = 'homeAdmin'
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.height * .005]
+
+<CustomInfo@MDCard>:                  #input item info
+    pos_hint: {'center_x': .5,'center_y': 0.25}
+    size_hint: .65, .15
+    canvas.before:
+        Color:
+            rgba: rgba(112,236,228,255)
+        Line:
+            width: self.height * .03
+            rounded_rectangle: self.x,self.y,self.width,self.height,3,3,3,3,100

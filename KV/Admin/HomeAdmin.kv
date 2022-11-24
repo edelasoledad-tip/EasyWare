@@ -7,13 +7,14 @@
 
     FloatLayout:
         Button:
-            text: 'SORT BY'
+            text: 'ADD'
             text_color: '#ec8c6f'
             font_name: 'Nunito'
             font_size: root.height * .03
             size_hint: .2, .045
             pos_hint: {'x': .1,'center_y': 0.825}
             background_color: (0,0,0,0)
+            on_release: app.root.current = 'itemAdd'
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
@@ -21,14 +22,6 @@
                     size: self.size
                     pos: self.pos
                     radius: [root.height * .01]
-        MDLabel:
-            pos_hint: {'x': .275,'center_y': 0.825}
-            size_hint: .2, .045
-            halign: 'center'
-            text: 'NAME'
-            color: "3b4949"
-            font_name: 'Nunito'
-            font_size: root.height * .03
             
         MDLabel:
             text: 'EASYWARE'
@@ -39,6 +32,7 @@
             padding: 
             size_hint: .5, .065
             pos_hint: {'right': .9 ,'top': .95}
+
         MDLabel:
             text: 'ADMIN HOME'
             font_name: 'Nunito'

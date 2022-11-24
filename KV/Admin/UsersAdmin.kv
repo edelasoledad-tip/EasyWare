@@ -25,6 +25,24 @@
             size_hint: .5, .035
             pos_hint: {'right': .9 ,'top': .89}
         
+        Button:
+            text: 'ADD'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: root.height * .03
+            size_hint: .2, .045
+            pos_hint: {'center_x': .2125,'center_y': 0.825}
+            background_color: (0,0,0,0)
+            on_release: app.root.current = 'userAdd'
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [root.height * .0075]
+        
+        
         MDBoxLayout:
             pos_hint: {'center_x': 0.5,'y': 0.1}
             size_hint: 1, .68
@@ -36,7 +54,7 @@
                     cols:1
                     padding: root.width * .1,0,root.width * .1,0
                     size_hint_y: None
-                    default_size: None, self.width*.2
+                    default_size: None, self.width*.25
                     default_size_hint: 1, None
                     height: self.minimum_height
 
@@ -100,15 +118,15 @@
             radius: root.width*.035,root.width*.035,root.width*.035,0
             pos_hint: {'center_x': .15,'center_y': 0.5}
             padding:
-            FitImage:
-                size_hint: .775, .775
+            Image:
+                size_hint: .75, .75
                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
                 source: root.image
                 allow_stretch: True
 
         MDLabel:
             pos_hint: {'x': .3,'center_y': .65}
-            size_hint: .7, .5
+            size_hint: .7, .55
             halign: 'left'
             text: root.name
             color: "ec8c6f"
@@ -130,4 +148,4 @@
             size_hint: .75,1
             md_bg_color: 0,0,0,0
             on_release: 
-                app.temp(root.name)
+                app.root.current = 'userEdit'

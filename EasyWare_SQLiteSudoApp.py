@@ -4,7 +4,7 @@ from csv import DictReader
 
 
 def populateDatabase():
-    with open('RES/CSVs/item_details.csv', 'r') as dataFile:
+    with open('RES/CSVs/easyware_dataset.csv', 'r', encoding="utf8") as dataFile:
         i = 1
         temp = DictReader(dataFile)
         sample = list(temp)
@@ -13,6 +13,8 @@ def populateDatabase():
             for entry in data:
                 newDict[entry.replace("'", "")] = data[entry].replace("'", "")
             SudoApp().insert_item(i, newDict, 1, "Erickson")
+            if i == 50:
+                break
             i += 1
 
 
@@ -227,7 +229,7 @@ class SudoApp():
 if __name__ == '__main__':
     
     app = SudoApp()
-    app.get_item(3)
+    #app.get_item(3)
     # app.delete_item(5,True,"Erickson")
     # app.insert_item(1,sampleItem,True, "Erickson")
     # print(app.get_item(1))
@@ -236,7 +238,7 @@ if __name__ == '__main__':
     # print(app.get_item(1))
     # app.delete_item(2,1,"Erickson")
     # print(app.GetAllItems())
-    #populateDatabase()
+    populateDatabase()
     #app.CreateUser("Erickson", "123123", 1, "Erickson Dela Soledad")
     # user Erickson orders 5 tiles and 2 tile grout
     # print(app.AddToCart("Erickson", 40, 5))

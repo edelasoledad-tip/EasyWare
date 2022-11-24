@@ -4,19 +4,37 @@
 #:include KV/User/SearchUser.kv
 #:include KV/User/UserUser.kv
 #:include KV/User/CartUser.kv
-
 #:include KV/User/Checkout.kv
 #:include KV/User/ItemView.kv
+
 #:include KV/Admin/UserAdmin.kv
 #:include KV/Admin/HomeAdmin.kv
 #:include KV/Admin/SearchAdmin.kv
 #:include KV/Admin/UsersAdmin.kv
+
+#:include KV/Admin/UserEdit.kv
+#:include KV/Admin/ItemEdit.kv
+#:include KV/Admin/AddItem.kv
+#:include KV/Admin/AddUser.kv
 
 #:import C kivy.utils.get_color_from_hex
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 
 ScreenManager:
     transition: NoTransition()
+    ItemAddScreen:
+        id: itemAdd
+    LoginScreen:
+        id: login
+
+    UserEditScreen:
+        id: userEdit
+    ItemEditScreen:
+        id: itemEdit
+    UserAddScreen:
+        id: userAdd
+    
+    
     HomeAdminScreen:
         id: homeAdmin
     SearchAdminScreen:
@@ -25,12 +43,11 @@ ScreenManager:
         id: userAdmin   
     UsersAdminScreen:
         id: usersAdmin 
+
     HomeScreen:
         id: home
     ItemScreen:
         id: item
-    LoginScreen:
-        id: login
     CheckoutScreen:
         id: checkout
     CartScreen:
@@ -67,8 +84,8 @@ ScreenManager:
                 padding: (0)
                 radius: root.width*.05
                 orientation: 'vertical'
-                FitImage:
-                    size_hint: .8, .8
+                Image:
+                    size_hint: .6, .6
                     pos_hint: {'center_x': 0.5,'center_y': 0.5}
                     source: root.image
                     allow_stretch: True

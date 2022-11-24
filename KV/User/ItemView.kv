@@ -6,25 +6,50 @@
         source: 'RES/IconsAndBGs/BG2.png'
 
     FloatLayout:
-        pos_hint: {'center_x': 0.5,'center_y': 0.55}
-        MDCard:             #Transparent bg
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .065
+            pos_hint: {'right': .9 ,'top': .95}
+        MDLabel:
+            text: 'ITEM VIEW'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .035
+            pos_hint: {'right': .9 ,'top': .89}
+
+
+        MDCard:             #custom card
             size_hint: .75,.75
-            md_bg_color: 0,0,0,.045
+            md_bg_color: 1,1,1,.8
             pos_hint: {'center_x': 0.5,'center_y': .45}
+            canvas.before:
+                Color:
+                    rgba: rgba(112,236,228,255)
+                Line:
+                    width: self.height * .0075
+                    rounded_rectangle: self.x,self.y,self.width,self.height,4,4,4,4,100
 
         MDCard:             #Image Frame
             size_hint: None,None
             size: root.height/4,root.height/4
-            pos_hint: {'center_x': 0.5,'center_y': 0.5625}
+            pos_hint: {'center_x': 0.5,'center_y': 0.65}
             canvas.before:
                 Color:
-                    rgba: rgba(112,236,228,150)
+                    rgba: rgba(59,73,73,255)
                 Line:
                     width: self.height * .0125
                     rounded_rectangle: self.x,self.y,self.width,self.height,4,4,4,4,100
-            FitImage:
+            Image:
                 id: itemImage
-                source: "RES/RES/allenKey.jpg"
+                source: ""
                 size_hint: .8,.8
                 pos_hint: {'center_x': 0.5,'center_y': 0.5}  
 
@@ -38,7 +63,7 @@
             font_size: .05 * root.height
             halign: 'center'
             size_hint: .7, .065
-            pos_hint: {'center_x': .5 ,'top': .8}
+            pos_hint: {'center_x': .5 ,'top': .5125}
 
         MDLabel:            #Item Price
             id: itemPrice
@@ -48,7 +73,7 @@
             font_size: .03 * root.height
             halign: 'center'
             size_hint: 1, .035
-            pos_hint: {'center_x': .5,'top': .75}
+            pos_hint: {'center_x': .5,'top': .4625}
 
         FloatLayout:             #Item Info
             size_hint: .65,None

@@ -5,6 +5,7 @@ from kivy.core.text import LabelBase
 from kivy.properties import StringProperty
 from kivymd.uix.card import MDCard
 from EasyWare_SQLiteSudoApp import SudoApp
+from sudoAPP import FireDataBase
 
 Window.size = (270, 550)
 LabelBase.register(name = "Nunito", fn_regular= "RES/fonts/BebasNeue-Regular.otf")
@@ -39,10 +40,11 @@ class EasyWare(MDApp):
         super().__init__(**kwargs) 
         self.sudoApp = SudoApp()
         self.screen = Builder.load_file('KV/main.kv')
-        self.items = self.sudoApp.GetAllItems("itemID",True)
+        self.backEnd = FireDataBase()
+        self.items = self.sudoApp.GetAllItems('itemID')
         self.user = ''
         self.cart = []
-        self.userType = 'user'
+        self.userType = 'admin'
         self.reloadAll()
     
     def auth(self,username,password):
@@ -55,7 +57,7 @@ class EasyWare(MDApp):
             else:
                 self.screen.current = 'userAdmin'
         else:
-            print("Wrong")
+            self.screen.current = 'user'
             
     def search(self,text):      #Search function for recycle view
         
@@ -120,7 +122,8 @@ class EasyWare(MDApp):
         self.screen.current = 'checkout'
     
     def gotoItem(self,itemID):
-        item = self.sudoApp.get_item(itemID)
+        #item = self.sudoApp.get_item(itemID)
+        item = self.backEnd.readItem(itemID)
         if self.userType == 'user':
             self.screen.ids.item.ids.itemImage.source = item['image']
             self.screen.ids.item.ids.itemName.text = item['name']
@@ -128,7 +131,7 @@ class EasyWare(MDApp):
             self.screen.ids.item.ids.itemInfo.text  = f"Item:        {item['name']}\nStocks:        {item['stocks']}\nType:         {item['type']}\nBrand:        {item['brand']}\nColor:         {item['color']}\nItem Details:\n          {item['info']}"
             self.screen.current = 'item'
         else:
-            print('your an admin')
+            self.screen.current = 'itemEdit'
            
     def build(self):
         return self.screen  
