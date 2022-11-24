@@ -91,3 +91,4 @@ if __name__ == '__main__':
     # print(app.updateCartItemQty("Erickson", 2, 502))  # Item not in cart
     # print(app.updateCartItemQty("Erickson", 2, 502))  # Same data to input
     # print(app.updateCartItemQty("RONELG", 1, 202)) # Cart empty
+    print(app.getCart("Erickson")[0])

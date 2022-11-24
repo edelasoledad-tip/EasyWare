@@ -51,6 +51,11 @@ class FireDataBase():
             ref = db.reference(f'/users/{username}/cart')
             cart = ref.get()
             if cart:
+                for i in cart:
+                    itemDetail = self.readItem(i['itemID'])
+                    i['price'] = itemDetail['price']
+                    i['name'] = itemDetail['name']
+                    i['image'] = itemDetail['image']
                 return cart
             else:
                 return False
