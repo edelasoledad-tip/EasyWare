@@ -5,7 +5,7 @@ from ast import literal_eval
 
 
 def populateDatabase():
-    with open('RES/item_details.csv', 'r') as dataFile:
+    with open('RES/CSVs/item_details.csv', 'r') as dataFile:
         i = 1
         temp = DictReader(dataFile)
         sample = list(temp)
@@ -13,7 +13,7 @@ def populateDatabase():
         for data in sample:
             for entry in data:
                 newDict[entry.replace("'", "")] = data[entry].replace("'", "")
-            app.insert_item(i, newDict, 1, "Erickson")
+            SudoApp().insert_item(i, newDict, 1, "Erickson")
             i += 1
 
 
@@ -96,20 +96,20 @@ class SudoApp():
         cartItems = literal_eval(self.sqlitedb.fetchone()[0])
         CartData = []
         i = 1
-        # try:
-        for item in cartItems:
-            currentItem = app.get_item(item['itemID'])
-            CartData.append({
-                'CartEntry': i,
-                "image": currentItem["image"],
-                "name": currentItem['name'],
-                "price": currentItem['price'],
-                "quantity": item['quantity'],
-                "itemID": item['itemID']})
-        return CartData
-        # except:
-        # print(f"There are no items in {username}'s cart.")
-        # return False
+        try:
+            for x in cartItems:
+                y = x.split("|")
+                for items in y:
+                    items = items.split(",")
+                    CartData.append(
+                        {"Entry": i, "ItemID": items[0], "Quantity": items[1]}
+                    )
+                    i += 1
+            print(CartData)
+            return CartData
+        except:
+            print(f"There are no items in {username}'s cart.")
+            return False
 
     def GetAllItems(self, sortBy="id", desc=True, limit=0):
         # Get all of the items sorted by input
@@ -145,17 +145,15 @@ class SudoApp():
             return False
         else:
             self.sqlitedb.execute(
-                "SELECT * FROM items WHERE itemID=?;", (str(item_id),))
+                "SELECT * FROM items WHERE itemID=?;", (str(item_id)))
             sample = self.sqlitedb.fetchone()
             item = {
-                'itemID': sample[0],
-                'name': sample[1],
-                'price': sample[2],
-                'image': sample[3],
-                'info': sample[4],
-                'type': sample[5],
-                'stocks': sample[6],
-                'color': sample[7],
+                'name': sample[0],
+                'price': sample[1],
+                'image': sample[2],
+                'info': sample[3],
+                'stocks': sample[4],
+                'brand': sample[5]
             }
             return item
 
@@ -217,16 +215,18 @@ class SudoApp():
             return False
 
     def log(self, user, message):
-        f = open(f"{user}_log.txt", "a")
-        time = date.today()
-        f.write(f"{message}\n {time}\n")
-        f.close()
+        #f = open(f"{user}_log.txt", "a")
+        #time = date.today()
+        #f.write(f"{message}\n {time}\n")
+        # f.close()
+        pass
 
     def logUser(self, user, message):
-        f = open(f"Users_log.txt", "a")
-        time = date.today()
-        f.write(f"{message}\n {time}\n")
-        f.close()
+        #f = open(f"Users_log.txt", "a")
+        #time = date.today()
+        #f.write(f"{message}\n {time}\n")
+        # f.close()
+        pass
 
     def update():
         # updates the firebase
@@ -234,7 +234,10 @@ class SudoApp():
 
 
 app = SudoApp()
-
+sampleItem = {"name": "Allen Key", "price": 320.5, "stocks": 42,
+              "image": "RES/RES/allenKey.jpg", "info": "lorem ips", "brand": "BondHus"}
+editedItem = {"name": "qweqweqwe", "price": 320.5, "stocks": 42,
+              "image": "RES/RES/allenKey.jpg", "info": "lorem ips", "brand": "BondHus"}
 # app.delete_item(5,True,"Erickson")
 # app.insert_item(1,sampleItem,True, "Erickson")
 # print(app.get_item(1))
@@ -248,30 +251,26 @@ app = SudoApp()
 # user Erickson orders 5 tiles and 2 tile grout
 # print(app.AddToCart("Erickson", 40, 5))
 # print(app.AddToCart("Erickson", 39, 2))
-# print(app.CreateUser("Cruzandlex", "123123", 0, "Zandlex Keano M. Cruz"))
-# print(app.CreateUser("RonelG", "12221", 1, "Ronel German"))
-
-# app.editCart("Erickson", "")
-# x = app.getCart("Erickson")
-
-app.clearCart("Erickson")
-app.addToCart("Erickson", 5, 2)
-app.addToCart("Erickson", 10, 1)
-print(app.getCart("Erickson"))
-print(app.getCart("Erickson")[0])
-print(app.getCart("Erickson")[1])
-
-# app.get_item("Erickson")
-
-# app.addToCart("Erickson", 104, 2)
-
-
-# print(app.authLogin("Erickson", "123123"))
-# print(app.authLogin("11", "123123"))
-# print(app.authLogin("Erickson", "2"))
-
-
+# print(app.CreateUser("User2", "123123", 0, "Dummy User 2"))
+# print(app.CreateUser("User3", "12221", 0, "user 4"))
+# print(app.CreateUser("Lorem", "3333", 0, "ABC User"))
+# print(app.CreateUser("Dolor", "333123", 1, "BLABLABOOM"))
+# app.editCart("Erickson", "40,5|39,2")
+# app.getCart("Erickson")
 # app.clearCart("Erickson")
 # app.getCart("Erickson")
 # populateDatabase()
 # data = app.GetAllItems("price", 1, 100) !! ADDING THE THIRD PARAMETER SETS A LIMIT FOR ITEMS !!
+data = app.GetAllItems("price", 1)  # 0 = ascending
+#                                     1 = descending (BOOLEAN)
+x = 0
+print("--------------\n")
+for index in data:
+    if x != 200:
+        print(index['name'], index['price'])
+    else:
+        break
+
+    # for key, value in index.items():
+    #     print(f'{key}: {value}')
+print("--------------\n")

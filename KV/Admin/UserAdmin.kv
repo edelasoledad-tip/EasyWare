@@ -1,0 +1,111 @@
+#:import C kivy.utils.get_color_from_hex
+
+<UserAdminScreen@Screen>:
+    name: 'userAdmin'
+    FitImage:
+        source: 'RES/IconsAndBGs/bg2.png'
+
+    FloatLayout:
+        MDLabel:
+            text: 'EASYWARE'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .065 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .065
+            pos_hint: {'right': .9 ,'top': .95}
+        MDLabel:
+            text: 'ADMIN'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .035 * root.height
+            halign: 'right'
+            padding: 
+            size_hint: .5, .035
+            pos_hint: {'right': .9 ,'top': .89}
+        
+        Image:          #Employee Image
+            source: 'RES/IconsAndBGs/userProfile.png'
+            pos_hint: {'center_x': 0.5,'y': 0.5}
+            allow_stretch: True
+            size_hint: None, None
+            size: root.height*.2,root.height*.2
+            
+        MDLabel:        #Full Name
+            text: 'Juan T. Dela Cruz'
+            font_name: 'Nunito'
+            color: "3b4949"
+            font_size: .045 * root.height
+            halign: 'center'
+            size_hint: .75, .065
+            pos_hint: {'center_x': 0.5,'y': 0.435}
+        MDLabel:        #Position
+            text: 'Front Desk'
+            font_name: 'Nunito'
+            color: "ec8c6f"
+            font_size: .03 * root.height
+            halign: 'center'
+            size_hint: .75, .03
+            pos_hint: {'center_x': 0.5,'y': 0.415}
+        
+        Button:     #Logout Button
+            text: 'LOGOUT'
+            text_color: '#ec8c6f'
+            font_name: 'Nunito'
+            font_size: 0.55 * self.height
+            size_hint: .25, .0475
+            pos_hint: {'center_x': .5,'y': 0.1}
+            background_color: (0,0,0,0)
+            on_press: app.root.current = 'login'
+            canvas.before:
+                Color:
+                    rgba: rgba(236,140,111,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [3]
+
+        MDCard:     #Custom Bottom Nav
+            pos_hint: {'center_x': .5,'y': 0.0}
+            size_hint: 1,.085
+            md_bg_color: '#bdf4f1'
+
+        MDCard:     #User Button
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.195,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/userPRSD.png'
+                size: root.height,root.height
+
+        MDCard:     #Home Button
+            on_press: app.root.current = 'homeAdmin'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.396,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/homeBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Search Button
+            on_press: app.root.current = 'searchAdmin'
+            size_hint: None, None
+            size: root.height*.05,root.height*.05
+            pos_hint: {'center_x': 0.597,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/searchBLK.png'
+                size: root.height,root.height
+
+        MDCard:     #Cart Button
+            on_press: app.root.current = 'usersAdmin'
+            size_hint: None, None
+            size: root.height*.065,root.height*.065
+            pos_hint: {'center_x': 0.798,'center_y': 0.042}
+            md_bg_color: 0,0,0,0
+            FitImage:     #TBD
+                source: 'RES/IconsAndBGs/editUserBLK.png'
+                size: root.height,root.height

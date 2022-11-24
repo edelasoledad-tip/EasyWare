@@ -1,3 +1,6 @@
-x = 0
+x = "QQQ"
 
-print
+y = "EEE"
+
+
+print(x+y)

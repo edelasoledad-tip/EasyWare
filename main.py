@@ -2,127 +2,136 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.core.text import LabelBase
-from kivy.uix.floatlayout import FloatLayout
+from kivy.properties import StringProperty
 from kivymd.uix.card import MDCard
-from kivy.properties import ObjectProperty
-from csv import DictReader
-# open file in read mode
-
+from EasyWare_SQLiteSudoApp import SudoApp
 
 Window.size = (270, 550)
-LabelBase.register(name = "Nunito", fn_regular= "RES/BebasNeue-Regular.otf")
+LabelBase.register(name = "Nunito", fn_regular= "RES/fonts/BebasNeue-Regular.otf")
+LabelBase.register(name = "TypeWriter", fn_regular= "RES/fonts/atwriter.ttf")
 
-class ScrollCard(MDCard):
-    pass
-class ScrollCardCart(MDCard):
-    pass
-class EasyWareApp(MDApp):
+class RecycleCard(MDCard):      #Custom card for the recycle view
+    image = StringProperty()
+    name = StringProperty()
+    price = StringProperty()
+    id = StringProperty()
+
+class RecycleCardCart(MDCard):      #Custom card for the recycle view
+    image = StringProperty()
+    name = StringProperty()
+    price = StringProperty()
+    quantity = StringProperty()
+    id = StringProperty()
+class UsersRecycleCard(MDCard):      #Custom card for the recycle view
+    image = StringProperty()
+    name = StringProperty()
+    position = StringProperty()
+    price = StringProperty() #temporary
+    id = StringProperty()
+class CheckoutRecycleCard(MDCard):      #Custom card for the recycle view
+    name = StringProperty()
+    price = StringProperty()
+    quantity = StringProperty()
+    id = StringProperty()
+
+class EasyWare(MDApp):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super().__init__(**kwargs) 
+        self.sudoApp = SudoApp()
         self.screen = Builder.load_file('KV/main.kv')
-        
-        self.cart = [{'pos': '1',
-                      'name':'Allen Key',
-                      'price':'320.5',
-                      'image':'RES/RES/allenKey.jpg',
-                      'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
-                      'stocks':'42',
-                      'brand':'BondHus'},
-                     {'pos': '2',
-                     'name':'Band Clamp',
-                      'price':'793.1',
-                      'image':'RES/RES/bandClamp.jpg',
-                      'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
-                      'stocks':'44',
-                      'brand':'Generic'},
-                     {'pos': '3',
-                     'name':'Cable Cutter',
-                      'price':'119.5',
-                      'image':'RES/RES/cableCutter.jpg',
-                      'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
-                      'stocks':'35',
-                      'brand':'Stanley'},
-                     {'pos': '4',
-                     'name':'Bricks',
-                      'price':'10.5',
-                      'image':'RES/RES/bricks.jpg',
-                      'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
-                      'stocks':'6',
-                      'brand':'ABC'},
-                     {'pos': '5',
-                     'name':'Cement',
-                      'price':'227.8',
-                      'image':'RES/RES/cement.jpg',
-                      'info':'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Lorem ipsum Dolor sit amet Sed ut perspiciatis',
-                      'stocks':'19',
-                      'brand':'Generic'}]
-        
-        with open("RES/item_details.csv", 'r') as f:
-            self.home = list(DictReader(f))
-        with open("RES/item_details.csv", 'r') as g:
-            self.search = list(DictReader(g))
-        
-        for x in self.home:
-            self.card = ScrollCard()
-            self.card.ids.homename.text = x['name']
-            self.card.ids.homeprice.text = x['price']
-            self.card.ids.homeimage.source = x['image']
-            self.screen.ids.home.ids.homescrollgrid.add_widget(self.card)
-        
-        for y in self.cart:
-            self.cartcard = ScrollCardCart()
-            self.cartcard.ids.cartname.text = y['name']
-            self.cartcard.ids.cartprice.text = y['price']
-            self.cartcard.ids.cartimage.source = y['image']
-            self.screen.ids.cart.ids.cartscrollgrid.add_widget(self.cartcard)
-        
-        for z in self.search:
-            self.searchcard = ScrollCard()
-            self.searchcard.ids.homename.text =z['name']
-            self.searchcard.ids.homeprice.text = z['price']
-            self.searchcard.ids.homeimage.source = z['image']
-            self.screen.ids.search.ids.searchscrollgrid.add_widget(self.searchcard)
-        
-    def login(self,username,password):
-        if username.lower() == "admin" and password == "admin":
-            self.screen.current = 'user'
-            print("Admin Level")
-        else:
-            self.screen.current = 'user'
-            print("User Level")
-    def opennav(self):
-        self.screen.ids.nav_id.ids.nav_drawer.set_state("open")
-    
-    def temprint(self,text):
-        for x in self.home:
-            if x['name'] == text:
-                print(f"Pressed: {text}")
-                print("INFO: ",x['info'])
-                print("BRAND: ",x['brand'])
-            
-    def clear(self):
-        rows = [i for i in self.screen.ids.cart.ids.cartscrollgrid.children]
-        for row in rows:
-            self.screen.ids.cart.ids.cartscrollgrid.remove_widget(row)
+        self.items = self.sudoApp.GetAllItems("itemID",True)
+        self.user = ''
         self.cart = []
+        self.userType = 'user'
+        self.reloadAll()
     
-    def itemcounter(self,str):
-        print(str)
-    
-    def openitem(self,name,child):
-        for x in self.home:
-            if x['name'] == name:
-                self.screen.ids.item.ids.itemimage.source = child.ids.homeimage.source
-                self.screen.ids.item.ids.itemname.text = child.ids.homename.text
-                self.screen.ids.item.ids.itemprice.text = child.ids.homeprice.text
-                self.screen.ids.item.ids.iteminfo.text = x['info']
-                self.screen.current = 'item'
+    def auth(self,username,password):
+        if self.sudoApp.authLogin(username,password):
+            self.user = username
+            self.cart = self.sudoApp.getCart(self.user)
+            self.reloadCart()
+            if self.userType == 'user':
+                self.screen.current = 'user'
+            else:
+                self.screen.current = 'userAdmin'
+        else:
+            print("Wrong")
             
-    def temprint2(self,text):
-        print(text)
-                
+    def search(self,text):      #Search function for recycle view
+        
+        holder = [{  'image': y['image'],'name': y['name'],'price': str(y['price']), 'id': str(y['itemID'])} for y in self.items if text.lower() in y['name'].lower()]
+        
+        self.screen.ids.search.ids.searchrecycleview.data = holder
+        self.screen.ids.searchAdmin.ids.searchrecycleview.data = holder
+    
+    def reloadAll(self):           #Reloads item from database
+        
+        holder = [{ 'image': x['image'],'name': x['name'],'price': str(x['price']), 'id': str(x['itemID'])} for x in self.items]
+        
+        self.screen.ids.home.ids.homerecycleview.data = holder
+        self.screen.ids.search.ids.searchrecycleview.data = holder 
+        self.screen.ids.homeAdmin.ids.homerecycleview.data = holder 
+        self.screen.ids.searchAdmin.ids.searchrecycleview.data = holder 
+        self.screen.ids.usersAdmin.ids.usersrecycleview.data = holder  
+        
+    def reloadCart(self):           #Reloads the cart items
+        if self.cart != None:
+            self.screen.ids.cart.ids.cartrecycleview.data = [{  'image': z['image'],
+                                                                'name': z['name'],
+                                                                'price': str(z['price']), 
+                                                                'quantity': str(z['quantity']),
+                                                                'id': str(z['itemID'])
+                                                                } for z in self.cart]
+            
+            self.screen.ids.checkout.ids.checkoutrecycleview.data = [{  'name': a['name'],
+                                                                        'price': str(a['price']), 
+                                                                        'quantity': str(a['quantity']),
+                                                                        'id': str(a['itemID'])
+                                                                        } for a in self.cart]
+        else:
+            pass
+    
+    def temp(self, message):    #Temporary printing function
+        print(message)
+    
+    def count(self,action,item):
+        if action == 'add':
+            item.quantity = str(int(item.quantity) + 1)
+            item.price = str(round(float(self.sudoApp.get_item(int(item.id))['price']) * float(item.quantity),2))
+            
+        else:
+            item.quantity = str(int(item.quantity) - 1)
+            item.price = str(round(float(self.sudoApp.get_item(int(item.id))['price']) * float(item.quantity),2))
+            if int(item.quantity) < 0:
+                self.cart = [{  'image': z['image'],
+                                'name': z['name'],
+                                'price': z['price'], 
+                                'quantity': z['quantity'],
+                                'itemID': z['itemID']
+                                } for z in self.cart if item.id != z['itemID']]
+                self.reloadCart()
+    
+    def checkOut(self):
+        total = 0
+        for x in self.cart:
+            total += float(x['price'])
+        
+        self.screen.ids.checkout.ids.subtotal.text = str(round(total,2))
+        self.screen.current = 'checkout'
+    
+    def gotoItem(self,itemID):
+        item = self.sudoApp.get_item(itemID)
+        if self.userType == 'user':
+            self.screen.ids.item.ids.itemImage.source = item['image']
+            self.screen.ids.item.ids.itemName.text = item['name']
+            self.screen.ids.item.ids.itemPrice.text  = f"P {item['price']}"
+            self.screen.ids.item.ids.itemInfo.text  = f"Item:        {item['name']}\nStocks:        {item['stocks']}\nType:         {item['type']}\nBrand:        {item['brand']}\nColor:         {item['color']}\nItem Details:\n          {item['info']}"
+            self.screen.current = 'item'
+        else:
+            print('your an admin')
+           
     def build(self):
         return self.screen  
-        
-if __name__ == '__main__':
-    EasyWareApp().run()
+
+if __name__=="__main__":
+    EasyWare().run()
