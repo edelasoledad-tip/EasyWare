@@ -91,4 +91,17 @@ if __name__ == '__main__':
     # print(app.updateCartItemQty("Erickson", 2, 502))  # Item not in cart
     # print(app.updateCartItemQty("Erickson", 2, 502))  # Same data to input
     # print(app.updateCartItemQty("RONELG", 1, 202)) # Cart empty
-    print(app.getCart("Erickson")[0])
+    # print(app.getCart("Erickson")[0])
+
+    # print(app.addUser(1, "Cruzandlex", "12345", "Zandlex Cruz", "staff"))
+    user = "test"
+    # print(app.addToCart(user, 105))
+    # print(app.getCart("Cruzandlex"))
+    # print(app.delCart("Erickson", 1))
+    # print(app.getCart("Erickson"))
+
+    # print(app.addUser(1, user, "12345", "Zandlex Cruz", "staff"))
+    # print(app.addToCart(user, 2))
+    # print(app.getCart(user))
+    print(app.addToCart(user, 7))
+    print(app.getCart(user))

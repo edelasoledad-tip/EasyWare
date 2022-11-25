@@ -15,7 +15,7 @@ class FireDataBase():
         firebase_admin.initialize_app(
             cred, {'databaseURL': databaseURL})
 
-    def addUser(self, accountType, username, password, fullName):
+    def addUser(self, accountType, username, password, fullName, position):
         # Included user mode (Admin 1  or Employee 0)
         try:
             ref = db.reference('/users')
@@ -32,6 +32,7 @@ class FireDataBase():
                     "accountType": accountType,
                     "password": password,
                     "fullName": fullName,
+                    "position": position,
                     "cart": ""}
                 x = ref.set(content)
                 return True
@@ -42,6 +43,7 @@ class FireDataBase():
                 "accountType": accountType,
                 "password": password,
                 "fullName": fullName,
+                "position": position,
                 "cart": ""}
             x = ref.set(content)
             return True
@@ -53,14 +55,21 @@ class FireDataBase():
             if cart:
                 for i in cart:
                     itemDetail = self.readItem(i['itemID'])
-                    i['price'] = itemDetail['price']
-                    i['name'] = itemDetail['name']
-                    i['image'] = itemDetail['image']
-                return cart
+                    if itemDetail == False:
+                        self.delCart(username, i['itemID'])
+                        cart = ref.get()
+                    else:
+                        i['price'] = itemDetail['price']
+                        i['name'] = itemDetail['name']
+                        i['image'] = itemDetail['image']
+                if cart == None:
+                    return False  # If the cart was emptied due to deleted item
+                else:
+                    return cart
             else:
                 return False
         except:
-            return False
+            return False  # Cart empty or user empty
 
     def delCart(self, username, itemID=0):
         try:
@@ -126,6 +135,10 @@ class FireDataBase():
             ref = db.reference('/users')
             x = ref.get(False, True)
             users = []
+            if self.readItem(itemID):
+                pass
+            else:
+                return False
             for i in x.keys():
                 users.append(i)
             if username in users:
@@ -196,7 +209,7 @@ class FireDataBase():
                 ref = db.reference(f'/users/{username}')
                 correctPassword = ref.get()['password']
                 if password == correctPassword:
-                    return True
+                    return True, ref.get()['accountType']
                 else:
                     return False
             else:
@@ -347,4 +360,3 @@ class FireDataBase():
 
 if __name__ == '__main__':
     app = FireDataBase()
-    app.deleteItem("1")
