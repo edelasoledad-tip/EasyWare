@@ -15,7 +15,7 @@ class FireDataBase():
         firebase_admin.initialize_app(
             cred, {'databaseURL': databaseURL})
 
-    def addUser(self, accountType, username, password, fullName, position):
+    def addUser(self, accountType, username, password, imagePath, fullName, position):
         # Included user mode (Admin 1  or Employee 0)
         try:
             ref = db.reference('/users')
@@ -31,6 +31,7 @@ class FireDataBase():
                     "username": username,
                     "accountType": accountType,
                     "password": password,
+                    "imagePath": imagePath,
                     "fullName": fullName,
                     "position": position,
                     "cart": ""}
@@ -42,6 +43,7 @@ class FireDataBase():
                 "username": username,
                 "accountType": accountType,
                 "password": password,
+                "imagePath": imagePath,
                 "fullName": fullName,
                 "position": position,
                 "cart": ""}
@@ -172,7 +174,8 @@ class FireDataBase():
             return False
 
     def testing(self):
-        pass
+        ref = db.reference('/items/1910')
+        ref.delete()
 
     def getUser(self, username=''):
         try:
@@ -308,9 +311,12 @@ class FireDataBase():
                 items = []
                 for i in x.keys():
                     items.append(int(i))
+                sampleItems = (sorted(items))
                 ref = db.reference('/items/')
                 x = ref.get(False, False)
-                x.pop(0)
+                for item in x.copy():
+                    if item is None:
+                        x.remove(item)
                 return x
             except:
                 return False  # Returns False if db is empty/does not exist
