@@ -1,6 +1,6 @@
 x = "QQQ"
 
-y = "EEE"
+y = "0"
 
 
-print(x+y)
+print(bool(int(y)))
