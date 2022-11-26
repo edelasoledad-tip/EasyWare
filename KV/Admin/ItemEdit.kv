@@ -233,6 +233,11 @@
             size_hint: .5, .065
             pos_hint: {'x': .175 ,'center_y': .341}
 
+        MDLabel:
+            id: itemID
+            text: ''
+            color: 0,0,0,0
+
         CustomInfo:                 #input item info
             TextInput:
                 id: itemInfo
@@ -259,7 +264,9 @@
             size_hint: .2, .04
             pos_hint: {'center_x': .5,'top': 0.15}
             background_color: (0,0,0,0)
-            on_press: app.root.current = 'homeAdmin'
+            on_release: 
+                app.editItem({"itemID": itemID.text,"name": itemName.text ,"price": itemPrice.text,"stocks": itemStocks.text, "image": itemImage.source,"info": itemInfo.text,"brand": itemBrand.text,"color" : itemColor.text,"type" : itemType.text})
+                app.root.current = 'homeAdmin'
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
@@ -276,7 +283,9 @@
             size_hint: .2, .04
             pos_hint: {'center_x': 0.275,'top': 0.15}
             background_color: (0,0,0,0)
-            on_release: app.root.current = 'homeAdmin'
+            on_release: 
+                app.deleteItem(itemID.text)
+                app.root.current = 'homeAdmin'
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)

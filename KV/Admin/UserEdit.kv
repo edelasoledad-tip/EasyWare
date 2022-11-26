@@ -45,6 +45,7 @@
             FloatLayout:
                 size_hint: 1,1
                 Image:          #Employee Image
+                    id: profileImage
                     source: 'RES/IconsAndBGs/userProfile.png'
                     pos_hint: {'center_x': 0.5,'center_y': 0.5}
                     allow_stretch: True
@@ -96,7 +97,7 @@
         CustomMDCard:               #user name input
             pos_hint: {'center_x': .5,'center_y': 0.4}
             TextInput:
-                id: usernameInput
+                id: userNameInput
                 pos_hint: {'x': 1,'center_y': 0.5}
                 hint_text: "enter username"
                 font_name: 'Nunito'
@@ -147,6 +148,7 @@
 
         MDCheckbox:
             id: userType
+            active: True
             size_hint: .075, .075
             pos_hint: {'center_x': .5, 'center_y': .2}
             ripple_scale: 0                    

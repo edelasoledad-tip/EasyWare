@@ -26,6 +26,7 @@
             pos_hint: {'right': .9 ,'top': .89}
         
         Image:          #Employee Image
+            id: profileImage
             source: 'RES/IconsAndBGs/userProfile.png'
             pos_hint: {'center_x': 0.5,'y': 0.5}
             allow_stretch: True
@@ -33,6 +34,7 @@
             size: root.height*.2,root.height*.2
             
         MDLabel:        #Full Name
+            id: fullName
             text: 'Juan T. Dela Cruz'
             font_name: 'Nunito'
             color: "3b4949"
@@ -41,6 +43,7 @@
             size_hint: .75, .065
             pos_hint: {'center_x': 0.5,'y': 0.435}
         MDLabel:        #Position
+            id: position
             text: 'Front Desk'
             font_name: 'Nunito'
             color: "ec8c6f"

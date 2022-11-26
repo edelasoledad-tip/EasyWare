@@ -138,7 +138,7 @@
             pos_hint: {'x': .3,'center_y': .25}
             size_hint: 1, .2
             halign: 'left'
-            text: root.price
+            text: root.position
             color: "3b4949"
             font_name: 'Nunito'
             font_size: root.width*.06 
@@ -148,4 +148,5 @@
             size_hint: .75,1
             md_bg_color: 0,0,0,0
             on_release: 
+                app.gotoUser(root.userName)
                 app.root.current = 'userEdit'
