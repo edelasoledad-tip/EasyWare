@@ -2,7 +2,7 @@ from sudoAPP import FireDataBase
 from csv import DictReader
 
 
-def populateDatabase(MAX=1000):
+def populateDatabase(MAX=100):
     with open('RES/CSVs/easyware_dataset.csv', 'r', encoding="utf8") as dataFile:
         i = 1
         temp = DictReader(dataFile)
@@ -25,12 +25,28 @@ editedItem = {"name": "qweqweqwe", "price": 320.5, "stocks": 42,
 if __name__ == '__main__':
     app = FireDataBase()
     
-    populateDatabase()                # populate databae
+    #populateDatabase()                # populate databae
+    #app.addUser('1','Son','123123','RES/Users/son.jpg','Erickson Dela Soledad','Kay Jorayne Lang')
+    #app.addUser('1','Zand','123123','RES/Users/zand.jpg','Zandlex Keano Reeves', 'Tambay')
+    #app.addUser('1','Nel','123123','RES/Users/nel.jpg',"Ronel German",'Macho Dancer')
+    #app.addUser('1','Norvs','123123','RES/Users/norvs.jpg','Arthur Norvy Guzman','OPM Artist')
+    #app.addUser('1','Cy','123123','RES/Users/cy.jpg','Cyril Ivan Besagas','Duelist')
+    #app.addUser('0','tempUser','123','RES/Users/userProfile.png','Juan Dela Cruz','Cashier')
+    #print(app.readItem(12))
+    #for x in app.readItem():
+        #print(x['itemID'],": ",x['name'])
     
+    #print(app.getUser())
     
-    for x in app.readItem():
-        print(x)
-        
+    print(app.getUser('Cy'))
+
+    #app.addToCart('Erickson',1)  
+    #app.addToCart('Erickson',3) 
+    #app.addToCart('Erickson',5) 
+    #app.addToCart('Erickson',11)  
+    
+    #print(app.getUser('Erickson')['fullName'])
+    #app.delCart('Erickson',1)
         
     # app.createItem(1, sampleItem)
     # app.updateItem(1000, editedItem)

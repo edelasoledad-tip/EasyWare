@@ -15,7 +15,7 @@ class FireDataBase():
         firebase_admin.initialize_app(
             cred, {'databaseURL': databaseURL})
 
-    def addUser(self, accountType, username, password, fullName, position):
+    def addUser(self, accountType, username, password, imagePath, fullName, position):
         # Included user mode (Admin 1  or Employee 0)
         try:
             ref = db.reference('/users')
@@ -31,6 +31,7 @@ class FireDataBase():
                     "username": username,
                     "accountType": accountType,
                     "password": password,
+                    "imagePath": imagePath,
                     "fullName": fullName,
                     "position": position,
                     "cart": ""}
@@ -42,6 +43,7 @@ class FireDataBase():
                 "username": username,
                 "accountType": accountType,
                 "password": password,
+                "imagePath": imagePath,
                 "fullName": fullName,
                 "position": position,
                 "cart": ""}
@@ -55,14 +57,21 @@ class FireDataBase():
             if cart:
                 for i in cart:
                     itemDetail = self.readItem(i['itemID'])
-                    i['price'] = itemDetail['price']
-                    i['name'] = itemDetail['name']
-                    i['image'] = itemDetail['image']
-                return cart
+                    if itemDetail == False:
+                        self.delCart(username, i['itemID'])
+                        cart = ref.get()
+                    else:
+                        i['price'] = itemDetail['price']
+                        i['name'] = itemDetail['name']
+                        i['image'] = itemDetail['image']
+                if cart == None:
+                    return False  # If the cart was emptied due to deleted item
+                else:
+                    return cart
             else:
                 return False
         except:
-            return False
+            return False  # Cart empty or user empty
 
     def delCart(self, username, itemID=0):
         try:
@@ -128,6 +137,10 @@ class FireDataBase():
             ref = db.reference('/users')
             x = ref.get(False, True)
             users = []
+            if self.readItem(itemID):
+                pass
+            else:
+                return False
             for i in x.keys():
                 users.append(i)
             if username in users:
@@ -161,7 +174,8 @@ class FireDataBase():
             return False
 
     def testing(self):
-        pass
+        ref = db.reference('/items/1910')
+        ref.delete()
 
     def getUser(self, username=''):
         try:
@@ -198,47 +212,31 @@ class FireDataBase():
                 ref = db.reference(f'/users/{username}')
                 correctPassword = ref.get()['password']
                 if password == correctPassword:
-                    return True
+                    return (True, ref.get()['accountType'])
                 else:
-                    return False
+                    return (False,0)
             else:
-                return False
+                return (False,0)
         except:
-            return False
+            return (False,0)
 
-    def updateUser(self, username, mode, newData):  # , mode, content
-        # Mode = what will be updated
-        # 1 = password, 2 = fullName 3 = accountType
-        # It's not allowed to change username.
+    def updateUser(self, username, newUsername, accountType, fullName, password):  
         try:
             ref = db.reference('/users')
             x = ref.get(False, True)
             users = []
             for i in x.keys():
                 users.append(i)
-            if username in users:
-                userData = db.reference(f'/users/{username}').get()
-                if mode == 1:
-                    if newData != userData['password']:
-                        ref = db.reference(f'/users/{username}/password')
-                        ref.set(newData)
-                        return True
-                    else:
-                        return False
-                if mode == 2:
-                    if newData != userData['fullName']:
-                        ref = db.reference(f'/users/{username}/fullName')
-                        ref.set(newData)
-                        return True
-                    else:
-                        return False
-                if mode == 3:
-                    if newData != userData['accountType']:
-                        ref = db.reference(f'/users/{username}/accountType')
-                        ref.set(newData)
-                        return True
-                    else:
-                        return False
+            if username in users and newUsername not in users:
+                userData = self.getUser(username)
+                userData['username'] = newUsername
+                userData['accountType'] = accountType
+                userData['fullName'] = fullName
+                userData['password'] = password
+                ref = db.reference(f'/users/{newUsername}')
+                ref.set(userData)
+                self.delUser(username)
+                return True
             else:
                 return False
         except:
@@ -297,9 +295,12 @@ class FireDataBase():
                 items = []
                 for i in x.keys():
                     items.append(int(i))
+                sampleItems = (sorted(items))
                 ref = db.reference('/items/')
                 x = ref.get(False, False)
-                x.pop(0)
+                for item in x.copy():
+                    if item is None:
+                        x.remove(item)
                 return x
             except:
                 return False  # Returns False if db is empty/does not exist
@@ -321,7 +322,7 @@ class FireDataBase():
             if ID in items:
                 ref = db.reference(f'/items/{ID}')
                 oldItem = ref.get()
-                if oldItem['name'] == ITEM['name'] and oldItem['price'] == ITEM['price']:
+                if oldItem == ITEM:
                     return False
                 ref.set(ITEM)
                 return True
