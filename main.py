@@ -132,7 +132,7 @@ class EasyWare(MDApp):
     
     def gotoItem(self,itemID):
         item = self.backEnd.readItem(itemID)
-        if self.userType == 0:
+        if self.userType == '0':
             self.screen.ids.item.ids.itemImage.source = item['image']
             self.screen.ids.item.ids.itemName.text = item['name']
             self.screen.ids.item.ids.itemPrice.text  = f"P {item['price']}"
