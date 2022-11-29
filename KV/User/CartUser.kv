@@ -31,6 +31,7 @@
             size_hint: .25, .045
             pos_hint: {'center_x': .35,'center_y': 0.825}
             background_color: (0,0,0,0)
+            on_release: app.deleteAllCart()
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
@@ -141,7 +142,7 @@
             pos_hint: {'x': .3,'center_y': .65}
             size_hint: 1, .5
             halign: 'left'
-            text: root.price
+            text: root.total
             color: "3b4949"
             font_name: 'Nunito'
             font_size: root.width*.1

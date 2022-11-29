@@ -112,7 +112,7 @@
             size_hint: .25, .04
             pos_hint: {'center_x': 0.5,'center_y': 0.075}
             background_color: (0,0,0,0)
-            on_release: app.root.current = 'home'
+            on_release: app.root.current = 'cart'
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
@@ -135,6 +135,7 @@
     FloatLayout:
         MDLabel:
             text: f"{root.name} x{root.quantity}"
+            shorten: True
             color: "3b4949"
             halign: 'left'
             font_name: 'TypeWriter'

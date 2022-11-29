@@ -64,6 +64,10 @@
             halign: 'center'
             size_hint: .7, .065
             pos_hint: {'center_x': .5 ,'top': .5125}
+        
+        MDLabel:
+            id: itemID
+            color: 0,0,0,0
 
         MDLabel:            #Item Price
             id: itemPrice
@@ -115,7 +119,9 @@
             size_hint: .25, .04
             pos_hint: {'center_x': .65,'top': 0.15}
             background_color: (0,0,0,0)
-            on_release: app.root.current = 'home'
+            on_release: 
+                app.addToCart(itemID.text)
+                app.root.current = 'home'
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
