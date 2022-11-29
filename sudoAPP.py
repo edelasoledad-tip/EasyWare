@@ -7,7 +7,6 @@ from traceback import format_list
 
 databaseURL = "https://easywareph-2f473-default-rtdb.asia-southeast1.firebasedatabase.app/"
 
-
 class FireDataBase():
     def __init__(self):
         cred = credentials.Certificate("keyServiceAccount.json")
@@ -220,23 +219,36 @@ class FireDataBase():
         except:
             return (False,0)
 
-    def updateUser(self, username, newUsername, accountType, fullName, password):  
+    def updateUser(self, username, newUsername, accountType, fullName, position, password):
         try:
             ref = db.reference('/users')
             x = ref.get(False, True)
             users = []
             for i in x.keys():
                 users.append(i)
-            if username in users and newUsername not in users:
+            if username in users and newUsername:
+                # Change username
+                if username != newUsername and newUsername not in users:
+                    userData = self.getUser(username)
+                    userData['username'] = newUsername
+                    userData['accountType'] = accountType
+                    userData['fullName'] = fullName
+                    userData['password'] = password
+                    userData['position'] = position
+                    ref = db.reference(f'/users/{newUsername}')
+                    ref.set(userData)
+                    self.delUser(username)
+                    return True
+                # Change anything else
                 userData = self.getUser(username)
-                userData['username'] = newUsername
-                userData['accountType'] = accountType
-                userData['fullName'] = fullName
-                userData['password'] = password
-                ref = db.reference(f'/users/{newUsername}')
-                ref.set(userData)
-                self.delUser(username)
-                return True
+                if userData['accountType'] != accountType or userData['fullName'] != fullName or userData['password'] != password or userData['position'] != position:
+                    userData['accountType'] = accountType
+                    userData['fullName'] = fullName
+                    userData['password'] = password
+                    userData['position'] = position
+                    ref = db.reference(f'/users/{username}')
+                    ref.set(userData)
+                    return True
             else:
                 return False
         except:
