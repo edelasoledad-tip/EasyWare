@@ -22,8 +22,7 @@
 
 ScreenManager:
     transition: NoTransition()
-    UserAddScreen:
-        id: userAdd
+    
     LoginScreen:
         id: login
     ItemAddScreen:
@@ -32,8 +31,8 @@ ScreenManager:
         id: userEdit
     ItemEditScreen:
         id: itemEdit
-    
-    
+    UserAddScreen:
+        id: userAdd
     
     HomeAdminScreen:
         id: homeAdmin
@@ -111,3 +110,22 @@ ScreenManager:
             on_release: 
                 app.gotoItem(root.id)
 
+<RightContentCls>
+    disabled: True
+    adaptive_size: True
+    pos_hint: {"center_y": .5}
+
+    MDLabel:
+        text: root.text
+        font_style: "Caption"
+        adaptive_size: True
+        pos_hint: {"center_y": .5}
+
+
+<Item>
+    IconLeftWidget:
+        icon: root.left_icon
+
+    RightContentCls:
+        id: container
+        text: root.right_text
