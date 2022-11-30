@@ -7,6 +7,7 @@
 
     FloatLayout:
         Button:
+            id: sort
             text: 'SORT BY'
             text_color: '#ec8c6f'
             font_name: 'Nunito'
@@ -14,6 +15,8 @@
             size_hint: .2, .045
             pos_hint: {'x': .1,'center_y': 0.825}
             background_color: (0,0,0,0)
+            on_release:
+                app.menu2.open()
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
@@ -22,9 +25,10 @@
                     pos: self.pos
                     radius: [root.height * .01]
         MDLabel:
-            pos_hint: {'x': .275,'center_y': 0.825}
+            id: sortBy
+            pos_hint: {'x': .35,'center_y': 0.825}
             size_hint: .2, .045
-            halign: 'center'
+            halign: 'left'
             text: 'NAME'
             color: "3b4949"
             font_name: 'Nunito'
@@ -81,8 +85,8 @@
                     padding: root.width * .1,0,root.width * .1,0
                     spacing: root.width * .02
                     size_hint_y: None
-                    default_size: None, root.width * .29
-                    default_size_hint: 1, None
+                    default_size: root.width/3.95, root.width * .29
+                    default_size_hint: None, None
                     height: self.minimum_height
 
         MDCard:     #Custom Bottom Nav

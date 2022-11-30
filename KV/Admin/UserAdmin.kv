@@ -60,7 +60,10 @@
             size_hint: .25, .0475
             pos_hint: {'center_x': .5,'y': 0.1}
             background_color: (0,0,0,0)
-            on_press: app.root.current = 'login'
+            on_press: 
+                app.screen.ids.login.ids.username.text = ''
+                app.screen.ids.login.ids.password.text = ''
+                app.root.current = 'login'
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
