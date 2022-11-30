@@ -299,7 +299,10 @@ class FireDataBase():
             ref.set(ITEM)
             return True
 
-    def readItem(self, ID=0):
+    def readItem(self, ID=0, mode=1):
+        # readItem() = default sorted read all
+        # readItem(24) = read specific item
+        # readItem(0,(1,2,3,4)) = read all item in sorted mode
         if ID == 0:  # Read All items
             try:
                 ref = db.reference('/items')
@@ -307,13 +310,20 @@ class FireDataBase():
                 items = []
                 for i in x.keys():
                     items.append(int(i))
-                sampleItems = (sorted(items))
                 ref = db.reference('/items/')
-                x = ref.get(False, False)
-                for item in x.copy():
+                itemList = ref.get(False, False)
+                for item in itemList.copy():
                     if item is None:
-                        x.remove(item)
-                return x
+                        itemList.remove(item)
+                if mode == 1:    # Based on name (Alphabetical)
+                    return sorted(itemList, key=lambda x: x['name'])
+                elif mode == 2:  # Brand names
+                    return sorted(itemList, key=lambda x: x['brand'])
+                elif mode == 3:  # Low to high
+                    return sorted(itemList, key=lambda x: x['price'], reverse=True)
+                elif mode == 4:  # High to low
+                    return sorted(itemList, key=lambda x: x['price'])
+
             except:
                 return False  # Returns False if db is empty/does not exist
         else:  # Read single item
@@ -358,7 +368,78 @@ class FireDataBase():
                 return False
         except:
             return False
+    
+    def invoice(self, username):
+        cart = self.getCart(username)
+        itemList = []
+        totalPrice = 0
+        if cart:
+            for item in cart:
+                itemList.append({
+                    'name': item['name'],
+                    'price': item['price'],
+                    'quantity': item['quantity'],
+                })
+                totalPrice += float(item['price'])*int(item['quantity'])
+            totalPrice = round(totalPrice, 5)
+            ref = db.reference('/invoices/')
+            x = ref.get()
+            if x == None:
+                transactionNumber = 1
+                invoice = []
+                invoice.append({'username': username, 'itemList': itemList,
+                                'totalPrice': totalPrice, 'transactionNumber': transactionNumber})
+                ref.set(invoice)
+            else:
+                items = []
+                for item in x.copy():
+                    if item is None:
+                        x.remove(item)
+                transactionNumber = x[-1]['transactionNumber'] + 1
+                invoice = x
+                invoice.append({'username': username, 'itemList': itemList,
+                                'totalPrice': totalPrice, 'transactionNumber': transactionNumber})
+                ref.set(invoice)
+            return True
+        else:
+            return False
 
+    def getInvoice(self, username, transactionNumber=0):
+        try:
+            ref = db.reference('/invoices/')
+            x = ref.get()
+            for item in x.copy():
+                if item is None:
+                    x.remove(item)
+            items = []
+            if transactionNumber == 0:
+                for i in x:
+                    if i['username'] == username:
+                        items.append(i)
+            else:
+                for i in x:
+                    if i is not None and i['transactionNumber'] == transactionNumber:
+                        items.append(i)
+            if items == None:
+                return False
+            else:
+                return items
+
+        except:
+            return False
+    
+    def delInvoice(self, username, transactionNumber):
+        ref = db.reference('/invoices/')
+        items = ref.get()
+        if items:
+            for x in items:
+                if x['username'] == username and x['transactionNumber'] == transactionNumber:
+                    items.remove(x)
+                    ref.set(items)
+                    return True
+            return False
+        else:
+            return False
 
 if __name__ == '__main__':
     app = FireDataBase()
