@@ -5,7 +5,10 @@ from kivy.core.text import LabelBase
 from kivy.properties import StringProperty
 from kivymd.uix.card import MDCard
 from sudoAPP import FireDataBase
-import threading
+from kivymd.uix.button import MDFlatButton
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.menu import MDDropdownMenu
+from kivymd.toast import toast
 
 Window.size = (270, 550)
 LabelBase.register(name = "Nunito", fn_regular= "RES/fonts/BebasNeue-Regular.otf")
@@ -45,7 +48,67 @@ class EasyWare(MDApp):
         self.username = ''
         self.items = self.backEnd.readItem()
         self.reloadAll()
-            
+        self.dialog = None
+        self.searchByFilter = 'name'
+        menu_items = [
+            {
+                "text": f"{i}",
+                "viewclass": "OneLineListItem",
+                'font_size': 1,
+                'height': 60,
+                'size_hint_y': None,
+                "on_release": lambda x = f"{i}": self.set_item(x),
+            } for i in ["Name","Price ASC","Price DSC", "Brand"]
+        ]
+        self.menu = MDDropdownMenu(
+            caller=self.screen.ids.home.ids.sort,
+            items=menu_items,
+            width_mult = 2.5, 
+        )
+        self.menu2 = MDDropdownMenu(
+            caller=self.screen.ids.searchAdmin.ids.sort,
+            items=menu_items,
+            width_mult = 2.5, 
+        )
+        search_items = [
+            {
+                "text": f"{i}",
+                "viewclass": "OneLineListItem",
+                'font_size': 1,
+                'height': 50,
+                'size_hint_y': None,
+                "on_release": lambda x = f"{i}": self.set_search(x),
+            } for i in ["Name","Price", "Brand"]
+        ]
+        self.searchby = MDDropdownMenu(
+            caller=self.screen.ids.search.ids.searchBy,
+            items=search_items,
+            width_mult = 2.5, 
+        )
+        
+    def set_search(self,x):
+        self.screen.ids.search.ids.searchByLbl.text = x
+        self.searchByFilter = x.lower()
+        self.searchby.dismiss() 
+         
+    def set_item(self,x):
+        self.screen.ids.home.ids.sortBy.text = x
+        self.screen.ids.searchAdmin.ids.sortBy.text = x
+        try:
+            if x == "Name":
+                self.items = self.backEnd.readItem(0,1)
+            elif x == "Price ASC":
+                self.items = self.backEnd.readItem(0,3)
+            elif x == "Price DSC":
+                self.items = self.backEnd.readItem(0,4)
+            else:
+                self.items = self.backEnd.readItem(0,2)
+        except:
+            pass
+        self.reloadAll()
+        self.menu.dismiss() 
+        self.menu2.dismiss() 
+          
     def auth(self,username,password):
         if self.backEnd.authLogin(username,password)[0]:
             self.username = username
@@ -64,10 +127,17 @@ class EasyWare(MDApp):
                 self.screen.ids.userAdmin.ids.profileImage.source = holder['imagePath']
                 self.screen.current = 'userAdmin'
         else:
-            print("Incorrect User or Pass")
+            self.error('Incorrect Username or Password')
+            
+    def error(self,message):
+        self.dialog = MDDialog(
+        text= message,
+        elevation = 0)
+        self.dialog.open()
+        self.dialog = None
             
     def search(self,text):      #Search function for recycle view  
-        holder = [{  'image': y['image'],'name': y['name'],'price': str(y['price']), 'id': str(y['itemID'])} for y in self.items if text.lower() in y['name'].lower()]
+        holder = [{  'image': y['image'],'name': y['name'],'price': str(y['price']), 'id': str(y['itemID'])} for y in self.items if text.lower() in y[self.searchByFilter].lower()]
         self.screen.ids.search.ids.searchrecycleview.data = holder
         self.screen.ids.searchAdmin.ids.searchrecycleview.data = holder
     
@@ -120,16 +190,50 @@ class EasyWare(MDApp):
             pass
         self.reloadCart()
     
-    def checkOut(self):
+    def checkOutCnfrm(self,obj):
         total = 0
         try:
             for x in self.cart:
                 total += float(x['price'])*int(x['quantity'])
                 self.screen.ids.checkout.ids.subtotal.text = str(round(total,2))
+                self.backEnd.invoice(self.username)
+                toast('Invoice generated!')
         except:
             self.screen.ids.checkout.ids.subtotal.text = '0'
             print('empty cart')
         self.screen.current = 'checkout'
+        self.dialog.dismiss()
+        self.dialog = None
+        
+    def checkOut(self):    
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title ="[font=RES/fonts/BebasNeue-Regular.otf]Continue CheckOut?[/font]",
+                text="[font=RES/fonts/BebasNeue-Regular.otf]Items will be removed after checkout![/font]",
+                elevation = 0,
+                buttons=[
+                    MDFlatButton(
+                        text="CANCEL",
+                        size_hint = (.5, .75),
+                        font_name = 'Nunito',
+                        md_bg_color = 'ec8c6f',
+                        theme_text_color="Custom",
+                        text_color= (1,1,1,1),
+                        on_release = self.closeDiag,
+                    ),
+                    MDFlatButton(
+                        text="CONTINUE",
+                        size_hint = (.5, .75),
+                        font_name = 'Nunito',
+                        md_bg_color = 'ec8c6f',
+                        theme_text_color="Custom",
+                        text_color= (1,1,1,1),
+                        on_release = self.checkOutCnfrm,
+                        
+                    ),
+                ],
+            )
+        self.dialog.open()
     
     def gotoItem(self,itemID):
         try:
@@ -158,13 +262,13 @@ class EasyWare(MDApp):
             self.reloadAll()
             
     def addToCart(self,itemID):
+        self.screen.current = 'home'
         try:
             self.backEnd.addToCart(self.username,itemID)
-            self.reloadCart()
         except:
             self.items = self.backEnd.readItem()
-            self.reloadAll()
-            self.reloadCart()
+        self.reloadAll()
+        self.reloadCart()
             
     def editItem(self,item):
         try:
@@ -180,6 +284,14 @@ class EasyWare(MDApp):
             self.backEnd.updateItem(int(item['itemID']), editedItem)
         except:
             pass
+        self.items = self.backEnd.readItem()
+        self.reloadAll()
+    
+    def addItem(self,itemDetails):
+        try:
+            self.backEnd.createItem(self.backEnd.getNewItemID(),itemDetails)
+        except:
+            print('something went wrong')
         self.items = self.backEnd.readItem()
         self.reloadAll()
     
@@ -212,6 +324,7 @@ class EasyWare(MDApp):
     def deleteUser(self,userName):
         try:
             self.backEnd.delUser(userName)
+            toast('Success!')
         except:
             pass
         self.reloadAll()
@@ -219,6 +332,7 @@ class EasyWare(MDApp):
     def addUser(self,user):
         try:
             self.backEnd.addUser(str(int(user['accType'])),user['userNameInput'],user['password'],'RES/Users/userProfile.png',user['fName'],user['position'])
+            toast(f"{user['userNameInput']} Added")
         except:
             pass
         self.reloadAll()
@@ -231,13 +345,49 @@ class EasyWare(MDApp):
         self.items = self.backEnd.readItem()
         self.reloadAll()
     
-    def deleteAllCart(self):
+    def deleteAllCartCnfrm(self,obj):
         try:
             self.backEnd.delCart(self.username)
+            toast('Cart Cleared!')
         except:
             pass
         self.reloadCart()
-         
+        self.dialog.dismiss()
+        self.dialog = None
+    
+    def deleteAllCart(self):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                text="[font=RES/fonts/BebasNeue-Regular.otf]Delete All Items?[/font]",
+                elevation = 0,
+                buttons=[
+                    MDFlatButton(
+                        text="CANCEL",
+                        size_hint = (.5, .75),
+                        font_name = 'Nunito',
+                        md_bg_color = 'ec8c6f',
+                        theme_text_color="Custom",
+                        text_color= (1,1,1,1),
+                        on_release = self.closeDiag,
+                    ),
+                    MDFlatButton(
+                        text="CONTINUE",
+                        size_hint = (.5, .75),
+                        font_name = 'Nunito',
+                        md_bg_color = 'ec8c6f',
+                        theme_text_color="Custom",
+                        text_color= (1,1,1,1),
+                        on_release = self.deleteAllCartCnfrm,
+                        
+                    ),
+                ],
+            )
+        self.dialog.open()
+        
+    def closeDiag(self,obj):
+        self.dialog.dismiss()
+        self.dialog = None
+     
     def build(self):
         return self.screen  
 
