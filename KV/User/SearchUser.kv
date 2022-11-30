@@ -7,13 +7,16 @@
 
     FloatLayout:
         Button:
-            text: 'SORT BY'
+            id: searchBy
+            text: 'SEARCH BY'
             text_color: '#ec8c6f'
             font_name: 'Nunito'
             font_size: root.height * .03
             size_hint: .2, .045
             pos_hint: {'x': .1,'center_y': 0.825}
             background_color: (0,0,0,0)
+            on_release:
+                app.searchby.open()
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
@@ -22,6 +25,7 @@
                     pos: self.pos
                     radius: [root.height * .01]
         MDLabel:
+            id: searchByLbl
             pos_hint: {'x': .275,'center_y': 0.825}
             size_hint: .2, .045
             halign: 'center'
@@ -81,8 +85,8 @@
                     padding: root.width * .1,0,root.width * .1,0
                     spacing: root.width * .02
                     size_hint_y: None
-                    default_size: None, root.width * .29
-                    default_size_hint: root.width, None
+                    default_size: root.width/3.95, root.width * .29
+                    default_size_hint: None, None
                     height: self.minimum_height
 
         MDCard:     #Custom Bottom Nav
