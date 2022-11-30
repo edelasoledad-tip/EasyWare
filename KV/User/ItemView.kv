@@ -25,7 +25,6 @@
             size_hint: .5, .035
             pos_hint: {'right': .9 ,'top': .89}
 
-
         MDCard:             #custom card
             size_hint: .75,.75
             md_bg_color: 1,1,1,.8
@@ -121,7 +120,6 @@
             background_color: (0,0,0,0)
             on_release: 
                 app.addToCart(itemID.text)
-                app.root.current = 'home'
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
