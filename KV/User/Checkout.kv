@@ -112,7 +112,10 @@
             size_hint: .25, .04
             pos_hint: {'center_x': 0.5,'center_y': 0.075}
             background_color: (0,0,0,0)
-            on_release: app.root.current = 'cart'
+            on_release: 
+                app.root.current = 'cart'
+                app.backEnd.delCart(app.username)
+                app.reloadCart()
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)
