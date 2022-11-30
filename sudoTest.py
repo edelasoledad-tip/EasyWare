@@ -2,7 +2,7 @@ from sudoAPP import FireDataBase
 from csv import DictReader
 
 
-def populateDatabase(MAX=1000):
+def populateDatabase(MAX=100):
     with open('RES/CSVs/easyware_dataset.csv', 'r', encoding="utf8") as dataFile:
         i = 1
         temp = DictReader(dataFile)
@@ -60,5 +60,6 @@ if __name__ == '__main__':
     
     #print(app.getUser('tempuser'))
     
-    app.delCart('123','7')
+    #app.delCart('123','7')
+    print(app.readItem(20))
 
