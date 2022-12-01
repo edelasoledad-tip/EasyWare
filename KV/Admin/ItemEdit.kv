@@ -266,7 +266,6 @@
             background_color: (0,0,0,0)
             on_release: 
                 app.editItem({"itemID": itemID.text,"name": itemName.text ,"price": itemPrice.text,"stocks": itemStocks.text, "image": itemImage.source,"info": itemInfo.text,"brand": itemBrand.text,"color" : itemColor.text,"type" : itemType.text})
-                app.root.current = 'homeAdmin'
             canvas.before:
                 Color:
                     rgba: rgba(236,140,111,255)

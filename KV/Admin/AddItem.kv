@@ -270,7 +270,6 @@
             pos_hint: {'center_x': .365,'top': 0.15}
             background_color: (0,0,0,0)
             on_press: 
-                app.root.current = 'homeAdmin'
                 app.addItem({'brand': itemBrand.text, 'color': itemColor.text, 'image': 'RES/RES/brkn.jpg', 'info': itemInfo.text, 'name': itemName.text, 'price': itemPrice.text, 'stocks': itemStocks.text, 'type': itemType.text})
             canvas.before:
                 Color:
