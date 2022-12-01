@@ -27,11 +27,11 @@ if __name__ == '__main__':
     
     #populateDatabase()                # populate databae
     #app.addUser('1','Son','123123','RES/Users/son.jpg','Erickson Dela Soledad','Kay Jorayne Lang')
-    #app.addUser('1','Zand','123123','RES/Users/zand.jpg','Zandlex Keano Reeves', 'Tambay')
-    #app.addUser('1','Nel','123123','RES/Users/nel.jpg',"Ronel German",'Macho Dancer')
+    app.addUser('1','Zand','123123','RES/Users/zand.jpg','Zandlex Keano Reeves', 'Tambay')
+    app.addUser('1','Nel','123123','RES/Users/nel.jpg',"Ronel German",'Macho Dancer')
     #app.addUser('1','Norvs','123123','RES/Users/norvs.jpg','Arthur Norvy Guzman','OPM Artist')
     #app.addUser('1','Cy','123123','RES/Users/cy.jpg','Cyril Ivan Besagas','Duelist')
-    #app.addUser('0','tempUser','123','RES/Users/userProfile.png','Juan Dela Cruz','Cashier')
+    #app.addUser('0','tempUser2','123','RES/Users/userProfile.png','Juan Dela Cruz','Cashier')
     #print(app.readItem(12))
     #for x in app.readItem():
         #print(x['itemID'],": ",x['name'])
@@ -61,5 +61,8 @@ if __name__ == '__main__':
     #print(app.getUser('tempuser'))
     
     #app.delCart('123','7')
-    print(app.readItem(20))
+    #print(app.readItem(20))
 
+    for x in app.getUser(): 
+        print(type(x))
+    
