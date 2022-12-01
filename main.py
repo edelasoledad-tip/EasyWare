@@ -142,35 +142,41 @@ class EasyWare(MDApp):
         self.screen.ids.searchAdmin.ids.searchrecycleview.data = holder
     
     def reloadAll(self):           #Reloads item from database
-        holder = [{ 'image': x['image'],'name': x['name'],'price': str(x['price']), 'id': str(x['itemID'])} for x in self.items]
-        self.screen.ids.home.ids.homerecycleview.data = holder
-        self.screen.ids.search.ids.searchrecycleview.data = holder 
-        self.screen.ids.homeAdmin.ids.homerecycleview.data = holder 
-        self.screen.ids.searchAdmin.ids.searchrecycleview.data = holder 
-        self.screen.ids.usersAdmin.ids.usersrecycleview.data = [{ 'image': x['imagePath'],
-                                                                 'name': x['fullName'],
-                                                                 'position': str(x['position']), 
-                                                                 'userName': str(x['username']),
-                                                                 'userType': str(x['accountType'])} for x in self.backEnd.getUser()]
-        
+        try:
+            holder = [{ 'image': x['image'],'name': x['name'],'price': str(x['price']), 'id': str(x['itemID'])} for x in self.items]
+            self.screen.ids.home.ids.homerecycleview.data = holder
+            self.screen.ids.search.ids.searchrecycleview.data = holder 
+            self.screen.ids.homeAdmin.ids.homerecycleview.data = holder 
+            self.screen.ids.searchAdmin.ids.searchrecycleview.data = holder 
+            self.screen.ids.usersAdmin.ids.usersrecycleview.data = [{ 'image': x['imagePath'],
+                                                                    'name': x['fullName'],
+                                                                    'position': str(x['position']), 
+                                                                    'userName': str(x['username']),
+                                                                    'userType': str(x['accountType'])} for x in self.backEnd.getUser()]
+        except:
+            print('error on reload all')
+         
     def reloadCart(self):           #Reloads the cart items
-        self.cart = self.backEnd.getCart(self.username)
-        if self.cart != False:
-            self.screen.ids.cart.ids.cartrecycleview.data = [{  'image': z['image'],
-                                                                'name': z['name'],
-                                                                'total': str(round(float(z['price'])*int(z['quantity']),2)), 
-                                                                'quantity': str(z['quantity']),
-                                                                'id': str(z['itemID'])
-                                                                } for z in self.cart]
-            
-            self.screen.ids.checkout.ids.checkoutrecycleview.data = [{  'name': a['name'],
-                                                                        'price': str(round(float(a['price'])*int(a['quantity']),2)), 
-                                                                        'quantity': str(a['quantity']),
-                                                                        'id': str(a['itemID'])
-                                                                        } for a in self.cart]
-        else:
-            self.screen.ids.cart.ids.cartrecycleview.data = []
-            self.screen.ids.checkout.ids.checkoutrecycleview.data = []
+        try:
+            self.cart = self.backEnd.getCart(self.username)
+            if self.cart != False:
+                self.screen.ids.cart.ids.cartrecycleview.data = [{  'image': z['image'],
+                                                                    'name': z['name'],
+                                                                    'total': str(round(float(z['price'])*int(z['quantity']),2)), 
+                                                                    'quantity': str(z['quantity']),
+                                                                    'id': str(z['itemID'])
+                                                                    } for z in self.cart]
+                
+                self.screen.ids.checkout.ids.checkoutrecycleview.data = [{  'name': a['name'],
+                                                                            'price': str(round(float(a['price'])*int(a['quantity']),2)), 
+                                                                            'quantity': str(a['quantity']),
+                                                                            'id': str(a['itemID'])
+                                                                            } for a in self.cart]
+            else:
+                self.screen.ids.cart.ids.cartrecycleview.data = []
+                self.screen.ids.checkout.ids.checkoutrecycleview.data = []
+        except:
+            print('error on reload cart')
     
     def temp(self, message):    #Temporary printing function
         print(message)
@@ -205,35 +211,38 @@ class EasyWare(MDApp):
         self.dialog.dismiss()
         self.dialog = None
         
-    def checkOut(self):    
-        if not self.dialog:
-            self.dialog = MDDialog(
-                title ="[font=RES/fonts/BebasNeue-Regular.otf]Continue CheckOut?[/font]",
-                text="[font=RES/fonts/BebasNeue-Regular.otf]Items will be removed after checkout![/font]",
-                elevation = 0,
-                buttons=[
-                    MDFlatButton(
-                        text="CANCEL",
-                        size_hint = (.5, .75),
-                        font_name = 'Nunito',
-                        md_bg_color = 'ec8c6f',
-                        theme_text_color="Custom",
-                        text_color= (1,1,1,1),
-                        on_release = self.closeDiag,
-                    ),
-                    MDFlatButton(
-                        text="CONTINUE",
-                        size_hint = (.5, .75),
-                        font_name = 'Nunito',
-                        md_bg_color = 'ec8c6f',
-                        theme_text_color="Custom",
-                        text_color= (1,1,1,1),
-                        on_release = self.checkOutCnfrm,
-                        
-                    ),
-                ],
-            )
-        self.dialog.open()
+    def checkOut(self): 
+        if self.cart == False:
+            toast('Empty Cart')   
+        else:
+            if not self.dialog:
+                self.dialog = MDDialog(
+                    title ="[font=RES/fonts/BebasNeue-Regular.otf]Continue CheckOut?[/font]",
+                    text="[font=RES/fonts/BebasNeue-Regular.otf]Items will be removed after checkout![/font]",
+                    elevation = 0,
+                    buttons=[
+                        MDFlatButton(
+                            text="CANCEL",
+                            size_hint = (.5, .75),
+                            font_name = 'Nunito',
+                            md_bg_color = 'ec8c6f',
+                            theme_text_color="Custom",
+                            text_color= (1,1,1,1),
+                            on_release = self.closeDiag,
+                        ),
+                        MDFlatButton(
+                            text="CONTINUE",
+                            size_hint = (.5, .75),
+                            font_name = 'Nunito',
+                            md_bg_color = 'ec8c6f',
+                            theme_text_color="Custom",
+                            text_color= (1,1,1,1),
+                            on_release = self.checkOutCnfrm,
+                            
+                        ),
+                    ],
+                )
+            self.dialog.open()
     
     def gotoItem(self,itemID):
         try:
@@ -281,7 +290,12 @@ class EasyWare(MDApp):
                         "brand": item['brand'],
                         "color" : item['color'],
                         "type" : item['type']}
-            self.backEnd.updateItem(int(item['itemID']), editedItem)
+            if editedItem == self.backEnd.readItem(int(item['itemID'])):
+                toast('No Changes!')
+            else:
+                self.backEnd.updateItem(int(item['itemID']), editedItem)
+                toast('Item Details Saved!')
+                self.screen.current = 'homeAdmin'
         except:
             pass
         self.items = self.backEnd.readItem()
@@ -289,7 +303,19 @@ class EasyWare(MDApp):
     
     def addItem(self,itemDetails):
         try:
-            self.backEnd.createItem(self.backEnd.getNewItemID(),itemDetails)
+            if "" in itemDetails.values():
+                toast("Please Fill All Fields!")
+            else:
+                self.backEnd.createItem(self.backEnd.getNewItemID(),itemDetails)
+                self.screen.ids.itemAdd.ids.itemBrand.text = ""
+                self.screen.ids.itemAdd.ids.itemColor.text = ""
+                self.screen.ids.itemAdd.ids.itemInfo.text = ""
+                self.screen.ids.itemAdd.ids.itemName.text = ""
+                self.screen.ids.itemAdd.ids.itemPrice.text = ""
+                self.screen.ids.itemAdd.ids.itemStocks.text = ""
+                self.screen.ids.itemAdd.ids.itemType.text = ""
+                toast('Item Added')
+                self.screen.current = 'homeAdmin'
         except:
             print('something went wrong')
         self.items = self.backEnd.readItem()
@@ -311,12 +337,18 @@ class EasyWare(MDApp):
            
     def editUser(self,user):
         try:
-            self.backEnd.updateUser(user['userName'],
-                                    user['updatedUserName'],
-                                    str(int(user['accType'])),
-                                    user['fName'],
-                                    user['position'],
-                                    user['password'])
+            bck = self.backEnd.getUser(user['userName'])
+            if (user['updatedUserName'],user['password'],user['fName'],user['position'],str(int(user['accType']))) == (bck['username'],bck['password'],bck['fullName'],bck['position'],bck['accountType']):
+                toast('No Changes!')
+            else:
+                self.backEnd.updateUser(user['userName'],
+                                        user['updatedUserName'],
+                                        str(int(user['accType'])),
+                                        user['fName'],
+                                        user['position'],
+                                        user['password'])
+                toast('Changes Saved!')
+                self.screen.current = 'usersAdmin'
         except:
             pass
         self.reloadAll()
@@ -331,8 +363,17 @@ class EasyWare(MDApp):
     
     def addUser(self,user):
         try:
-            self.backEnd.addUser(str(int(user['accType'])),user['userNameInput'],user['password'],'RES/Users/userProfile.png',user['fName'],user['position'])
-            toast(f"{user['userNameInput']} Added")
+            if "" in user.values():
+                toast('Please Fill All Fields')
+            else:
+                self.backEnd.addUser(str(int(user['accType'])),user['userNameInput'],user['password'],'RES/Users/userProfile.png',user['fName'],user['position'])
+                toast(f"{user['userNameInput']} Added")
+                self.screen.ids.userAdd.ids.userNameInput.text = ""
+                self.screen.ids.userAdd.ids.userType.active = False
+                self.screen.ids.userAdd.ids.fullNameInput.text = ""
+                self.screen.ids.userAdd.ids.positionInput.text = ""
+                self.screen.ids.userAdd.ids.passwordInput.text = ""
+                self.screen.current = 'usersAdmin'
         except:
             pass
         self.reloadAll()
