@@ -90,16 +90,17 @@ class EasyWare(MDApp):
         self.screen.ids.search.ids.searchByLbl.text = x
         self.searchByFilter = x.lower()
         self.searchby.dismiss() 
-         
+    
     def set_item(self,x):
         self.screen.ids.home.ids.sortBy.text = x
         self.screen.ids.searchAdmin.ids.sortBy.text = x
         try:
+            print("working")
             if x == "Name":
                 self.items = self.backEnd.readItem(0,1)
-            elif x == "Price ASC":
-                self.items = self.backEnd.readItem(0,3)
             elif x == "Price DSC":
+                self.items = self.backEnd.readItem(0,3)
+            elif x == "Price ASC":
                 self.items = self.backEnd.readItem(0,4)
             else:
                 self.items = self.backEnd.readItem(0,2)

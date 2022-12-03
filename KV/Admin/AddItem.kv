@@ -60,6 +60,7 @@
             size_hint: .3, .05
             TextInput:
                 id: itemStocks
+                input_filter: 'int'
                 pos_hint: {'x': 1,'center_y': 0.5}
                 hint_text: "stocks num"
                 font_name: 'Nunito'
@@ -138,6 +139,7 @@
             size_hint: .3, .05
             TextInput:
                 id: itemPrice
+                input_filter: 'float'
                 pos_hint: {'x': 1,'center_y': 0.5}
                 hint_text: "enter price"
                 font_name: 'Nunito'
