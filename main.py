@@ -138,7 +138,7 @@ class EasyWare(MDApp):
         self.dialog = None
             
     def search(self,text):      #Search function for recycle view  
-        holder = [{  'image': y['image'],'name': y['name'],'price': str(y['price']), 'id': str(y['itemID'])} for y in self.items if text.lower() in y[self.searchByFilter].lower()]
+        holder = [{  'image': y['image'],'name': y['name'],'price': str(y['price']), 'id': str(y['itemID'])} for y in self.items if text.lower() in str(y[self.searchByFilter]).lower()]
         self.screen.ids.search.ids.searchrecycleview.data = holder
         self.screen.ids.searchAdmin.ids.searchrecycleview.data = holder
     
