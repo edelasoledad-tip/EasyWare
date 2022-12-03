@@ -15,6 +15,7 @@ class FireDataBase():
             cred, {'databaseURL': databaseURL})
 
     def addUser(self, accountType, username, password, imagePath, fullName, position):
+        username = username.lower()
         # Included user mode (Admin 1  or Employee 0)
         try:
             ref = db.reference('/users')
@@ -201,6 +202,7 @@ class FireDataBase():
             return False
 
     def authLogin(self, username, password):
+        username = username.lower()
         try:
             ref = db.reference('/users')
             x = ref.get(False, True)
